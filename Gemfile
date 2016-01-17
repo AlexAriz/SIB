@@ -42,6 +42,8 @@ gem 'railsstrap', '3.3.4'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'ajax-datatables-rails', '~> 0.3.1'
 gem 'hightop', '0.1.3'
+gem 'rubocop', '0.36.0', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
