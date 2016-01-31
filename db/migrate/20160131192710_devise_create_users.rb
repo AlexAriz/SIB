@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       # for single inheritance
       t.string :type
+      t.string :user_name
       ## Recoverable
       t.string :reset_password_token
       t.datetime :reset_password_sent_at
@@ -38,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
     add_index :users, :email, unique: true
     add_index :users, :reset_password_token, unique: true
-    add_index :users, :confirmation_token,   unique: true
+    add_index :users, :confirmation_token, unique: true
     # add_index :users, :unlock_token,         unique: true
   end
 end
