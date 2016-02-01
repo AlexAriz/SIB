@@ -29,7 +29,7 @@ class ScholarshipsController < ApplicationController
 
     respond_to do |format|
       if @scholarship.save
-        format.html { redirect_to @scholarship, notice: 'Scholarship was successfully created.' }
+        format.html { redirect_to({:action => :index}, {:notice => 'Succesfully assigned job'}) }
         format.json { render :show, status: :created, location: @scholarship }
       else
         format.html { render :new }

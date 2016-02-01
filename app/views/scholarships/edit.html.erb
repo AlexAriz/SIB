@@ -1,6 +1,7 @@
-<h1>Editing Scholarship</h1>
+<h1>Editar beca <%= @scholarship.name %></h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @scholarship %> |
-<%= link_to 'Back', scholarships_path %>
+<hr>
+<%= link_to 'Show', @scholarship, class: "btn btn-info" %> 
+<%= link_to 'Back', scholarships_path, class: "btn btn-danger" %>
+<hr>

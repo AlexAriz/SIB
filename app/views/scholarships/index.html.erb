@@ -2,7 +2,7 @@
 
 <h1>Lista de becas</h1>
 
-<table class="table table-hover">
+<table class="table table-hover" id="table-list-scholarships">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -31,7 +31,12 @@
           <% end %>
         </td>
         <td> 
-          <%= link_to scholarship, method: :delete, data: { confirm: '¿Seguro que desea eliminar esta Beca?' } do %>
+          <%= link_to scholarship, method: :delete, data: { confirm: "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> la beca con la siguiente información?
+                  <ul>
+                    <li>Nombre de la beca: <strong class='text-info'>#{scholarship.name}</strong></li>
+                    <li>Nombre de la universidad que la ofrece: <strong class='text-info'>#{scholarship.university.name}</strong></li>
+                  </ul>
+                </p>" } do %>
             <span class="glyphicon glyphicon-remove"></span>
           <% end %>
         </td>
