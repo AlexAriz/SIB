@@ -1,3 +1,4 @@
+# Este es el modelo de Becas, todos sus campos son requeridos.
 class Scholarship < ActiveRecord::Base
   belongs_to :university
 

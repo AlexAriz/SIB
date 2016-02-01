@@ -1,3 +1,4 @@
+# Este es el controlador para las Becas
 class ScholarshipsController < ApplicationController
   before_action :set_scholarship, only: [:show, :edit, :update, :destroy]
 
@@ -62,13 +63,14 @@ class ScholarshipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scholarship
-      @scholarship = Scholarship.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def scholarship_params
-      params.require(:scholarship).permit(:name, :university_id, :start_date, :end_date, :description, :requirements, :benefits_offered, :url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_scholarship
+    @scholarship = Scholarship.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def scholarship_params
+    params.require(:scholarship).permit(:name, :university_id, :start_date, :end_date, :description, :requirements, :benefits_offered, :url)
+  end
 end
