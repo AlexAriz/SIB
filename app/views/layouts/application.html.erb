@@ -7,13 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <p><%= bootstrap_flash %></p>
 </div>
+
 <div class="container">
-
-
   <div class="pull-right">
     <% if user_signed_in? %>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %>
@@ -22,7 +21,9 @@
     <% end %>
 
   </div>
-  <%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 </div>
 </body>
 </html>

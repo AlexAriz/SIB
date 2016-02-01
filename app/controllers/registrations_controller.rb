@@ -1,5 +1,5 @@
 # This is a customized controller for the devise registration.
-# It helps to add new attributes added by us
+# It helps to retrieve new attributes added by us
 # For example "User name"
 class RegistrationsController < Devise::RegistrationsController
   private
@@ -8,7 +8,8 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:user_name,
                                  :email,
                                  :password,
-                                 :password_confirmation)
+                                 :password_confirmation,
+                                 :type)
   end
 
   def account_update_params
