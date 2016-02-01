@@ -1,0 +1,18 @@
+<%= simple_form_for(@scholarship) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.association :university %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :description %>
+    <%= f.input :requirements %>
+    <%= f.input :benefits_offered %>
+    <%= f.input :url %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
