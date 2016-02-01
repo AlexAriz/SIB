@@ -1,19 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Scholarships</h1>
+<h1>Lista de becas</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>University</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Description</th>
-      <th>Requirements</th>
-      <th>Benefits offered</th>
-      <th>Url</th>
-      <th colspan="3"></th>
+      <th>Nombre</th>
+      <th>Universidad</th>
+      <th>Fecha de inicio</th>
+      <th>Fecha de cierre</th>
+      <th colspan="3">Operaciones</th>
     </tr>
   </thead>
 
@@ -21,16 +17,24 @@
     <% @scholarships.each do |scholarship| %>
       <tr>
         <td><%= scholarship.name %></td>
-        <td><%= scholarship.university %></td>
+        <td><%= scholarship.university.name %></td>
         <td><%= scholarship.start_date %></td>
         <td><%= scholarship.end_date %></td>
-        <td><%= scholarship.description %></td>
-        <td><%= scholarship.requirements %></td>
-        <td><%= scholarship.benefits_offered %></td>
-        <td><%= scholarship.url %></td>
-        <td><%= link_to 'Show', scholarship %></td>
-        <td><%= link_to 'Edit', edit_scholarship_path(scholarship) %></td>
-        <td><%= link_to 'Destroy', scholarship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to scholarship do %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_scholarship_path(scholarship) do %>
+            <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
+        </td>
+        <td> 
+          <%= link_to scholarship, method: :delete, data: { confirm: '¿Seguro que desea eliminar esta Beca?' } do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Scholarship', new_scholarship_path %>
+<%= link_to 'Crear beca', new_scholarship_path, class: "btn btn-primary" %>

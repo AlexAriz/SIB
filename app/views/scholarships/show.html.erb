@@ -7,7 +7,7 @@
 
 <p>
   <strong>University:</strong>
-  <%= @scholarship.university %>
+  <%= @scholarship.university.name %>
 </p>
 
 <p>
@@ -37,7 +37,7 @@
 
 <p>
   <strong>Url:</strong>
-  <%= @scholarship.url %>
+  <%= link_to "Página principal de la beca", @scholarship.url %>
 </p>
 
 <%= link_to 'Edit', edit_scholarship_path(@scholarship) %> |
