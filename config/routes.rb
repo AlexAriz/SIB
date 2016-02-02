@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :work_materials
   resources :static_pages
   get 'principal_page' => 'static_pages#index'
   root 'static_pages#index'

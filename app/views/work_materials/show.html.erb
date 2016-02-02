@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @work_material.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @work_material.description %>
+</p>
+
+<p>
+  <strong>File src:</strong>
+  <%= @work_material.file_src %>
+</p>
+
+<p>
+  <strong>Tutor:</strong>
+  <%= @work_material.tutor_id %>
+</p>
+
+<%= link_to 'Edit', edit_work_material_path(@work_material) %> |
+<%= link_to 'Back', work_materials_path %>
