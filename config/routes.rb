@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
+
   resources :scholarships
+  resources :static_pages
+  get 'principal_page' => 'static_pages#index'
+  root 'static_pages#index'
+
+
+  devise_for :users, :controllers => {
+      registrations: 'registrations'
+  }
+
+  # root 'devise/registrations#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
