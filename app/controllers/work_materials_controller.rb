@@ -26,7 +26,7 @@ class WorkMaterialsController < ApplicationController
   # POST /work_materials.json
   def create
     @work_material = WorkMaterial.new(work_material_params)
-    @work_material.tutor_id = current_user.id
+    @work_material.user_id = current_user.id
 
     respond_to do |format|
       if @work_material.save
@@ -44,7 +44,7 @@ class WorkMaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @work_material.update(work_material_params)
-        @work_material.tutor_id = current_user.id
+        @work_material.user_id = current_user.id
         format.html { redirect_to @work_material, notice: msg_after_update }
         format.json { render :show, status: :ok, location: @work_material }
       else
@@ -70,6 +70,7 @@ class WorkMaterialsController < ApplicationController
   def set_work_material
     @work_material = WorkMaterial.find(params[:id])
   end
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def work_material_params

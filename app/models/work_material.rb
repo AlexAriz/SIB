@@ -1,5 +1,5 @@
 class WorkMaterial < ActiveRecord::Base
-  has_and_belongs_to_many :candidates
-  belongs_to :tutor
-  delegate :tutor, to: :users
+  belongs_to :tutor, :class_name => 'User'
+  has_and_belongs_to_many :candidates, :class_name => 'User'
+
 end
