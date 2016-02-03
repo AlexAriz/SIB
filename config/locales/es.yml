@@ -3,6 +3,7 @@ es:
   activerecord:
     models:
       user: Usuario
+      scholarship: Beca
 
     attributes:
       user:
@@ -12,6 +13,69 @@ es:
         type: Tipo de usuario
         user_name: Nombre de usuario
         remember_me: Recordar mi cuenta
+      scholarship:
+        name: Nombre
+        university: Universidad
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+        description: Descripción
+        requirements: Requisitos
+        benefits_offered: Beneficios que ofrece
+        url: enlace
+
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
 
   errors:
     format: "%{attribute} %{message}"

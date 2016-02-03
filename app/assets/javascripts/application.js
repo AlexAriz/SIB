@@ -26,6 +26,7 @@ $(function () {
     //Para el Modal
     dataConfirmModal.setDefaults({
         title: 'Confirmar Acción',
+        commit: 'Confirmar',
         cancel: 'Cerrar'
     });
 
