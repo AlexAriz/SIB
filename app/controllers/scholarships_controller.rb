@@ -28,7 +28,14 @@ class ScholarshipsController < ApplicationController
     @scholarship = Scholarship.new(scholarship_params)
 
     respond_to do |format|
-      after_create(@scholarship.save, format)
+      if @scholarship.save
+        format.html { redirect_to(action: :index, notice: msg_after_create) }
+        format.json { render :show, status: :created, location: @scholarship }
+      else
+        format.html { render :new }
+        format.json render json: @scholarship.errors,
+                           status: :unprocessable_entity
+      end
     end
   end
 
@@ -61,17 +68,6 @@ class ScholarshipsController < ApplicationController
       format.json render json: @scholarship.errors,
                          status: :unprocessable_entity
 
-    end
-  end
-
-  def after_create(flag, format)
-    if flag
-      format.html { redirect_to(action: :index, notice: msg_after_create) }
-      format.json { render :show, status: :created, location: @scholarship }
-    else
-      format.html { render :new }
-      format.json render json: @scholarship.errors,
-                         status: :unprocessable_entity
     end
   end
 
