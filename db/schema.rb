@@ -86,16 +86,13 @@ ActiveRecord::Schema.define(version: 20160202045212) do
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
     t.string   "file_src",    limit: 255
-    t.integer  "user_id",     limit: 4
+    t.integer  "tutor_id",    limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
-
-  add_index "work_materials", ["user_id"], name: "index_work_materials_on_user_id", using: :btree
 
   add_foreign_key "person", "users"
   add_foreign_key "scholarships", "universities"
   add_foreign_key "users_work_materials", "users"
   add_foreign_key "users_work_materials", "work_materials"
-  add_foreign_key "work_materials", "users"
 end

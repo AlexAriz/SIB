@@ -4,7 +4,7 @@ class CreateWorkMaterials < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :file_src
-      t.references :user, index: true, foreign_key: true
+      t.integer :tutor_id
 
       t.timestamps null: false
     end
