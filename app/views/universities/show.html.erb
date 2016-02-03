@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<h1>Universidad: <%= @university.name %></h1>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">Detalles de <%= @university.name %></div>
+    <div class="panel-body">
+      <p>
+        <strong>Nombre de la universidad:</strong>
+        <%= @university.name %>
+      </p>
+
+      <p>
+        <strong>Ciudad:</strong>
+        <%= @university.city %>
+      </p>
+
+      <p>
+        <strong>Estado:</strong>
+        <%= @university.state%>
+      </p>
+
+      <p>
+        <strong>Pais:</strong>
+        <%= @university.country %>
+      </p>
+
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Informacion general</div>
+    <div class="panel-body">
+      <p>
+        <strong>Requirements:</strong>
+        <%= @university.information %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<p>
+  <%= link_to "Página principal de la universidad", @university.url %>
+</p>
+
+<hr>
+<%= link_to 'Editar universidad', edit_university_path(@scholarship), class: "btn btn-info" %>
+<%= link_to 'Regresar', universities_path, class: "btn btn-danger" %>
+<hr>
