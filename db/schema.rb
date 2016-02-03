@@ -23,6 +23,32 @@ ActiveRecord::Schema.define(version: 20160201181747) do
 
   add_index "person", ["user_id"], name: "index_person_on_user_id", using: :btree
 
+  create_table "scholarships", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.integer  "university_id",    limit: 4
+    t.date     "start_date"
+    t.date     "end_date"
+    t.text     "description",      limit: 65535
+    t.text     "requirements",     limit: 65535
+    t.text     "benefits_offered", limit: 65535
+    t.string   "url",              limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "scholarships", ["university_id"], name: "index_scholarships_on_university_id", using: :btree
+
+  create_table "universities", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "city",        limit: 255
+    t.string   "state",       limit: 255
+    t.string   "country",     limit: 255
+    t.text     "information", limit: 65535
+    t.string   "url",         limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -49,4 +75,5 @@ ActiveRecord::Schema.define(version: 20160201181747) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "person", "users"
+  add_foreign_key "scholarships", "universities"
 end

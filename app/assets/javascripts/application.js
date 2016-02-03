@@ -21,12 +21,12 @@
 //= require data-confirm-modal
 //= require bootstrap-select
 //= require is_js_rails
-//= require turbolinks
 //= require_tree .
 $(function () {
     //Para el Modal
     dataConfirmModal.setDefaults({
         title: 'Confirmar Acción',
+        commit: 'Confirmar',
         cancel: 'Cerrar'
     });
 

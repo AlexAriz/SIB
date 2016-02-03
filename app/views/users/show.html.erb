@@ -1,0 +1,47 @@
+<%- model_class = User -%>
+<div class="page-header text-center">
+  <h1><%= t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<fieldset>
+  <legend>Datos generales</legend>
+  <div class="row">
+    <div class="col-md-offset-2">
+      <div class="col-md-3"><strong><%= model_class.human_attribute_name(:email) %></strong></div>
+      <div class="col-md-3"><%= @user.email %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-2">
+      <div class="col-md-3"><strong><%= model_class.human_attribute_name(:user_name) %></strong>:</div>
+      <div class="col-md-3"><%= @user.user_name %></div>
+    </div>
+  </div>
+
+</fieldset>
+
+<fieldset>
+  <legend>Intereses</legend>
+  <h2>Aqui van los intereses</h2>
+</fieldset>
+
+<div class="row pull-right">
+
+  <%= link_to users_index_path, class: "btn btn-default" do %>
+      <i class="fa fa-arrow-left"></i>
+      <%= t('.back', :default => t("helpers.links.back")) %>
+  <% end %>
+
+
+
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), user_destroy_path(@user),
+              :method => :delete,
+              :data => {:confirm =>
+                            "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
+                                    <ul>
+                                    <li>Nombre del usuario: <strong class='text-info'>#{@user.user_name}</strong></li>
+                                    <li>Correo del usuario: <strong class='text-info'>#{@user.email}</strong></li>
+                                    </ul>
+                                    </p>"},
+              :class => 'btn btn-danger' %>
+</div>

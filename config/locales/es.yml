@@ -1,7 +1,9 @@
+---
 es:
   activerecord:
     models:
-      User: Usuario
+      user: Usuario
+      scholarship: Beca
 
     attributes:
       user:
@@ -11,6 +13,69 @@ es:
         type: Tipo de usuario
         user_name: Nombre de usuario
         remember_me: Recordar mi cuenta
+      scholarship:
+        name: Nombre
+        university: Universidad
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+        description: Descripción
+        requirements: Requisitos
+        benefits_offered: Beneficios que ofrece
+        url: enlace
+
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
 
   errors:
     format: "%{attribute} %{message}"
@@ -53,32 +118,32 @@ es:
         one: "%{model} no pudo guardarse debido a 1 error"
         other: "%{model} no pudo guardarse debido a %{count} errores"
 
-    helpers:
-      select:
-        prompt: Por favor selecciona
-      submit:
-        create: Crear %{model}
-        submit: Guardar %{model}
-        update: Actualizar %{model}
-        cancel: Cancelar
-      links:
-        new: Nuevo
-        show: Ver
-        show_html: <i class="fa fa-eye fa-lg"></i>
-        edit_html: <i class="fa fa-edit fa-lg color_grey"></i>
-        destroy_html: <i class="fa fa-trash-o fa-lg color_red"></i>
-        edit: Editar
-        destroy: Eliminar
-        cancel: Cancelar
-        confirm: "Estas seguro?"
-        cancel: Cancelar
-        back: Regresar
-      titles:
-        new: Nuevo %{model}
-        edit: Editar %{model}
-        save: "Guardar %{model}"
-        delete: "Eliminar %{model}"
-      actions: Opciones
+  helpers:
+    select:
+      prompt: Por favor selecciona
+    submit:
+      create: Crear %{model}
+      submit: Guardar %{model}
+      update: Actualizar %{model}
+      cancel: Cancelar
+    links:
+      new: Nuevo
+      show: Ver
+      show_html: <i class="fa fa-eye fa-lg"></i>
+      edit_html: <i class="fa fa-edit fa-lg color_grey"></i>
+      destroy_html: <i class="fa fa-trash-o fa-lg color_red"></i>
+      edit: Editar
+      destroy: Eliminar
+      cancel: Cancelar
+      confirm: "Estas seguro?"
+      cancel: Cancelar
+      back: Regresar
+    titles:
+      new: Nuevo %{model}
+      edit: Editar %{model}
+      save: "Guardar %{model}"
+      delete: "Eliminar %{model}"
+    actions: Opciones
 
   number:
     currency:
