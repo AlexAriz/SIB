@@ -29,7 +29,7 @@ class ScholarshipsController < ApplicationController
 
     respond_to do |format|
       if @scholarship.save
-        format.html { redirect_to({:action => :index}, {:notice => 'Succesfully assigned job'}) }
+        format.html { redirect_to(action: :index, notice: 'Scholarship was successfully created.') }
         format.json { render :show, status: :created, location: @scholarship }
       else
         format.html { render :new }
@@ -69,8 +69,16 @@ class ScholarshipsController < ApplicationController
     @scholarship = Scholarship.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def scholarship_params
-    params.require(:scholarship).permit(:name, :university_id, :start_date, :end_date, :description, :requirements, :benefits_offered, :url)
+    params.require(:scholarship).permit(:name,
+                                        :university_id,
+                                        :start_date,
+                                        :end_date,
+                                        :description,
+                                        :requirements,
+                                        :benefits_offered,
+                                        :url)
   end
 end
