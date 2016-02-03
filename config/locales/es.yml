@@ -1,7 +1,8 @@
+---
 es:
   activerecord:
     models:
-      User: Usuario
+      user: Usuario
 
     attributes:
       user:
@@ -53,32 +54,32 @@ es:
         one: "%{model} no pudo guardarse debido a 1 error"
         other: "%{model} no pudo guardarse debido a %{count} errores"
 
-    helpers:
-      select:
-        prompt: Por favor selecciona
-      submit:
-        create: Crear %{model}
-        submit: Guardar %{model}
-        update: Actualizar %{model}
-        cancel: Cancelar
-      links:
-        new: Nuevo
-        show: Ver
-        show_html: <i class="fa fa-eye fa-lg"></i>
-        edit_html: <i class="fa fa-edit fa-lg color_grey"></i>
-        destroy_html: <i class="fa fa-trash-o fa-lg color_red"></i>
-        edit: Editar
-        destroy: Eliminar
-        cancel: Cancelar
-        confirm: "Estas seguro?"
-        cancel: Cancelar
-        back: Regresar
-      titles:
-        new: Nuevo %{model}
-        edit: Editar %{model}
-        save: "Guardar %{model}"
-        delete: "Eliminar %{model}"
-      actions: Opciones
+  helpers:
+    select:
+      prompt: Por favor selecciona
+    submit:
+      create: Crear %{model}
+      submit: Guardar %{model}
+      update: Actualizar %{model}
+      cancel: Cancelar
+    links:
+      new: Nuevo
+      show: Ver
+      show_html: <i class="fa fa-eye fa-lg"></i>
+      edit_html: <i class="fa fa-edit fa-lg color_grey"></i>
+      destroy_html: <i class="fa fa-trash-o fa-lg color_red"></i>
+      edit: Editar
+      destroy: Eliminar
+      cancel: Cancelar
+      confirm: "Estas seguro?"
+      cancel: Cancelar
+      back: Regresar
+    titles:
+      new: Nuevo %{model}
+      edit: Editar %{model}
+      save: "Guardar %{model}"
+      delete: "Eliminar %{model}"
+    actions: Opciones
 
   number:
     currency:

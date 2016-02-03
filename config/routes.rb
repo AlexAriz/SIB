@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  get 'users/index'
+
+  get 'users/show/:id' => 'users#show', as: 'user_show'
+  delete 'users/destroy/:id' => 'users#destroy', as: 'user_destroy'
+
   resources :static_pages
   get 'principal_page' => 'static_pages#index'
   root 'static_pages#index'
