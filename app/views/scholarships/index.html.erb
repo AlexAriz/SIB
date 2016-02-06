@@ -1,43 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Lista de becas</h1>
-
-<table class="table table-hover" id="table-list-scholarships">
+<%- model_class = Scholarship -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped table-responsive table-bordered text-center" id="scholarships-table">
   <thead>
     <tr>
-      <th>Nombre</th>
-      <th>Universidad</th>
-      <th>Fecha de inicio</th>
-      <th>Fecha de cierre</th>
-      <th colspan="3">Operaciones</th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @scholarships.each do |scholarship| %>
       <tr>
+        <td><%= link_to scholarship.id, scholarship_path(scholarship) %></td>
         <td><%= scholarship.name %></td>
-        <td><%= scholarship.university.name %></td>
         <td><%= scholarship.start_date %></td>
         <td><%= scholarship.end_date %></td>
         <td>
-          <%= link_to scholarship do %>
-            <span class="glyphicon glyphicon-eye-open"></span>
+          <%= link_to edit_scholarship_path(scholarship) do  %>
+              <span class="glyphicon glyphicon-pencil"></span>
           <% end %>
-        </td>
-        <td>
-          <%= link_to edit_scholarship_path(scholarship) do %>
-            <span class="glyphicon glyphicon-edit"></span>
-          <% end %>
-        </td>
-        <td> 
-          <%= link_to scholarship, method: :delete, data: { confirm: "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> la beca con la siguiente información?
-                  <ul>
-                    <li>Nombre de la beca: <strong class='text-info'>#{scholarship.name}</strong></li>
-                    <li>Nombre de la universidad que la ofrece: <strong class='text-info'>#{scholarship.university.name}</strong></li>
-                  </ul>
-                </p>" } do %>
-            <span class="glyphicon glyphicon-remove"></span>
+
+          <%= link_to scholarship_path(scholarship),
+                      :method => :delete,
+                      :data => {:confirm =>
+                                    "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
+                                    <ul>
+                                    <li>Nombre de la beca: <strong class='text-info'>#{scholarship.name}</strong></li>
+                                    </ul>
+                                    </p>"} do %>
+              <span class="glyphicon glyphicon-remove"></span>
           <% end %>
         </td>
       </tr>
@@ -45,6 +40,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Crear beca', new_scholarship_path, class: "btn btn-primary" %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_scholarship_path,
+            :class => 'btn btn-primary' %>

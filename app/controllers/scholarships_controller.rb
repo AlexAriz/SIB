@@ -29,12 +29,12 @@ class ScholarshipsController < ApplicationController
 
     respond_to do |format|
       if @scholarship.save
-        format.html { redirect_to(action: :index, notice: msg_after_create) }
-        format.json { render :show, status: :created, location: @scholarship }
+        format.html { redirect_to scholarships_path, notice: msg_after_create }
+        # format.json { render :show, status: :created, location: @scholarship }
       else
         format.html { render :new }
-        format.json render json: @scholarship.errors,
-                           status: :unprocessable_entity
+        # format.json { render json: @scholarship.errors,
+        # status: :unprocessable_entity}
       end
     end
   end
@@ -43,7 +43,14 @@ class ScholarshipsController < ApplicationController
   # PATCH/PUT /scholarships/1.json
   def update
     respond_to do |format|
-      after_update(@scholarship.update(scholarship_params), format)
+      if @scholarship.update(scholarship_params)
+        format.html { redirect_to @scholarship, notice: msg_after_update }
+        # format.json { render :show, status: :ok, location: @scholarship }
+      else
+        format.html { render :edit }
+        # format.json { render json: @scholarship.errors,
+        # status: :unprocessable_entity }
+      end
     end
   end
 
@@ -59,28 +66,16 @@ class ScholarshipsController < ApplicationController
 
   private
 
-  def after_update(flag, format)
-    if flag
-      format.html { redirect_to @scholarship, notice: msg_after_update }
-      format.json { render :show, status: :ok, location: @scholarship }
-    else
-      format.html { render :edit }
-      format.json render json: @scholarship.errors,
-                         status: :unprocessable_entity
-
-    end
-  end
-
   def msg_after_destroy
-    'Scholarship was successfully destroyed.'
+    'Se ha eliminado exitosamente'
   end
 
   def msg_after_update
-    'Scholarship was successfully updated.'
+    'Se ha modificado exitosamente'
   end
 
   def msg_after_create
-    'Scholarship was successfully created.'
+    'Se ha creado exitosamente la beca: ' + @scholarship.name
   end
 
   # Use callbacks to share common setup or constraints between actions.
