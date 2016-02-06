@@ -12,6 +12,8 @@
   <dd><%= @work_material.file_src %></dd>
   <dt><strong><%= model_class.human_attribute_name(:tutor_id) %>:</strong></dt>
   <dd><%= @work_material.tutor_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:attachment) %>:</strong></dt>
+  <dd><%= image_tag @work_material.attachment.url %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

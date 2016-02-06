@@ -46,6 +46,7 @@ gem 'rubocop', '0.36.0', require: false
 gem 'devise', ' 3.5.3'
 gem 'is_js_rails', '0.0.3'
 gem 'cancancan', '1.13.1'
+gem 'paperclip', '~> 4.3'
 
 
 group :development, :test do

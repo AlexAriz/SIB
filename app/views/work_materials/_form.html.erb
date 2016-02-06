@@ -1,12 +1,14 @@
-<%= simple_form_for @work_material, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= error_span(@work_material[:name]) %>
-  <%= f.input :description %>
-  <%= error_span(@work_material[:description]) %>
-  <%= f.input :file_src %>
-  <%= error_span(@work_material[:file_src]) %>
+<%= simple_form_for @work_material, :html => {:class => 'form-horizontal'} do |f| %>
+    <%= f.input :name %>
+    <%= error_span(@work_material[:name]) %>
+    <%= f.input :description %>
+    <%= error_span(@work_material[:description]) %>
+    <%= f.input :file_src %>
+    <%= error_span(@work_material[:file_src]) %>
+    <%= f.input :attachment, as: :file %>
+    <%= error_span(@work_material[:attachment]) %>
 
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 work_materials_path, :class => 'btn btn-default' %>
 <% end %>
