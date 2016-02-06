@@ -11,23 +11,25 @@ $ ->
         {
           'sExtends': 'xls'
           'sButtonText': 'Excel'
-          'sTitle': 'Usuarios'
+          'sTitle': 'Becas'
           'mColumns': [
             0
             1
             2
             3
+            4
           ]
         }
         {
           'sExtends': 'pdf'
           'sButtonText': 'PDF'
-          'sTitle': 'Usuarios'
+          'sTitle': 'Becas'
           'mColumns': [
             0
             1
             2
             3
+            4
           ]
         }
       ]
