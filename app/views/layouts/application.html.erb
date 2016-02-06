@@ -25,6 +25,9 @@
         <% if current_user.type=='Admin' %>
             <%= link_to 'Gestionar usuarios', users_index_path %>
         <% end %>
+        <% if current_user.type == 'Tutor' %>
+          <%=  link_to 'Gestionar materiales de trabajo', work_materials_path %>
+        <% end %>
     <% else %>
         <%= link_to 'Iniciar sesión', new_user_session_path %>
     <% end %>
