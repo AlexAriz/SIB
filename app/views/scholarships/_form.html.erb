@@ -1,18 +1,22 @@
-<%= simple_form_for(@scholarship) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @scholarship, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= error_span(@scholarship[:name]) %>
+  <%= f.association :university %>
+  <%= error_span(@scholarship[:university_id]) %>
+  <%= f.input :start_date %>
+  <%= error_span(@scholarship[:start_date]) %>
+  <%= f.input :end_date %>
+  <%= error_span(@scholarship[:end_date]) %>
+  <%= f.input :description %>
+  <%= error_span(@scholarship[:description]) %>
+  <%= f.input :requirements %>
+  <%= error_span(@scholarship[:requirements]) %>
+  <%= f.input :benefits_offered %>
+  <%= error_span(@scholarship[:benefits_offered]) %>
+  <%= f.input :url %>
+  <%= error_span(@scholarship[:url]) %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.association :university %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.input :description %>
-    <%= f.input :requirements %>
-    <%= f.input :benefits_offered %>
-    <%= f.input :url %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn-success", value: "Guardar información de beca" %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                scholarships_path, :class => 'btn btn-default' %>
 <% end %>

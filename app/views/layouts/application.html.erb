@@ -24,6 +24,7 @@
 
         <% if current_user.type=='Admin' %>
             <%= link_to 'Gestionar usuarios', users_index_path %>
+            <%= link_to 'Gestionar becas', scholarships_path %>
         <% end %>
     <% else %>
         <%= link_to 'Iniciar sesión', new_user_session_path %>
