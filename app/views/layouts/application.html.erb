@@ -24,6 +24,7 @@
 
         <% if current_user.type=='Admin' %>
             <%= link_to 'Gestionar usuarios', users_index_path %>
+            <%= link_to 'Gestionar becas', scholarships_path %>
         <% end %>
         <% if current_user.type == 'Tutor' or current_user.type == 'Candidate' %>
           <%=  link_to 'Gestionar materiales de trabajo', work_materials_path %>

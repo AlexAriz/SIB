@@ -1,5 +1,5 @@
-<h1>Crear nueva información de Beca</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Cancelar', scholarships_path, class: "btn btn-danger" %>
+<%- model_class = Scholarship -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
