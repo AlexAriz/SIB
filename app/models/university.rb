@@ -1,5 +1,6 @@
 # Modelo de universidad
-class University < ActiveRecord :: Base
+class University < ActiveRecord::Base
+
 
   validates :name, presence: true, length: { minimum: 5, maximum: 50 }
   validates :city, presence: true
