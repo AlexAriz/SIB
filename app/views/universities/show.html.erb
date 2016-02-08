@@ -30,7 +30,6 @@
     <div class="panel-heading">Informacion general</div>
     <div class="panel-body">
       <p>
-        <strong>Requirements:</strong>
         <%= @university.information %>
       </p>
     </div>
@@ -42,6 +41,6 @@
 </p>
 
 <hr>
-<%= link_to 'Editar universidad', edit_university_path(@scholarship), class: "btn btn-info" %>
+<%= link_to 'Editar universidad', edit_university_path(@university), class: "btn btn-info" %>
 <%= link_to 'Regresar', universities_path, class: "btn btn-danger" %>
 <hr>
