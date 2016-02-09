@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: SIB_production
-  username: SIB
-  password: <%= ENV['SIB_DATABASE_PASSWORD'] %>
+  username: root
+  password: root
