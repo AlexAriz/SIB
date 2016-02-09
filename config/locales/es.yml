@@ -4,6 +4,9 @@ es:
     models:
       user: Usuario
       scholarship: Beca
+      work_material:
+        one: Material de Trabajo
+        other: Materiales de Trabajo
 
     attributes:
       user:
@@ -22,6 +25,10 @@ es:
         requirements: Requisitos
         benefits_offered: Beneficioss
         url: enlace
+      work_material:
+        name: Nombre
+        description: Descripción
+        file_src: Ruta del archivo
 
   date:
     abbr_day_names:
@@ -107,7 +114,7 @@ es:
         other: es demasiado largo (máximo %{count} caracteres)
       too_short:
         one: es demasiado corto (mínimo 1 caracter)
-        other: es demasiado corto (mínimo %{count} caracteres)
+        other: Es demasiado corto (mínimo %{count} caracteres)
       wrong_length:
         one: longitud errónea (debe ser de 1 caracter)
         other: longitud errónea (debe ser de %{count} caracteres)
