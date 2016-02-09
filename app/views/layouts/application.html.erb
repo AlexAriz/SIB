@@ -20,11 +20,19 @@
 <div class="container">
   <div class="pull-right">
     <% if user_signed_in? %>
+        <label>
+          Bienvenido <%= current_user.user_name %>
+        </label>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %>
 
         <% if current_user.type=='Admin' %>
             <%= link_to 'Gestionar usuarios', users_index_path %>
             <%= link_to 'Gestionar becas', scholarships_path %>
+        <% end %>
+        <% if current_user.type == 'Tutor' %>
+            <%= link_to 'Gestionar materiales de trabajo', work_materials_path %>
+        <% elsif current_user.type == 'Candidate' %>
+            <%= link_to 'Ver materiales de trabajo', work_materials_path %>
         <% end %>
     <% else %>
         <%= link_to 'Iniciar sesión', new_user_session_path %>
