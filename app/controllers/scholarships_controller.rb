@@ -1,6 +1,7 @@
 # Este es el controlador para las Becas
 class ScholarshipsController < ApplicationController
   before_action :set_scholarship, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /scholarships
   # GET /scholarships.json
