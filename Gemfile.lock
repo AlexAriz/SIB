@@ -235,7 +235,7 @@ DEPENDENCIES
   jquery-rails (= 4.1.0)
   less-rails (= 2.7.1)
   mysql2 (= 0.3.18)
-  paperclip (~> 4.3)
+  paperclip (= 4.3.4)
   rails (= 4.2.4)
   railsstrap (= 3.3.4)
   railties (= 4.2.4)

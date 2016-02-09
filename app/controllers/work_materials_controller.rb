@@ -74,7 +74,7 @@ class WorkMaterialsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def work_material_params
-    params.require(:work_material).permit(:name, :description, :file_src, :attachment)
+    params.require(:work_material).permit(:name, :description, :file_src, :attachment, {:candidate_ids => []})
   end
 
   def msg_after_create

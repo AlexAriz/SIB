@@ -7,6 +7,12 @@
     <%= error_span(@work_material[:file_src]) %>
     <%= f.input :attachment, as: :file %>
     <%= error_span(@work_material[:attachment]) %>
+    <%= f.association :candidates,
+                      collection: Candidate.all,
+                      as: :select,
+                      value_method: :id,
+                      label_method: :candidate_username,
+                      input_html: {'data-live-search' => true, class: 'selectpicker', title: 'Por favor selecciona un aspirante'} %>
 
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
