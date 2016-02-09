@@ -76,14 +76,16 @@ ActiveRecord::Schema.define(version: 20160206195534) do
 
   create_table "users_work_materials", force: :cascade do |t|
     t.integer "work_material_id", limit: 4
-    t.integer "candidate_id",     limit: 4
+    t.integer "user_id",          limit: 4
   end
 
+  add_index "users_work_materials", ["user_id"], name: "index_users_work_materials_on_user_id", using: :btree
   add_index "users_work_materials", ["work_material_id"], name: "index_users_work_materials_on_work_material_id", using: :btree
 
   create_table "work_materials", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.text     "description",             limit: 65535
+    t.string   "file_src",                limit: 255
     t.integer  "tutor_id",                limit: 4
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
@@ -95,5 +97,6 @@ ActiveRecord::Schema.define(version: 20160206195534) do
 
   add_foreign_key "person", "users"
   add_foreign_key "scholarships", "universities"
+  add_foreign_key "users_work_materials", "users"
   add_foreign_key "users_work_materials", "work_materials"
 end
