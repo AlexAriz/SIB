@@ -3,8 +3,6 @@
     <%= error_span(@work_material[:name]) %>
     <%= f.input :description %>
     <%= error_span(@work_material[:description]) %>
-    <%= f.input :file_src %>
-    <%= error_span(@work_material[:file_src]) %>
     <%= f.input :attachment, as: :file %>
     <%= error_span(@work_material[:attachment]) %>
     <%= f.association :candidates,
