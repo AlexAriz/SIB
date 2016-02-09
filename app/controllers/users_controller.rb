@@ -3,6 +3,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   before_action :authenticate_user!
+  before_filter :check_for_database
 
   def index
     @users = User.all
@@ -27,5 +28,12 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def check_for_database
+    ActiveRecord::Base.connection_pool.with_connection(&:active?)
+  rescue
+    flash[:error] = 'Ha sucedido un error inesperado'
+    redirect_to controller: :static_pages
   end
 end
