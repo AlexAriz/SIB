@@ -77,14 +77,17 @@ class WorkMaterialsController < ApplicationController
   end
 
   def msg_after_create
-    'Work material was successfully created.'
+    # 'Work material was successfully created.'
+    'Material de trabajo creado con éxito'
   end
 
   def msg_after_update
-    'Work material was successfully updated.'
+    # 'Work material was successfully updated.'
+    'Material de trabajo actualizado con éxito'
   end
 
   def msg_after_delete
-    'Work material was successfully destroyed.'
+    # 'Work material was successfully destroyed.'
+    'Material de trabajo eliminado con éxito'
   end
 end
