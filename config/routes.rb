@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :work_materials
   get 'users/index'
 
   get 'users/show/:id' => 'users#show', as: 'user_show'
