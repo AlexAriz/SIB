@@ -1,7 +1,9 @@
 # Este es el controlador para las Becas
 class ScholarshipsController < ApplicationController
   before_action :set_scholarship, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_permissions, only: [:edit, :update, :destroy, :new]
   before_action :authenticate_user!
+  before_filter :check_for_database
 
   # GET /scholarships
   # GET /scholarships.json
@@ -82,6 +84,23 @@ class ScholarshipsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_scholarship
     @scholarship = Scholarship.find(params[:id])
+  end
+
+  def check_for_database
+    ActiveRecord::Base.connection_pool.with_connection(&:active?)
+  rescue
+    flash[:error] = 'Ha sucedido un error inesperado'
+    redirect_to controller: :static_pages
+  end
+
+  # Este método me sirve para validar si el usuario puede o no
+  # gestionar las becas, en caso de que no pueda se le redirecciona
+  # a la página principal con un mensaje de error.
+  def confirm_permissions
+    if !(can? :manage, @scholarship)
+      flash[:error] = 'No puedes gestionar becas'
+      redirect_to root_path
+    end
   end
 
   # Never trust parameters from the scary internet,

@@ -9,7 +9,9 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% if can? :manage, @scholarship %>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -19,22 +21,24 @@
         <td><%= scholarship.name %></td>
         <td><%= scholarship.start_date %></td>
         <td><%= scholarship.end_date %></td>
-        <td>
-          <%= link_to edit_scholarship_path(scholarship) do  %>
-              <span class="glyphicon glyphicon-pencil"></span>
-          <% end %>
+        <% if can? :manage, @scholarship %>
+            <td>
+              <%= link_to edit_scholarship_path(scholarship) do  %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
 
-          <%= link_to scholarship_path(scholarship),
-                      :method => :delete,
-                      :data => {:confirm =>
-                                    "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
+              <%= link_to scholarship_path(scholarship),
+                          :method => :delete,
+                          :data => {:confirm =>
+                                        "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
                                     <ul>
                                     <li>Nombre de la beca: <strong class='text-info'>#{scholarship.name}</strong></li>
                                     </ul>
                                     </p>"} do %>
-              <span class="glyphicon glyphicon-remove"></span>
-          <% end %>
-        </td>
+                  <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

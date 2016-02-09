@@ -8,6 +8,7 @@ class Scholarship < ActiveRecord::Base
   validates :end_date, presence: true
   validates :description, presence: true, length: { minimum: 50, maximum: 400 }
   validates :requirements, presence: true, length: { minimum: 10, maximum: 400 }
-  validates :benefits_offered, presence: true, length: { minimum: 10, maximum: 400 }
+  validates :benefits_offered, presence: true, length: { minimum: 10,
+                                                         maximum: 400 }
   validates :url, presence: true
 end
