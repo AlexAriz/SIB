@@ -4,6 +4,10 @@ es:
     models:
       user: Usuario
       scholarship: Beca
+      tutor:
+        one: Tutor
+        other: Tutores
+      person: Persona
       work_material:
         one: Material de Trabajo
         other: Materiales de Trabajo
@@ -16,6 +20,13 @@ es:
         type: Tipo de usuario
         user_name: Nombre de usuario
         remember_me: Recordar mi cuenta
+      person:
+        name: Nombre
+        last_name: Apellido
+        university: Universidad de procedencia
+        area_of_interest: Área de interes
+        comments: Comentarios
+        first_choice: Primera opción
       scholarship:
         name: Nombre
         university: Universidad
