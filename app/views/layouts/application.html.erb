@@ -18,23 +18,29 @@
 </div>
 
 <div class="container">
+
   <div class="pull-right">
     <% if user_signed_in? %>
-        <label>
-          Bienvenido <%= current_user.user_name %>
-        </label>
-        <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %>
+        <div class="row">
+          <label class="pull-right">
+            Bienvenido: <%= current_user.user_name %>
+          </label>
+        </div>
 
-        <% if current_user.type=='Admin' %>
-            <%= link_to 'Gestionar usuarios', users_index_path %>
-            <%= link_to 'Gestionar becas', scholarships_path %>
+        <% if is_current_user_admin? %>
+            <%= link_to 'Gestionar usuarios', users_index_path, class: 'btn btn-default' %>
+            <%= link_to 'Gestionar becas', scholarships_path, class: 'btn btn-default' %>
         <% end %>
-        <% if current_user.type == 'Tutor' %>
-            <%= link_to 'Gestionar materiales de trabajo', work_materials_path %>
-        <% elsif current_user.type == 'Candidate' %>
-            <%= link_to 'Ver materiales de trabajo', work_materials_path %>
+        <% if is_current_user_tutor? %>
+            <%= link_to 'Gestionar materiales de trabajo', work_materials_path, class: 'btn btn-default' %>
+        <% elsif is_current_user_candidate? %>
+            <%= link_to 'Ver materiales de trabajo', work_materials_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver tutores', tutors_path , class: 'btn btn-default'%>
+
         <% end %>
-    <% else %>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete', class: 'btn btn-danger' %>
+
+  <% else %>
         <%= link_to 'Iniciar sesión', new_user_session_path %>
     <% end %>
 

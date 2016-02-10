@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206195534) do
+ActiveRecord::Schema.define(version: 20160210002443) do
+
+  create_table "people", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "last_name",        limit: 255
+    t.string   "university",       limit: 255
+    t.string   "area_of_interest", limit: 255
+    t.string   "comments",         limit: 255
+    t.string   "first_choice",     limit: 255
+    t.integer  "user_id",          limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
 
   create_table "person", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -68,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160206195534) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.integer  "tutor_id",               limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -93,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160206195534) do
     t.datetime "attachment_updated_at"
   end
 
+  add_foreign_key "people", "users"
   add_foreign_key "person", "users"
   add_foreign_key "scholarships", "universities"
   add_foreign_key "users_work_materials", "work_materials"
