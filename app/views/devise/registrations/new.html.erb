@@ -1,0 +1,46 @@
+<div class="col-md-8 col-md-offset-2">
+
+  <fieldset>
+    <legend>Datos generales</legend>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :user_name, required: true, autofocus: true %>
+          <%= f.input :email, required: true %>
+          <%= f.input :password, required: true %>
+          <%= f.input :password_confirmation, required: true %>
+          <label for="">*Tipo de usuario</label>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.radio_button :type, 'Candidate', checked: true %>
+              <%= label :type_Candidate, 'Aspirante' %>
+            </div>
+            <div class="col-md-4">
+              <%= f.radio_button :type, 'Tutor' %>
+              <%= label :type_Tutor, 'Tutor' %>
+            </div>
+            <div class="col-md-4">
+              <%= f.radio_button :type, 'Admin' %>
+              <%= label :type_Admin, 'Administrador' %>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <div class="form-actions pull-right">
+          <%= link_to new_user_session_path, class: 'btn btn-danger' do %>
+              Cancelar <i class="fa fa-times"></i>
+          <% end %>
+
+          <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+              Registrar<i class="fa fa-check"></i>
+          <% end %>
+
+        </div>
+    <% end %>
+  </fieldset>
+
+
+  <!--<%= render 'devise/shared/links' %>-->
+</div>

@@ -1,0 +1,71 @@
+<%- model_class = Scholarship -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+        <dd><%= @scholarship.name %></dd>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:university_id) %>:</strong></dt>
+        <dd><%= @scholarship.university_id %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+        <dd><%= @scholarship.start_date %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
+        <dd><%= @scholarship.end_date %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+        <dd><%= @scholarship.description %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:benefits_offered) %>:</strong></dt>
+        <dd><%= @scholarship.benefits_offered %></dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:requirements) %>:</strong></dt>
+        <dd><%= @scholarship.name %></dd>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dd><%= @scholarship.requirements %></dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:benefits_offered) %>:</strong></dt>
+        <dd><%= @scholarship.name %></dd>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dd><%= @scholarship.benefits_offered %></dd>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<dd><%= link_to "Página principal de la beca: #{@scholarship.name}", @scholarship.url %></dd>
+<hr>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              scholarships_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_scholarship_path(@scholarship), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              scholarship_path(@scholarship),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+<hr>

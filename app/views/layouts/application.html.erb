@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIB</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', :media => "all" %>
+
+  <%= javascript_include_tag "application" %>
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="container">
+  <p><%= bootstrap_flash %></p>
+</div>
 
+<div class="container">
+  <div class="pull-right">
+    <% if user_signed_in? %>
+        <label>
+          Bienvenido <%= current_user.user_name %>
+        </label>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %>
 
-<%= yield %>
+        <% if current_user.type=='Admin' %>
+            <%= link_to 'Gestionar usuarios', users_index_path %>
+            <%= link_to 'Gestionar becas', scholarships_path %>
+        <% end %>
+        <% if current_user.type == 'Tutor' %>
+            <%= link_to 'Gestionar materiales de trabajo', work_materials_path %>
+        <% elsif current_user.type == 'Candidate' %>
+            <%= link_to 'Ver materiales de trabajo', work_materials_path %>
+        <% end %>
+    <% else %>
+        <%= link_to 'Iniciar sesión', new_user_session_path %>
+    <% end %>
 
+  </div>
+  <div class="container">
+    <%= yield %>
+  </div>
+</div>
 </body>
 </html>
