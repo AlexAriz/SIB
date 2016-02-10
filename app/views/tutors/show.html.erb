@@ -51,14 +51,15 @@
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
             tutors_path, :class => 'btn btn-default' %>
-
-<div class="pull-right">
-  <%= link_to request_as_tutor_path(current_user, @tutor),
-              :method => :get,
-              class: 'btn btn-primary',
-              :data => {:confirm =>
-                            "<p>¿Seguro que desea  enviar la solicitud de tutor a <b>#{@tutor.user_name}</b></p>"} do %>
-      Solicitar tutor
-      <span class="fa fa-arrow-right"></span>
-  <% end %>
-</div>
+<% if is_current_user_candidate? %>
+    <div class="pull-right">
+      <%= link_to request_as_tutor_path(current_user, @tutor),
+                  :method => :get,
+                  class: 'btn btn-primary',
+                  :data => {:confirm =>
+                                "<p>¿Seguro que desea  enviar la solicitud de tutor a <b>#{@tutor.user_name}</b>?</p>"} do %>
+          Solicitar tutor
+          <span class="fa fa-arrow-right"></span>
+      <% end %>
+    </div>
+<% end %>

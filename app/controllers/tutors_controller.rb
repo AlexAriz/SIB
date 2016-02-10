@@ -11,6 +11,9 @@ class TutorsController < ApplicationController
   end
 
   def request_as_tutor
+    tutor = Tutor.find(params[:tutor_id])
+    candidate = Candidate.find(params[:candidate_id])
+    tutor.candidates << candidate
     redirect_to tutor_path(params[:tutor_id]), notice: 'Has solicitado al tutor exitosamente'
   end
 
