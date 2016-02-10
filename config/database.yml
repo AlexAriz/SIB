@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: SIB_production
-  username: root
-  password: root
+  pool: 5
+  username: SIB
+  password:

@@ -26,6 +26,7 @@ module SIB
     config.i18n.default_locale = :es
     config.time_zone = 'America/Mexico_City'
 
+    config.assets.initialize_on_precompile = false
 
   end
 end
