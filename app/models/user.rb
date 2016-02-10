@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :person, allow_destroy: true
 
   def set_empty_person
-    Person.create(name: '',
-                  last_name: '',
+    Person.create(name: '--',
+                  last_name: '--',
                   university: '',
                   area_of_interest: '',
                   comments: '',
