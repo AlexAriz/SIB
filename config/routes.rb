@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   get 'users/index'
   get 'users/show/:id' => 'users#show', as: 'user_show'
+  get 'users/edit/:id' => 'users#edit', as: 'user_edit'
+  patch 'users/edit/:id' => 'users#update'
+  put 'users/edit/:id' => 'users#update'
+
   delete 'users/destroy/:id' => 'users#destroy', as: 'user_destroy'
 
   resources :scholarships
