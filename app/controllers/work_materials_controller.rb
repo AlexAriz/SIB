@@ -1,6 +1,9 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
   before_action :set_work_material, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_permissions, only: [:edit, :update, :destroy, :new]
+  before_action :authenticate_user!
+  before_filter :check_for_database
 
   # GET /work_materials
   # GET /work_materials.json
@@ -62,6 +65,20 @@ class WorkMaterialsController < ApplicationController
 
   private
 
+  def check_for_database
+    ActiveRecord::Base.connection_pool.with_connection(&:active?)
+  rescue
+    flash[:error] = 'Ha sucedido un error inesperado'
+    redirect_to controller: :static_pages
+  end
+
+  def confirm_permissions
+    unless can? :manage, @work_material
+      flash[:error] = 'No puedes gestionar materiales de trabajo'
+      redirect_to root_path
+    end
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_work_material
     @work_material = WorkMaterial.find(params[:id])
@@ -75,14 +92,17 @@ class WorkMaterialsController < ApplicationController
   end
 
   def msg_after_create
-    'Work material was successfully created.'
+    # 'Work material was successfully created.'
+    'Material de trabajo creado con éxito'
   end
 
   def msg_after_update
-    'Work material was successfully updated.'
+    # 'Work material was successfully updated.'
+    'Material de trabajo actualizado con éxito'
   end
 
   def msg_after_delete
-    'Work material was successfully destroyed.'
+    # 'Work material was successfully destroyed.'
+    'Material de trabajo eliminado con éxito'
   end
 end
