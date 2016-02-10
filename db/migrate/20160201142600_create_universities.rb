@@ -1,4 +1,4 @@
-sclass CreateUniversities < ActiveRecord::Migration
+class CreateUniversities < ActiveRecord::Migration
   def change
     create_table :universities do |t|
       t.string :name
