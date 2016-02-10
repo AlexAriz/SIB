@@ -1,4 +1,5 @@
-# This class is used by User, in order to
-# store the information of name and last name.
+# Class person that is used
+# in an user object
 class Person < ActiveRecord::Base
+  belongs_to :user
 end

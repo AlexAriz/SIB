@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :tutors
+  get 'tutors/request_as_tutor/:candidate_id/:tutor_id' => 'tutors#request_as_tutor', as: 'request_as_tutor'
+
+  resources :universities
+  get 'university/index'
 
   resources :work_materials
-  get 'users/index'
 
+  get 'users/index'
   get 'users/show/:id' => 'users#show', as: 'user_show'
   delete 'users/destroy/:id' => 'users#destroy', as: 'user_destroy'
 

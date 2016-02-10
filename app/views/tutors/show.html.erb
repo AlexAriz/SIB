@@ -1,0 +1,65 @@
+<%- model_class = Tutor -%>
+<%- model_class_tutor_person = Person -%>
+
+<div class="page-header">
+  <h1><%= t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+
+
+<fieldset>
+  <legend>Datos generales</legend>
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+    <dd><%= @tutor.email %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:user_name) %>:</strong></dt>
+    <dd><%= @tutor.user_name %></dd>
+  </dl>
+</fieldset>
+
+<fieldset>
+  <legend>Intereses</legend>
+  <% unless @tutor.person.nil? %>
+      <div class="row">
+        <div class="row col-md-offset-4">
+          <div class="col-md-3"><strong><%= model_class_tutor_person.human_attribute_name(:name) %>:</strong></div>
+          <div class="col-md-6"><%= @tutor.person.name %></div>
+        </div>
+        <div class="row col-md-offset-4">
+          <div class="col-md-3"><strong><%= model_class_tutor_person.human_attribute_name(:last_name) %>:</strong></div>
+          <div class="col-md-6"><%= @tutor.person.last_name %></div>
+        </div>
+        <div class="row col-md-offset-4">
+          <div class="col-md-3"><strong><%= model_class_tutor_person.human_attribute_name(:university) %>:</strong>
+          </div>
+          <div class="col-md-4">          <%= @tutor.person.university %>
+          </div>
+        </div>
+        <div class="row col-md-offset-4">
+          <div class="col-md-3">
+            <strong><%= model_class_tutor_person.human_attribute_name(:area_of_interest) %>:</strong>
+          </div>
+          <div class="col-md-6">
+            <%= @tutor.person.area_of_interest %>
+          </div>
+        </div>
+      </div>
+
+  <% end %>
+</fieldset>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+            tutors_path, :class => 'btn btn-default' %>
+<% if current_user_candidate? %>
+    <div class="pull-right">
+      <%= link_to request_as_tutor_path(current_user, @tutor),
+                  :method => :get,
+                  class: 'btn btn-primary',
+                  :data => {:confirm =>
+                                "<p>¿Seguro que desea  enviar la solicitud de tutor a <b>#{@tutor.user_name}</b>?</p>"} do %>
+          Solicitar tutor
+          <span class="fa fa-arrow-right"></span>
+      <% end %>
+    </div>
+<% end %>
