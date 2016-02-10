@@ -5,6 +5,6 @@ class Candidate < User
   belongs_to :tutor
 
   def candidate_username
-    self.user_name
+    user_name
   end
 end

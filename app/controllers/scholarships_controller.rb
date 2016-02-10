@@ -93,11 +93,11 @@ class ScholarshipsController < ApplicationController
     redirect_to controller: :static_pages
   end
 
-  # Este método me sirve para validar si el usuario puede o no
+  # Este metodo me sirve para validar si el usuario puede o no
   # gestionar las becas, en caso de que no pueda se le redirecciona
-  # a la página principal con un mensaje de error.
+  # a la pagina principal con un mensaje de error.
   def confirm_permissions
-    if !(can? :manage, @scholarship)
+    unless can? :manage, @scholarship
       flash[:error] = 'No puedes gestionar becas'
       redirect_to root_path
     end
