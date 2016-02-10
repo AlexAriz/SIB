@@ -11,7 +11,7 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  config.action_mailer.default_url_options = {host: 'https://sistemaintegralbecas.herokuapp.com/'}
+  config.action_mailer.default_url_options = {host: 'https://sistemabecas.herokuapp.com/'}
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
