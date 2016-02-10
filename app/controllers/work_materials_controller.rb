@@ -1,6 +1,9 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
   before_action :set_work_material, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_permissions, only: [:edit, :update, :destroy, :new]
+  before_action :authenticate_user!
+  before_filter :check_for_database
 
   # GET /work_materials
   # GET /work_materials.json
@@ -65,6 +68,17 @@ class WorkMaterialsController < ApplicationController
   end
 
   private
+
+  def check_for_database
+    # code here
+  end
+
+  def confirm_permissions
+    unless can? :manage, @work_material
+      flash[:error] = 'No puedes gestionar materiales de trabajo'
+      redirect_to root_path
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_work_material
