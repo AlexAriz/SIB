@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :tutors
   get 'tutors/request_as_tutor/:candidate_id/:tutor_id' => 'tutors#request_as_tutor', as: 'request_as_tutor'
 
+  resources :universities
+  get 'university/index'
 
   resources :work_materials
 
