@@ -41,6 +41,8 @@
 </p>
 
 <hr>
-<%= link_to 'Editar universidad', edit_university_path(@university), class: "btn btn-info" %>
+<% if can? :manage, @university %>
+    <%= link_to 'Editar universidad', edit_university_path(@university), class: "btn btn-info" %>
+<% end %>
 <%= link_to 'Regresar', universities_path, class: "btn btn-danger" %>
 <hr>
