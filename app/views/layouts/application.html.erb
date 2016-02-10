@@ -25,14 +25,16 @@
         </label>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %>
 
-        <% if current_user.type=='Admin' %>
+        <% if is_current_user_admin? %>
             <%= link_to 'Gestionar usuarios', users_index_path %>
             <%= link_to 'Gestionar becas', scholarships_path %>
         <% end %>
-        <% if current_user.type == 'Tutor' %>
+        <% if is_current_user_tutor? %>
             <%= link_to 'Gestionar materiales de trabajo', work_materials_path %>
-        <% elsif current_user.type == 'Candidate' %>
+        <% elsif is_current_user_candidate? %>
             <%= link_to 'Ver materiales de trabajo', work_materials_path %>
+            <%= link_to 'Ver tutores', tutors_path %>
+
         <% end %>
     <% else %>
         <%= link_to 'Iniciar sesión', new_user_session_path %>
