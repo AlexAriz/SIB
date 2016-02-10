@@ -30,7 +30,7 @@
         <% if current_user_admin? %>
             <%= link_to 'Gestionar usuarios', users_index_path, class: 'btn btn-default' %>
             <%= link_to 'Gestionar becas', scholarships_path, class: 'btn btn-default' %>
-            <%= link_to 'Gestionar becas', scholarships_path , class: 'btn btn-default'%>
+            <%= link_to 'Gestionar universidades', universities_path , class: 'btn btn-default'%>
         <% end %>
         <% if current_user_tutor? %>
             <%= link_to 'Gestionar materiales de trabajo', work_materials_path, class: 'btn btn-default' %>
@@ -38,6 +38,7 @@
         <% elsif current_user_candidate? %>
             <%= link_to 'Ver materiales de trabajo', work_materials_path , class: 'btn btn-default'%>
             <%= link_to 'Ver becas', scholarships_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver universidades', universities_path , class: 'btn btn-default'%>
             <%= link_to 'Ver tutores', tutors_path , class: 'btn btn-default'%>
 
         <% end %>
