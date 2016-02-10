@@ -51,7 +51,7 @@
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
             tutors_path, :class => 'btn btn-default' %>
-<% if is_current_user_candidate? %>
+<% if current_user_candidate? %>
     <div class="pull-right">
       <%= link_to request_as_tutor_path(current_user, @tutor),
                   :method => :get,

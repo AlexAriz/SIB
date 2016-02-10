@@ -31,10 +31,8 @@ class WorkMaterialsController < ApplicationController
     respond_to do |format|
       if @work_material.save
         format.html { redirect_to @work_material, notice: msg_after_create }
-        # format.json { render :show, status: :created, location: @work_material }
       else
         format.html { render :new }
-        # format.json { render json: @work_material.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,10 +44,8 @@ class WorkMaterialsController < ApplicationController
       if @work_material.update(work_material_params)
         @work_material.tutor_id = current_user.id
         format.html { redirect_to @work_material, notice: msg_after_update }
-        # format.json { render :show, status: :ok, location: @work_material }
       else
         format.html { render :edit }
-        # format.json { render json: @work_material.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,9 +67,11 @@ class WorkMaterialsController < ApplicationController
     @work_material = WorkMaterial.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def work_material_params
-    params.require(:work_material).permit(:name, :description, :attachment, :candidate_ids => [])
+    params.require(:work_material).permit(:name, :description,
+                                          :attachment, candidate_ids: [])
   end
 
   def msg_after_create
