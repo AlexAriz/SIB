@@ -9,21 +9,21 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <% if can? :manage, @scholarship %>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
-      <% end %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @scholarships.each do |scholarship| %>
       <tr>
         <td><%= link_to scholarship.id, scholarship_path(scholarship) %></td>
-        <td><%= scholarship.name %></td>
+        <td><%= link_to scholarship.name, scholarship_path(scholarship) %></td>
         <td><%= scholarship.start_date %></td>
         <td><%= scholarship.end_date %></td>
-        <% if can? :manage, @scholarship %>
-            <td>
-              <%= link_to edit_scholarship_path(scholarship) do  %>
+        <td>
+          <%= link_to scholarship do %>
+              <span class="glyphicon glyphicon-eye-open"></span>
+          <% end %>
+        <% if can? :manage, @scholarship %><%= link_to edit_scholarship_path(scholarship) do  %>
                   <span class="glyphicon glyphicon-pencil"></span>
               <% end %>
 
@@ -44,6 +44,8 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_scholarship_path,
-            :class => 'btn btn-primary' %>
+<% unless current_user_candidate? %>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_scholarship_path,
+                :class => 'btn btn-primary' %>
+<% end %>
