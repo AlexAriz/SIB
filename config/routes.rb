@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :universities
+  get 'university/index'
 
   resources :work_materials
   get 'users/index'
