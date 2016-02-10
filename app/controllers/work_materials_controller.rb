@@ -70,7 +70,10 @@ class WorkMaterialsController < ApplicationController
   private
 
   def check_for_database
-    # code here
+    ActiveRecord::Base.connection_pool.with_connection(&:active?)
+  rescue
+    flash[:error] = 'Ha sucedido un error inesperado'
+    redirect_to controller: :static_pages
   end
 
   def confirm_permissions
