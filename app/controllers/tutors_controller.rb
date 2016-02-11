@@ -1,6 +1,5 @@
 # Controller for all the tutors.
 class TutorsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_tutor, only: [:show]
   load_and_authorize_resource
 

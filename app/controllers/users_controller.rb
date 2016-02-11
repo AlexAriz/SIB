@@ -2,9 +2,7 @@
 # the users registered in the system.
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update]
-  before_action :authenticate_user!
   load_and_authorize_resource
-  before_filter :check_for_database
 
   def index
     @users = User.all
@@ -83,13 +81,6 @@ class UsersController < ApplicationController
                                                             :first_choice,
                                                             :_destroy])
     end
-  end
-
-  def check_for_database
-    ActiveRecord::Base.connection_pool.with_connection(&:active?)
-  rescue
-    flash[:error] = 'Ha sucedido un error inesperado'
-    redirect_to controller: :static_pages
   end
 
   def msg_update
