@@ -22,7 +22,7 @@
   <br>
   <div class="row">
     <div class="col-md-offset-2">
-      <div class="col-md-3">  <strong><%= model_class.human_attribute_name(:image_profile) %>:</strong>
+      <div class="col-md-3"><strong><%= model_class.human_attribute_name(:image_profile) %>:</strong>
       </div>
       <div class="col-md-3">  <%= image_tag @user.image_profile.url(:medium) %>
       </div>
@@ -32,7 +32,6 @@
 </fieldset>
 
 <% unless @user.person.nil? %>
-
     <fieldset>
       <legend>Intereses</legend>
       <div class="row">
@@ -72,15 +71,12 @@
 
 <br><br>
 <div class="row pull-right">
-
-
   <%= link_to users_index_path, class: 'btn btn-default' do %>
       <i class="fa fa-arrow-left"></i>
       <%= t('.back', :default => t('helpers.links.back')) %>
   <% end %>
 
-
-  <% if current_user_admin? %>
+  <% if current_user_admin? and current_user.id != @user.id %>
       <%= link_to t('.destroy', :default => t('helpers.links.destroy')), user_destroy_path(@user),
                   :method => :delete,
                   :data => {:confirm =>
@@ -92,6 +88,8 @@
                                     </p>"},
                   :class => 'btn btn-danger' %>
   <% end %>
-  <%= link_to 'Editar mi perfil', user_edit_path(current_user), class: "btn btn-info" %>
+  <% if current_user.id == @user.id %>
+      <%= link_to 'Editar mi perfil', user_edit_path(current_user), class: 'btn btn-info' %>
+  <% end %>
 </div>
 <br>
