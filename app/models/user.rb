@@ -2,9 +2,9 @@
 # This class is used by devise for setting the
 # authentication
 class User < ActiveRecord::Base
-  ADMIN = 'Admin'
-  TUTOR = 'Tutor'
-  CANDIDATE = 'Candidate'
+  ADMIN = 'Admin'.freeze
+  TUTOR = 'Tutor'.freeze
+  CANDIDATE = 'Candidate'.freeze
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
                   area_of_interest: '',
                   comments: '',
                   first_choice: '',
-                  user_id: self.id)
+                  user_id: id)
   end
 
 end
