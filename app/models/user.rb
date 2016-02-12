@@ -2,11 +2,15 @@
 # This class is used by devise for setting the
 # authentication
 class User < ActiveRecord::Base
+  ADMIN = 'Admin'.freeze
+  TUTOR = 'Tutor'.freeze
+  CANDIDATE = 'Candidate'.freeze
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  has_one :person
+  has_one :person, dependent: :destroy
 
   has_attached_file :image_profile,
                     styles: { medium: '300x300>', thumb: '100x100>' },
@@ -19,10 +23,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :type, presence: true
 
-  after_create :set_empty_person
-
-
   accepts_nested_attributes_for :person, allow_destroy: true
+
+  after_create :set_empty_person
 
   def set_empty_person
     Person.create(name: '--',
@@ -31,9 +34,7 @@ class User < ActiveRecord::Base
                   area_of_interest: '',
                   comments: '',
                   first_choice: '',
-                  user_id: self.id)
-
-
+                  user_id: id)
   end
 
 end
