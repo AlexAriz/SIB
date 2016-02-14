@@ -50,6 +50,13 @@ es:
         name: Nombre
         description: Descripción
         file_src: Ruta del archivo
+  unauthorized:
+    default: "No tienes los permisos necesarios."
+    manage:
+      all: "No está autorizado para hacerla siguiente acción: %{action} %{subject}."
+      user: "No puede gestionar las cuentas de usuarios"
+    update:
+      project: "No tiene permitido actualizar este proyecto"
 
   date:
     abbr_day_names:

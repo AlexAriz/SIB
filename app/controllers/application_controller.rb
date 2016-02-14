@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_filter :check_for_database
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   private
 
   def check_for_database

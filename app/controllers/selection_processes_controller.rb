@@ -1,8 +1,6 @@
 class SelectionProcessesController < ApplicationController
   before_action :set_selection_process, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_permissions, only: [:edit, :update, :destroy, :new]
-  before_action :authenticate_user!
-  before_filter :check_for_database
+  load_and_authorize_resource
 
   # GET /selection_processes
   # GET /selection_processes.json
@@ -76,28 +74,15 @@ class SelectionProcessesController < ApplicationController
 
   def msg_after_create
     'Se ha creado exitosamente el proceso de selección para la universidad: ' + @selection_process.university_name
-  end  
-    # Use callbacks to share common setup or constraints between actions.
-    def set_selection_process
-      @selection_process = SelectionProcess.find(params[:id])
-    end
-
-  def check_for_database
-    ActiveRecord::Base.connection_pool.with_connection(&:active?)
-  rescue
-    flash[:error] = 'Ha sucedido un error inesperado'
-    redirect_to controller: :static_pages
   end
 
-  def confirm_permissions
-    unless can? :manage, @selection_process
-      flash[:error] = 'No tienes los permisos para administrar los procesos de selección'
-      redirect_to root_path
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_selection_process
+    @selection_process = SelectionProcess.find(params[:id])
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def selection_process_params
-      params.require(:selection_process).permit(:university_name, :deadline, :activities, :link)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def selection_process_params
+    params.require(:selection_process).permit(:university_name, :deadline, :activities, :link)
+  end
 end
