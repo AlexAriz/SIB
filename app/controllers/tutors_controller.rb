@@ -1,8 +1,7 @@
 # Controller for all the tutors.
 class TutorsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_tutor, only: [:show]
-  before_filter :check_for_database
+  load_and_authorize_resource
 
   def index
     @tutors = Tutor.all
@@ -23,12 +22,5 @@ class TutorsController < ApplicationController
 
   def set_tutor
     @tutor = Tutor.find(params[:id])
-  end
-
-  def check_for_database
-    ActiveRecord::Base.connection_pool.with_connection(&:active?)
-  rescue
-    flash[:error] = 'Ha sucedido un error inesperado'
-    redirect_to controller: :static_pages
   end
 end

@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   resources :selection_processes
-  resources :selection_processes
-  resources :selection_processes
-  resources :selection_processes
+
   resources :tutors
   get 'tutors/request_as_tutor/:candidate_id/:tutor_id' => 'tutors#request_as_tutor', as: 'request_as_tutor'
 

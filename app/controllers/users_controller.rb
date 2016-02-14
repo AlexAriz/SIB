@@ -2,10 +2,7 @@
 # the users registered in the system.
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update]
-  before_action :authenticate_user!
-  before_filter :check_for_database
-  before_action :confirm_permissions, only: [:destroy]
-
+  load_and_authorize_resource
 
   def index
     @users = User.all
@@ -17,8 +14,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_show_path(@user),
-                                  notice: 'Haz editado tu perfil de manera exitosa' }
+        format.html { redirect_to user_show_path(@user), notice: msg_update }
       else
         format.html { render :edit }
       end
@@ -85,20 +81,9 @@ class UsersController < ApplicationController
                                                             :first_choice,
                                                             :_destroy])
     end
-
   end
 
-  def check_for_database
-    ActiveRecord::Base.connection_pool.with_connection(&:active?)
-  rescue
-    flash[:error] = 'Ha sucedido un error inesperado'
-    redirect_to controller: :static_pages
-  end
-
-  def confirm_permissions
-    unless can? :manage, @user
-      flash[:error] = 'No puedes gestionar usuarios'
-      redirect_to root_path
-    end
+  def msg_update
+    'Haz editado tu perfil de manera exitosa'
   end
 end
