@@ -1,0 +1,15 @@
+class SelectionProcess < ActiveRecord::Base
+
+  def set_empty_selection_process
+    Person.create(name: '--',
+                  last_name: '--',
+                  university: '',
+                  area_of_interest: '',
+                  comments: '',
+                  first_choice: '',
+                  user_id: self.id)
+
+
+  end
+
+end

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista de universidades</h1>
+
+<table class="table table-hover" id="table-list-scholarships">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Ciudad</th>
+    <th>Estado</th>
+    <th>Pais</th>
+    <th colspan="3">Operaciones</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @universities.each do |university| %>
+      <tr>
+        <td><%= link_to university.name,university_path(university) %></td>
+        <td><%= university.city %></td>
+        <td><%= university.state %></td>
+        <td><%= university.country %></td>
+        <td>
+          <%= link_to university do %>
+              <span class="glyphicon glyphicon-eye-open"></span>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :manage, @university %>
+              <%= link_to edit_university_path(university) do %>
+                  <span class="glyphicon glyphicon-edit"></span>
+              <% end %>
+              </td>
+              <td>
+                <%= link_to university, method: :delete, data: { confirm: "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> la Universidad?
+                  <ul>
+                    <li>Nombre de la universidad: <strong class='text-info'>#{university.name}</strong></li>
+                  </ul>
+                </p>" } do %>
+                    <span class="glyphicon glyphicon-remove"></span>
+                <% end %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if can? :manage, @university %>
+    <%= link_to 'Crear universidad', new_university_path, class: "btn btn-primary" %>
+<% end %>
+

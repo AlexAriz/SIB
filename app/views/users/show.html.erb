@@ -1,0 +1,97 @@
+<%- model_class = User -%>
+<%- model_class_tutor_person = Person -%>
+
+<div class="page-header text-center">
+  <h1><%= t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<fieldset>
+  <legend>Datos generales</legend>
+  <div class="row">
+    <div class="col-md-offset-2">
+      <div class="col-md-3"><strong><%= model_class.human_attribute_name(:email) %></strong></div>
+      <div class="col-md-3"><%= @user.email %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-2">
+      <div class="col-md-3"><strong><%= model_class.human_attribute_name(:user_name) %></strong>:</div>
+      <div class="col-md-3"><%= @user.user_name %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-offset-2">
+      <div class="col-md-3">  <strong><%= model_class.human_attribute_name(:image_profile) %>:</strong>
+      </div>
+      <div class="col-md-3">  <%= image_tag @user.image_profile.url(:medium) %>
+      </div>
+    </div>
+  </div>
+
+</fieldset>
+
+<% unless @user.person.nil? %>
+
+    <fieldset>
+      <legend>Intereses</legend>
+      <div class="row">
+        <div class="row col-md-offset-3">
+          <div class="col-md-4 "><strong><%= model_class_tutor_person.human_attribute_name(:name) %>:</strong></div>
+          <div class="col-md-6"><%= @user.person.name %></div>
+        </div>
+        <div class="row col-md-offset-3">
+          <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:last_name) %>:</strong></div>
+          <div class="col-md-6"><%= @user.person.last_name %></div>
+        </div>
+        <div class="row col-md-offset-3">
+          <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:university) %>:</strong>
+          </div>
+          <div class="col-md-4"><%= @user.person.university %></div>
+        </div>
+        <div class="row col-md-offset-3">
+          <div class="col-md-3">
+            <strong><%= model_class_tutor_person.human_attribute_name(:area_of_interest) %>:</strong>
+          </div>
+          <div class="col-md-4 col-md-offset-1">
+            <%= @user.person.area_of_interest %>
+          </div>
+        </div>
+        <div class="col-md-offset-3">
+          <div class="col-md-4">
+            <strong><%= model_class_tutor_person.human_attribute_name(:comments) %>:</strong>
+          </div>
+          <div class="col-md-4">
+            <%= @user.person.comments %>
+          </div>
+        </div>
+      </div>
+
+    </fieldset>
+<% end %>
+
+<br><br>
+<div class="row pull-right">
+
+
+  <%= link_to users_index_path, class: 'btn btn-default' do %>
+      <i class="fa fa-arrow-left"></i>
+      <%= t('.back', :default => t('helpers.links.back')) %>
+  <% end %>
+
+
+  <% if current_user_admin? %>
+      <%= link_to t('.destroy', :default => t('helpers.links.destroy')), user_destroy_path(@user),
+                  :method => :delete,
+                  :data => {:confirm =>
+                                "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
+                                    <ul>
+                                    <li>Nombre del usuario: <strong class='text-info'>#{@user.user_name}</strong></li>
+                                    <li>Correo del usuario: <strong class='text-info'>#{@user.email}</strong></li>
+                                    </ul>
+                                    </p>"},
+                  :class => 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'Editar mi perfil', user_edit_path(current_user), class: "btn btn-info" %>
+</div>
+<br>

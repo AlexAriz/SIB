@@ -1,0 +1,39 @@
+<div class="container">
+  <%= simple_form_for @user, url: user_edit_path(@user), :html => {:class => 'form-horizontal', method: :put} do |f| %>
+      <fieldset>
+        <legend>Datos generales</legend>
+        <%= f.input :email %>
+        <%= error_span(@user[:email]) %>
+        <%= f.input :user_name %>
+        <%= error_span(@user[:user_name]) %>
+        <%= f.input :image_profile, as: :file %>
+        <%= error_span(@user[:image_profile]) %>
+      </fieldset>
+
+      <fieldset>
+        <legend>Intereses</legend>
+        <%= f.simple_fields_for :person do |person_form| %>
+            <%= person_form.input :name %>
+            <%= error_span(@user[:name]) %>
+            <%= person_form.input :last_name %>
+            <%= error_span(@user[:last_name]) %>
+            <%= person_form.input :university %>
+            <%= error_span(@user[:university]) %>
+            <%= person_form.input :first_choice %>
+            <%= error_span(@user[:first_choice]) %>
+            <%= person_form.input :area_of_interest %>
+            <%= error_span(@user[:area_of_interest]) %>
+            <%= person_form.input :comments %>
+            <%= error_span(@user[:comments]) %>
+        <% end %>
+      </fieldset>
+
+
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
+                  users_index_path, :class => 'btn btn-default' %>
+  <% end %>
+
+</div>
+
+<br><br>
