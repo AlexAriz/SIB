@@ -48,6 +48,7 @@ gem 'is_js_rails', '0.0.3'
 gem 'country_select', '2.5.1'
 gem 'cancancan', '1.13.1'
 gem 'paperclip', '4.3.4'
+gem 'date_validator', '0.9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

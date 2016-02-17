@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  university_name: MyString
+  deadline: MyString
+  activities: MyText
+  link: MyString
+
+two:
+  university_name: MyString
+  deadline: MyString
+  activities: MyText
+  link: MyString
