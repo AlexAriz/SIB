@@ -7,9 +7,8 @@
   <title>SIB</title>
 
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'application', :media => "all" %>
-
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+  <%= javascript_include_tag 'application' %>
 </head>
 <body>
 
@@ -18,7 +17,6 @@
 </div>
 
 <div class="container">
-
   <div class="pull-right">
     <% if user_signed_in? %>
         <div class="row">
@@ -37,6 +35,7 @@
         <% if current_user_tutor? %>
             <%= link_to 'Gestionar materiales de trabajo', work_materials_path, class: 'btn btn-default' %>
             <%= link_to 'Gestionar becas', scholarships_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver universidades', universities_path , class: 'btn btn-default'%>
             <%= link_to 'Gestionar procesos de selección', selection_processes_path , class: 'btn btn-default'%>
         <% elsif current_user_candidate? %>
             <%= link_to 'Ver materiales de trabajo', work_materials_path , class: 'btn btn-default'%>

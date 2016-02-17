@@ -16,6 +16,9 @@ es:
       work_material:
         one: Material de Trabajo
         other: Materiales de Trabajo
+      university:
+        one: Universidad
+        other: Universidades
 
     attributes:
       user:
@@ -51,6 +54,13 @@ es:
         name: Nombre
         description: Descripción
         file_src: Ruta del archivo
+      university:
+        name: Nombre
+        city: Ciudad
+        state: Estado
+        country: País
+        information: Información
+        url: URL
   unauthorized:
     default: "No tienes los permisos necesarios."
     manage:
@@ -156,7 +166,7 @@ es:
 
   helpers:
     select:
-      prompt: Por favor selecciona
+      prompt: Por favor selecciona una opción
     submit:
       create: Crear %{model}
       submit: Guardar %{model}
