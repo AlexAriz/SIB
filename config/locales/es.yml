@@ -46,6 +46,7 @@ es:
         university_name: Universidad
         deadline: Fecha Límite
         activities: Actividades
+        link: URL
       work_material:
         name: Nombre
         description: Descripción
@@ -162,7 +163,7 @@ es:
       update: Actualizar %{model}
       cancel: Cancelar
     links:
-      new: Nuevo
+      new: Crear
       show: Ver
       show_html: <i class="fa fa-eye fa-lg"></i>
       edit_html: <i class="fa fa-edit fa-lg color_grey"></i>

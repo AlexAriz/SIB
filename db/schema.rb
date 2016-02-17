@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160214162729) do
 
   create_table "selection_processes", force: :cascade do |t|
     t.string   "university_name", limit: 255
-    t.string   "deadline",        limit: 255
+    t.date     "deadline"
     t.text     "activities",      limit: 65535
     t.string   "link",            limit: 255
     t.datetime "created_at",                    null: false

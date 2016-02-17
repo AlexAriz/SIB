@@ -1,3 +1,5 @@
+# Controller for the selection processes
+# Views
 class SelectionProcessesController < ApplicationController
   before_action :set_selection_process, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
@@ -29,11 +31,9 @@ class SelectionProcessesController < ApplicationController
 
     respond_to do |format|
       if @selection_process.save
-        format.html { redirect_to @selection_process, notice: msg_after_create }
-        # format.json { render :show, status: :created, location: @selection_process }
+        format.html { redirect_to selection_processes_path, notice: msg_create }
       else
         format.html { render :new }
-        # format.json { render json: @selection_process.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +43,9 @@ class SelectionProcessesController < ApplicationController
   def update
     respond_to do |format|
       if @selection_process.update(selection_process_params)
-        format.html { redirect_to @selection_process, notice: msg_after_update }
-        # format.json { render :show, status: :ok, location: @selection_process }
+        format.html { redirect_to @selection_process, notice: msg_update }
       else
         format.html { render :edit }
-        # format.json { render json: @selection_process.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,23 +55,23 @@ class SelectionProcessesController < ApplicationController
   def destroy
     @selection_process.destroy
     respond_to do |format|
-      format.html { redirect_to selection_processes_url, notice: msg_after_destroy }
-      # format.json { head :no_content }
+      format.html { redirect_to selection_processes_url, notice: msg_destroy }
     end
   end
 
   private
 
-  def msg_after_destroy
+  def msg_destroy
     'El proceso de selección se ha eliminado exitosamente'
   end
 
-  def msg_after_update
+  def msg_update
     'El proceso de selección se ha modificado exitosamente'
   end
 
-  def msg_after_create
-    'Se ha creado exitosamente el proceso de selección para la universidad: ' + @selection_process.university_name
+  def msg_create
+    "Se ha creado exitosamente el proceso de selección para la universidad:
+    #{@selection_process.university_name}"
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -81,8 +79,10 @@ class SelectionProcessesController < ApplicationController
     @selection_process = SelectionProcess.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the
+  # white list through.
   def selection_process_params
-    params.require(:selection_process).permit(:university_name, :deadline, :activities, :link)
+    params.require(:selection_process).permit(:university_name,
+                                              :deadline, :activities, :link)
   end
 end
