@@ -46,7 +46,7 @@
   </tr>
   </tbody>
 </table>
-<% if current_user_admin? or current_user_tutor? %>
+<% if current_user_admin? %>
     <%= link_to t('.new', :default => t('helpers.links.new')),
                 new_selection_process_path,
                 :class => 'btn btn-info' %>
