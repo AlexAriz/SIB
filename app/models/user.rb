@@ -36,5 +36,4 @@ class User < ActiveRecord::Base
                   first_choice: '',
                   user_id: id)
   end
-
 end

@@ -7,9 +7,8 @@
   <title>SIB</title>
 
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'application', :media => "all" %>
-
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+  <%= javascript_include_tag 'application' %>
 </head>
 <body>
 
@@ -18,7 +17,6 @@
 </div>
 
 <div class="container">
-
   <div class="pull-right">
     <% if user_signed_in? %>
         <div class="row">
@@ -30,16 +28,21 @@
         <% if current_user_admin? %>
             <%= link_to 'Gestionar usuarios', users_index_path, class: 'btn btn-default' %>
             <%= link_to 'Gestionar becas', scholarships_path, class: 'btn btn-default' %>
-            <%= link_to 'Gestionar universidades', universities_path, class: 'btn btn-default' %>
+            <%= link_to 'Gestionar universidades', universities_path , class: 'btn btn-default'%>
+            <%= link_to 'Gestionar procesos de selección', selection_processes_path, class: 'btn btn-default'%>
+
         <% end %>
         <% if current_user_tutor? %>
             <%= link_to 'Gestionar materiales de trabajo', work_materials_path, class: 'btn btn-default' %>
-            <%= link_to 'Gestionar becas', scholarships_path, class: 'btn btn-default' %>
+            <%= link_to 'Gestionar becas', scholarships_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver universidades', universities_path , class: 'btn btn-default'%>
+            <%= link_to 'Gestionar procesos de selección', selection_processes_path , class: 'btn btn-default'%>
         <% elsif current_user_candidate? %>
-            <%= link_to 'Ver materiales de trabajo', work_materials_path, class: 'btn btn-default' %>
-            <%= link_to 'Ver becas', scholarships_path, class: 'btn btn-default' %>
-            <%= link_to 'Ver universidades', universities_path, class: 'btn btn-default' %>
-            <%= link_to 'Ver tutores', tutors_path, class: 'btn btn-default' %>
+            <%= link_to 'Ver materiales de trabajo', work_materials_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver becas', scholarships_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver universidades', universities_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver procesos de selección', selection_processes_path , class: 'btn btn-default'%>
+            <%= link_to 'Ver tutores', tutors_path , class: 'btn btn-default'%>
 
         <% end %>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete', class: 'btn btn-danger' %>
@@ -49,6 +52,7 @@
     <% end %>
 
   </div>
+  <br><br>
   <div class="container">
     <%= yield %>
   </div>
