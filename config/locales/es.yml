@@ -29,6 +29,8 @@ es:
         user_name: Nombre de usuario
         remember_me: Recordar mi cuenta
         image_profile: Foto de perfil
+        pending: Aceptado
+        requested_date: Fecha de solicitud
       person:
         name: Nombre
         last_name: Apellido
