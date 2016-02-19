@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Aviso de cancelación de tutoría</h1>
+  <p>
+    Estimado(a) <%= @user_candidate.person.name %>
+    <%= @user_candidate.person.last_name %>, se le
+    notifica que el usuario <%= @user_tutor.person.name %>
+    <%= @user_tutor.person.last_name %> ha dejado de
+    ser tutor. Por su comprensión, gracias.
+  </p>
+</body>
+</html>
