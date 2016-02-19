@@ -19,6 +19,7 @@ class Ability
       can :read, University
       can :manage, Scholarship
       can :manage, WorkMaterial
+      can :manage, Tutor
     else
       can :read, :all
       can :update, Candidate

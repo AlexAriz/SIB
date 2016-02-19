@@ -45,6 +45,9 @@ GEM
       tzinfo (~> 1.1)
     ajax-datatables-rails (0.3.1)
       railties (>= 3.1)
+    annotate (2.7.0)
+      activerecord (>= 3.2, < 6.0)
+      rake (~> 10.4)
     arel (6.0.3)
     ast (2.2.0)
     bcrypt (3.1.10)
@@ -235,6 +238,7 @@ PLATFORMS
 
 DEPENDENCIES
   ajax-datatables-rails (~> 0.3.1)
+  annotate (= 2.7.0)
   better_errors (= 2.1.1)
   bootstrap-select-rails (= 1.6.3)
   byebug
