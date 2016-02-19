@@ -25,7 +25,7 @@ class TutorsController < ApplicationController
     candidate_name = @candidate.person.name
     @candidate.update_attribute(:pending, false)
     redirect_to candidates_of_tutor_path(@candidate.tutor), notice: "Haz
-                                                   aceptado al candidato #{candidate_name}"
+                                aceptado al candidato #{candidate_name}"
   end
 
   def reject_candidate
