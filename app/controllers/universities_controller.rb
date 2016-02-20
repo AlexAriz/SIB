@@ -30,7 +30,7 @@ class UniversitiesController < ApplicationController
 
     respond_to do |format|
       if @university.save
-        format.html { redirect_to @university, notice: msg_after_create }
+        format.html { redirect_to universities_path, notice: msg_after_create }
       else
         format.html { render :new }
       end
@@ -42,7 +42,7 @@ class UniversitiesController < ApplicationController
   def update
     respond_to do |format|
       if @university.update(university_params)
-        format.html { redirect_to @university, notice: msg_after_update }
+        format.html { redirect_to universities_path, notice: msg_after_update }
       else
         format.html { render :edit }
       end

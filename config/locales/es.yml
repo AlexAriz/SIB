@@ -10,9 +10,15 @@ es:
       person: Persona
       candidate: Aspirante
       admin: Administrador
+      selection_process:
+        one: Proceso de Selección
+        other: Procesos de Selección
       work_material:
         one: Material de Trabajo
         other: Materiales de Trabajo
+      university:
+        one: Universidad
+        other: Universidades
 
     attributes:
       user:
@@ -23,6 +29,8 @@ es:
         user_name: Nombre de usuario
         remember_me: Recordar mi cuenta
         image_profile: Foto de perfil
+        pending: Aceptado
+        requested_date: Fecha de solicitud
       person:
         name: Nombre
         last_name: Apellido
@@ -37,12 +45,31 @@ es:
         end_date: Fecha de término
         description: Descripción
         requirements: Requisitos
-        benefits_offered: Beneficioss
+        benefits_offered: Beneficios
         url: enlace
+      selection_process:
+        university_name: Universidad
+        deadline: Fecha Límite
+        activities: Actividades
+        link: URL
       work_material:
         name: Nombre
         description: Descripción
         file_src: Ruta del archivo
+      university:
+        name: Nombre
+        city: Ciudad
+        state: Estado
+        country: País
+        information: Información
+        url: URL
+  unauthorized:
+    default: "No tienes los permisos necesarios."
+    manage:
+      all: "No está autorizado para hacerla siguiente acción: %{action} %{subject}."
+      user: "No puede gestionar las cuentas de usuarios"
+    update:
+      project: "No tiene permitido actualizar este proyecto"
 
   date:
     abbr_day_names:
@@ -141,14 +168,14 @@ es:
 
   helpers:
     select:
-      prompt: Por favor selecciona
+      prompt: Por favor selecciona una opción
     submit:
       create: Crear %{model}
       submit: Guardar %{model}
       update: Actualizar %{model}
       cancel: Cancelar
     links:
-      new: Nuevo
+      new: Crear
       show: Ver
       show_html: <i class="fa fa-eye fa-lg"></i>
       edit_html: <i class="fa fa-edit fa-lg color_grey"></i>

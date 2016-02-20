@@ -1,16 +1,24 @@
-<%= simple_form_for(@university) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @university, :html => {:class => 'form-horizontal'} do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :city %>
-    <%= f.input :state %>
-    <%= f.input :country %>
-    <%= f.input :information %>
-    <%= f.input :url %>
-  </div>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn-success", value: "Guardar información de universidad" %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :country, value_method: :id,
+                  input_html: {
+                      'data-live-search' => true,
+                      class: 'selectpicker',
+                      multiple: false,
+                  },
+                  prompt: true,
+                  required: true %>
+      <%= f.input :state %>
+      <%= f.input :city %>
+      <%= f.input :information %>
+      <%= f.input :url %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-success', value: 'Guardar información de universidad' %>
+    </div>
 <% end %>

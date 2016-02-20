@@ -1,0 +1,14 @@
+<%= simple_form_for @selection_process, :html => {:class => 'form-horizontal'} do |f| %>
+    <%= f.input :university_name %>
+    <%= error_span(@selection_process[:university_name]) %>
+    <%= f.input :deadline, as: :date, start_year: Date.today.year %>
+    <%= error_span(@selection_process[:deadline]) %>
+    <%= f.input :activities, as: :text, input_html: {rows: 5, cols: 10} %>
+    <%= error_span(@selection_process[:activities]) %>
+    <%= f.input :link %>
+    <%= error_span(@selection_process[:link]) %>
+
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
+                selection_processes_path, :class => 'btn btn-default' %>
+<% end %>
