@@ -58,20 +58,24 @@ class User < ActiveRecord::Base
                                     content_type: /\Aimage\/.*\Z/
 
   validates :user_name, presence: true
-  validates :email, presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/
+  validates :email,
+            format: { with: VALID_EMAIL_REGEX },
+            presence: true
   validates :type, presence: true
 
   accepts_nested_attributes_for :person, allow_destroy: true
 
   after_create :set_empty_person
 
+  private
+
   def set_empty_person
-    Person.create(name: '--',
+    create_person(name: '--',
                   last_name: '--',
                   university: '',
                   area_of_interest: '',
                   comments: '',
-                  first_choice: '',
-                  user_id: id)
+                  first_choice: '')
   end
 end
