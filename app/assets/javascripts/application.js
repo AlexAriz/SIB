@@ -12,12 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require dataTables/jquery.dataTables
+//= require bootstrap/dist/js/bootstrap
 //= require dataTables/extras/dataTables.responsive
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require dataTables/jquery.dataTables
-//= require bootstrap/dist/js/bootstrap
+//= require dataTables/extras/dataTables.tableTools
 //= require data-confirm-modal
 //= require bootstrap-select
 //= require is_js_rails
@@ -29,27 +28,32 @@ $(function () {
         commit: 'Confirmar',
         cancel: 'Cerrar'
     });
+});
 
-    $('#example-data-table').DataTable({
-        'dom': 'T<"clear">lfrtip',
-        'tableTools': {
-            'sSwfPath': '/swf/copy_csv_xls_pdf.swf',
-            "aButtons": [
-                {
-                    "sExtends": "xls",
-                    "sButtonText": "Excel",
-                    "sTitle": 'Clientes',
-                    "mColumns": [1, 2, 3]
-                },
-                {
-                    "sExtends": "pdf",
-                    "sButtonText": "PDF",
-                    "sTitle": 'Clientes',
-                    "mColumns": [1, 2, 3]
-                }
-            ]
+$.extend($.fn.dataTable.defaults, {
+    "pageLength": 50,
+    "language": {
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún dato disponible en esta tabla",
+        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
         }
-    });
-
-
+    }
 });
