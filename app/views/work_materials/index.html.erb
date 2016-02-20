@@ -41,7 +41,7 @@
   </tbody>
 </table>
 
-<% if current_user.type == "Tutor" %>
+<% if can? :manage, WorkMaterial %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
                 new_work_material_path,
                 :class => 'btn btn-primary' %>
