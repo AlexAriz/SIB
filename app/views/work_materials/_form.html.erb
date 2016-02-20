@@ -6,7 +6,7 @@
     <%= f.input :attachment, as: :file %>
     <%= error_span(@work_material[:attachment]) %>
     <%= f.association :candidates,
-                      collection: Candidate.all,
+                      collection: (current_user.type == 'Admin') ? Candidate.all : current_user.candidates,
                       as: :select,
                       value_method: :id,
                       label_method: :candidate_username,
