@@ -51,7 +51,8 @@ class TutorsController < ApplicationController
     candidate_name = @candidate.person.name
     @candidate.update_attribute(:tutor_id, nil)
     redirect_to candidates_of_tutor_path(tutor),
-                notice: "Haz cancelado la tutoría del candidato #{candidate_name}"
+                notice: "Haz cancelado la tutoría del
+                candidato #{candidate_name}"
   end
 
   private
