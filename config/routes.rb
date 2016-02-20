@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'tutors/accept_candidate/:candidate_id' => 'tutors#accept_candidate', as: 'accept_candidate'
   get 'tutors/reject_candidate/:candidate_id' => 'tutors#reject_candidate', as: 'reject_candidate'
 
+  get 'tutors/cancel_tutorng/:id/:candidate_id' => 'tutors#cancel_tutoring', as: 'cancel_tutoring'
+
   resources :universities
   get 'university/index'
 

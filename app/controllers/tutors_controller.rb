@@ -1,10 +1,13 @@
 # Controller for all the tutors.
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :candidates,
-                                   :show_details_of_candidate]
+                                   :show_details_of_candidate,
+                                   :cancel_tutoring]
   before_action :set_candidate, only: [:request_as_tutor,
                                        :show_details_of_candidate,
-                                       :accept_candidate, :reject_candidate]
+                                       :accept_candidate,
+                                       :reject_candidate,
+                                       :cancel_tutoring]
   load_and_authorize_resource
 
   def index
@@ -42,6 +45,16 @@ class TutorsController < ApplicationController
     tutor.candidates << @candidate
     redirect_to tutor_path(params[:tutor_id]),
                 notice: 'Has solicitado al tutor exitosamente'
+  end
+
+  def cancel_tutoring
+    tutor = @candidate.tutor
+    candidate_name = @candidate.person.name
+    @candidate.update_attributes(tutor_id: nil, pending: true)
+    redirect_to candidates_of_tutor_path(tutor),
+                notice: "Haz cancelado la tutoría del
+                candidato #{candidate_name}"
+    TutorMailer.cancellation_tutoring(@candidate, @tutor).deliver_now
   end
 
   private
