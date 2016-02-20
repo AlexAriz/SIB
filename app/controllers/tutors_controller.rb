@@ -36,6 +36,7 @@ class TutorsController < ApplicationController
     @candidate.update_attribute(:tutor_id, nil)
     redirect_to candidates_of_tutor_path(tutor), notice: "Haz
                      rechazado al candidato #{candidate_name}"
+    TutorMailer.cancellation_tutoring(@candidate, @tutor.include(:person))
   end
 
   def request_as_tutor
