@@ -2,9 +2,9 @@
 class TutorMailer < ApplicationMailer
   default from: 'notifications@example.com'
 
-  def cancellation_tutoring(user, tutor)
-    @user_candidate = user
-    @user_tutor = tutor
-    mail(to: @user_candidate.email, subject: 'Cancelación de tutoría')
+  def cancellation_tutoring(candidate, tutor)
+    @candidate = candidate
+    @tutor = tutor
+    mail(to: @candidate.email, subject: 'Cancelación de tutoría')
   end
 end
