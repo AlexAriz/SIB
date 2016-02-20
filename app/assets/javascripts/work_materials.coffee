@@ -1,5 +1,5 @@
 $ ->
-  $('#work-materiales-table').DataTable
+  $('#work-materials-table').DataTable
     'dom': 'T<"clear">lfrtip'
     'tableTools':
       'sSwfPath': '/assets/dataTables/extras/swf/copy_csv_xls_pdf.swf'
