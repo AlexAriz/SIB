@@ -1,20 +1,21 @@
-<h1>Lista de universidades</h1>
-
+<%- model_class = University -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human(count: 2)%></h1>
+</div>
 <table class="table table-striped table-responsive table-bordered text-center" id="universities-table">
   <thead>
-  <tr>
-    <th>Nombre</th>
-    <th>Ciudad</th>
-    <th>Estado</th>
-    <th>Pais</th>
-    <th colspan="3">Operaciones</th>
-  </tr>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:country) %></th>
+      <th><%=t '.actions', :default => t('helpers.actions') %></th>
+    </tr>
   </thead>
-
   <tbody>
-  <% @universities.each do |university| %>
+    <% @universities.each do |university| %>
       <tr>
-        <td><%= link_to university.name, university_path(university) %></td>
+        <td><%= university.name %></td>
         <td><%= university.city %></td>
         <td><%= university.state %></td>
         <td><%= university.country %></td>
@@ -36,13 +37,10 @@
           <% end %>
         </td>
       </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
 
-<br>
-
-<% if can? :manage, @university %>
-    <%= link_to 'Crear universidad', new_university_path, class: "btn btn-primary" %>
-<% end %>
-
+<%= link_to t('.new', :default => t('helpers.links.new')),
+            new_university_path,
+            :class => 'btn btn-primary' %>
