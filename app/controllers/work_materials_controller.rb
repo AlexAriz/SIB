@@ -2,6 +2,7 @@
 class WorkMaterialsController < ApplicationController
   include UsersHelper
   before_action :set_work_material, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_work_material, only: [:show_user_work_material]
   load_and_authorize_resource
 
   # GET /work_materials
@@ -21,6 +22,11 @@ class WorkMaterialsController < ApplicationController
   # GET /work_materials/1
   # GET /work_materials/1.json
   def show
+  end
+
+
+  def show_user_work_material
+    # code here
   end
 
   # GET /work_materials/new
@@ -77,10 +83,9 @@ class WorkMaterialsController < ApplicationController
     @work_material = WorkMaterial.find(params[:id])
   end
 
-  def set_candidate_work_material
-    if current_user_candidate?
-      @users_work_material = UsersWorkMaterial.find(params[:user_work_material])
-    end
+  def set_user_work_material
+    @users_work_material = UsersWorkMaterial.find(params[:user_work_material])
+    @work_material = @users_work_material.work_material
   end
 
   # Never trust parameters from the scary internet,
