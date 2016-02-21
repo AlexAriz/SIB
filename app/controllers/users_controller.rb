@@ -43,8 +43,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    parameters = if params[:admin].present? params.require(:admin)
-                 elsif params[:tutor].present? params.require(:tutor)
+    parameters = if params[:admin].present?
+                   params.require(:admin)
+                 elsif params[:tutor].present?
+                   params.require(:tutor)
                  else
                    params.require(:candidate)
                  end
