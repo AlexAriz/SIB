@@ -2,10 +2,19 @@ $(function () {
     $('#selection-processes-table').DataTable({
         'dom': 'T<"clear">lfrtip',
         'tableTools': {
+            'sSwfPath': '/assets/dataTables/extras/swf/copy_csv_xls_pdf.swf',
             "aButtons": [
                 {
-                    "sTitle": 'Procesos de Selección',
-                    "mColumns": [0, 1, 2, 3]
+                    "sExtends": "xls",
+                    "sButtonText": "Excel",
+                    "sTitle": 'Procesos de selección',
+                    "mColumns": [0, 1, 2]
+                },
+                {
+                    "sExtends": "pdf",
+                    "sButtonText": "PDF",
+                    "sTitle": 'Procesos de selección',
+                    "mColumns": [0, 1, 2]
                 }
             ]
         }

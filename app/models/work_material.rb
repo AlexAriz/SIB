@@ -5,6 +5,7 @@
 #  id                      :integer          not null, primary key
 #  name                    :string(255)
 #  description             :text(65535)
+#  file_src                :string(255)
 #  tutor_id                :integer
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
@@ -27,5 +28,5 @@ class WorkMaterial < ActiveRecord::Base
                     default_url: '/images/:style/missing.png'
 
   validates_attachment_content_type :attachment,
-                                    content_type: /\Aimage\/.*\Z/
+                                    content_type: %r{\Aimage\/.*\Z}
 end

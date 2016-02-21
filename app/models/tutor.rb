@@ -46,7 +46,7 @@ class Tutor < User
                     default_url: '/images/:style/missing.png'
 
   validates_attachment_content_type :image_profile,
-                                    content_type: /\Aimage\/.*\Z/
+                                    content_type: %r{\Aimage\/.*\Z}
 
   has_many :candidates
 end

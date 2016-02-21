@@ -7,11 +7,11 @@
   <%= error_span(@scholarship[:start_date]) %>
   <%= f.input :end_date %>
   <%= error_span(@scholarship[:end_date]) %>
-  <%= f.input :description %>
+  <%= f.input :description, input_html: {rows: 5, cols: 10} %>
   <%= error_span(@scholarship[:description]) %>
-  <%= f.input :requirements %>
+  <%= f.input :requirements, input_html: {rows: 5, cols: 10} %>
   <%= error_span(@scholarship[:requirements]) %>
-  <%= f.input :benefits_offered %>
+  <%= f.input :benefits_offered, input_html: {rows: 5, cols: 10} %>
   <%= error_span(@scholarship[:benefits_offered]) %>
   <%= f.input :url %>
   <%= error_span(@scholarship[:url]) %>

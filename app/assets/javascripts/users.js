@@ -2,7 +2,7 @@ $(function () {
     $('#users-table').DataTable({
         'dom': 'T<"clear">lfrtip',
         'tableTools': {
-            'sSwfPath': '/swf/copy_csv_xls_pdf.swf',
+            'sSwfPath': '/assets/dataTables/extras/swf/copy_csv_xls_pdf.swf',
             "aButtons": [
                 {
                     "sExtends": "xls",

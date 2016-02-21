@@ -43,44 +43,27 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    if params[:admin].present?
-      params.require(:admin).permit(:email,
-                                    :user_name,
-                                    :image_profile,
-                                    person_attributes: [:id,
-                                                        :name,
-                                                        :last_name,
-                                                        :university,
-                                                        :area_of_interest,
-                                                        :comments,
-                                                        :first_choice,
-                                                        :_destroy])
-    elsif params[:tutor].present?
-      params.require(:tutor).permit(:email,
-                                    :user_name,
-                                    :image_profile,
-                                    person_attributes: [:id,
-                                                        :name,
-                                                        :last_name,
-                                                        :university,
-                                                        :area_of_interest,
-                                                        :comments,
-                                                        :first_choice,
-                                                        :_destroy])
-    else
-      params[:candidate].present?
-      params.require(:candidate).permit(:email,
-                                        :user_name,
-                                        :image_profile,
-                                        person_attributes: [:id,
-                                                            :name,
-                                                            :last_name,
-                                                            :university,
-                                                            :area_of_interest,
-                                                            :comments,
-                                                            :first_choice,
-                                                            :_destroy])
-    end
+    parameters = if params[:admin].present?
+                   params.require(:admin)
+                 elsif params[:tutor].present?
+                   params.require(:tutor)
+                 else
+                   params.require(:candidate)
+                 end
+
+    permit_params parameters
+  end
+
+  def permit_params(parameters)
+    parameters.permit(:email, :user_name, :image_profile,
+                      person_attributes: [:id,
+                                          :name,
+                                          :last_name,
+                                          :university,
+                                          :area_of_interest,
+                                          :comments,
+                                          :first_choice,
+                                          :_destroy])
   end
 
   def msg_update
