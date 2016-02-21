@@ -1,43 +1,45 @@
-<h1>Universidad: <%= @university.name %></h1>
+<%- model_class = University -%>
+
+<br><br><br><br>
 <div class="panel-group">
   <div class="panel panel-default">
-    <div class="panel-heading">Detalles de <%= @university.name %></div>
+    <div class="panel-heading"><h1><%=t '.title', :default => model_class
+        .model_name.human.titleize %>:<%= @university.name %></h1></div>
     <div class="panel-body">
       <p>
-        <strong>Nombre de la universidad:</strong>
+        <strong><%= model_class.human_attribute_name(:name) %>:</strong>
         <%= @university.name %>
       </p>
 
       <p>
-        <strong>Ciudad:</strong>
+        <strong><%= model_class.human_attribute_name(:city) %>:</strong>
         <%= @university.city %>
       </p>
 
       <p>
-        <strong>Estado:</strong>
+        <strong><%= model_class.human_attribute_name(:state) %>:</strong>
         <%= @university.state %>
       </p>
 
       <p>
-        <strong>Pais:</strong>
+        <strong><%= model_class.human_attribute_name(:country) %>:</strong>
         <%= @university.country %>
       </p>
 
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Informacion general</div>
+    <div class="panel-heading"><strong><%= model_class.human_attribute_name(:information) %>:</strong></div>
     <div class="panel-body">
       <p>
         <%= @university.information %>
       </p>
+      <p>
+        <%= link_to 'Página principal de la universidad', @university.url, target: '_blank' %>
+      </p>
     </div>
   </div>
 </div>
-
-<p>
-  <%= link_to 'Página principal de la universidad', @university.url, target: '_blank' %>
-</p>
 
 <hr>
 <% if can? :edit, @university %>
