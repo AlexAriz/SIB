@@ -187,6 +187,7 @@ es:
       confirm: "¿Estás seguro?"
       cancel: Cancelar
       back: Regresar
+      assign: Asignar
     titles:
       new: Nuevo %{model}
       edit: Editar %{model}
