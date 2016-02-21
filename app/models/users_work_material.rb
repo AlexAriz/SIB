@@ -5,6 +5,8 @@
 #  id               :integer          not null, primary key
 #  work_material_id :integer
 #  candidate_id     :integer
+#  done             :boolean          default(FALSE)
+#  progress         :integer          default(0)
 #
 # Indexes
 #
