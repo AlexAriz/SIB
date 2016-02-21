@@ -21,8 +21,10 @@ class Ability
       can :manage, WorkMaterial
       can :manage, Tutor
     else
+      can :get_request, Scholarship
       can :read, :all
       can :update, Candidate
+      can :get_request, Candidate
       can :request_as_tutor, Tutor
     end
   end
