@@ -1,6 +1,6 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
-  before_action :set_work_material, only: [:show, :edit, :update, :destroy]
+  before_action :set_work_material, only: [:show, :edit, :update, :destroy, :assign]
   load_and_authorize_resource
 
   # GET /work_materials
@@ -21,6 +21,9 @@ class WorkMaterialsController < ApplicationController
 
   # GET /work_materials/1/edit
   def edit
+  end
+
+  def assign
   end
 
   # POST /work_materials

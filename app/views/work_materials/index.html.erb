@@ -33,6 +33,9 @@
                               data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))} do %>
                       <span class="glyphicon glyphicon-remove"></span>
                   <% end %>
+                  <%= link_to work_material_assign_path(work_material) do %>
+                      <span class="glyphicon glyphicon-user"></span>
+                  <% end %>
               <% end %>
             </td>
           </tr>
@@ -40,7 +43,6 @@
     <% end %>
   </tbody>
 </table>
-
 <% if can? :manage, WorkMaterial %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
                 new_work_material_path,

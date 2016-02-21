@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'users/show/:id' => 'users#show', as: 'user_show'
   get 'users/edit/:id' => 'users#edit', as: 'user_edit'
+  get 'work_materials/assign/:id' => 'work_materials#assign', as: 'work_material_assign'
   patch 'users/edit/:id' => 'users#update'
   put 'users/edit/:id' => 'users#update'
+  put 'work_materials/assign/:id' => 'work_materials#update'
 
   delete 'users/destroy/:id' => 'users#destroy', as: 'user_destroy'
 
