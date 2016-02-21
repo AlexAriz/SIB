@@ -114,7 +114,6 @@ ActiveRecord::Schema.define(version: 20160218235642) do
   create_table "work_materials", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.text     "description",             limit: 65535
-    t.string   "file_src",                limit: 255
     t.integer  "tutor_id",                limit: 4
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
