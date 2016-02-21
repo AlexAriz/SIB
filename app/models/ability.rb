@@ -32,6 +32,7 @@ class Ability
   def permit_candidate
     can :read, :all
     can :update, Candidate
+    can :update, UsersWorkMaterial
     can :request_as_tutor, Tutor
   end
 end

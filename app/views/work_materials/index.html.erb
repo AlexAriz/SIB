@@ -5,39 +5,66 @@
 <table class="table table-striped table-responsive table-bordered text-center" id="work-materials-table">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:tutor_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <% if current_user_candidate? %>
+          <th><%= model_class.human_attribute_name(:name) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:tutor_id) %></th>
+          <th><%= UsersWorkMaterial.human_attribute_name(:done) %></th>
+          <th><%= UsersWorkMaterial.human_attribute_name(:progress) %></th>
+      <% elsif current_user_tutor? %>
+          <th><%= model_class.human_attribute_name(:name) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <% else %>
+          <th><%= model_class.human_attribute_name(:name) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:tutor_id) %></th>
+          <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <% end %>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @work_materials.each do |work_material| %>
-      <% if ((current_user.type == 'Tutor') and (work_material.tutor_id == current_user.id)) or ((current_user.type == 'Candidate') and (work_material.candidates.include? current_user)) or (current_user.type == 'Admin') %>
-          <tr>
+  <% @work_materials.each do |work_material| %>
+      <tr>
+        <% if current_user_candidate? %>
+            <% users_work_material = (@users_work_materials.select { |users_work_material| users_work_material.work_material_id == work_material.id }).first %>
+            <td><%= link_to work_material.name, user_work_materials_show_path(work_material, users_work_material) %></td>
+            <td><%= work_material.description %></td>
+            <td><%= link_to work_material.tutor.user_name, tutor_path(work_material.tutor) %></td>
+            <% if users_work_material.done %>
+                <td><span class="fa fa-check-circle-o"></span></td>
+            <% else %>
+                <td><span class="fa fa-times"></span></td>
+            <% end %>
+            <td><%= users_work_material.progress %> %</td>
+        <% elsif current_user_tutor? %>
+            <td><%= link_to work_material.name, work_material_path(work_material) %></td>
+            <td><%= work_material.description %></td>
+            <td><%= l work_material.created_at %></td>
+        <% else %>
             <td><%= link_to work_material.name, work_material_path(work_material) %></td>
             <td><%= work_material.description %></td>
             <td><%= link_to work_material.tutor.user_name, tutor_path(work_material.tutor) %></td>
-            <td><%=l work_material.created_at %></td>
-            <td>
-              <%= link_to work_material do %>
-                  <span class="glyphicon glyphicon-eye-open"></span>
+            <td><%= l work_material.created_at %></td>
+        <% end %>
+        <td>
+          <%= link_to work_material do %>
+              <span class="glyphicon glyphicon-eye-open"></span>
+          <% end %>
+          <% if can? :manage, work_material %>
+              <%= link_to edit_work_material_path(work_material) do %>
+                  <span class="glyphicon glyphicon-edit"></span>
               <% end %>
-              <% if can? :manage, work_material %>
-                  <%= link_to edit_work_material_path(work_material) do %>
-                      <span class="glyphicon glyphicon-edit"></span>
-                  <% end %>
-                  <%= link_to work_material,
-                              method: :delete,
-                              data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))} do %>
-                      <span class="glyphicon glyphicon-remove"></span>
-                  <% end %>
+              <%= link_to work_material,
+                          method: :delete,
+                          data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))} do %>
+                  <span class="glyphicon glyphicon-remove"></span>
               <% end %>
-            </td>
-          </tr>
-      <% end %>
-    <% end %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
   </tbody>
 </table>
 

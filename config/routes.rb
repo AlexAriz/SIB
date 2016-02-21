@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'university/index'
 
   resources :work_materials
+  get 'work_materials/:user_work_material' => 'work_materials#show_work_material', as: 'user_work_materials_show'
 
   get 'users/index'
   get 'users/show/:id' => 'users#show', as: 'user_show'
