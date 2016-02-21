@@ -33,5 +33,7 @@ class Ability
     can :read, :all
     can :update, Candidate
     can :request_as_tutor, Tutor
+    can :get_request, Scholarship
+    can :get_request, Candidate
   end
 end
