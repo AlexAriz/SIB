@@ -28,13 +28,13 @@
                   <%= link_to edit_work_material_path(work_material) do %>
                       <span class="glyphicon glyphicon-edit"></span>
                   <% end %>
+                  <%= link_to work_material_assign_path(work_material) do %>
+                      <span class="glyphicon glyphicon-user"></span>
+                  <% end %>
                   <%= link_to work_material,
                               method: :delete,
                               data: {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))} do %>
                       <span class="glyphicon glyphicon-remove"></span>
-                  <% end %>
-                  <%= link_to work_material_assign_path(work_material) do %>
-                      <span class="glyphicon glyphicon-user"></span>
                   <% end %>
               <% end %>
             </td>
