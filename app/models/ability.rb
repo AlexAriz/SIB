@@ -34,5 +34,7 @@ class Ability
     can :update, Candidate
     can :update, UsersWorkMaterial
     can :request_as_tutor, Tutor
+    can :get_request, Scholarship
+    can :get_request, Candidate
   end
 end
