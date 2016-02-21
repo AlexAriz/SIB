@@ -1,0 +1,20 @@
+<%- model_class = UsersWorkMaterial -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:work_material_id) %>:</strong></dt>
+  <dd><%= @users_work_material.work_material_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:candidate_id) %>:</strong></dt>
+  <dd><%= @users_work_material.candidate_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:done) %>:</strong></dt>
+  <dd><%= @users_work_material.done %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:progress) %>:</strong></dt>
+  <dd><%= @users_work_material.progress %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              users_work_materials_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_users_work_material_path(@users_work_material), :class => 'btn btn-default' %>

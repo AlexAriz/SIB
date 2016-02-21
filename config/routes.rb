@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :users_work_materials
   resources :selection_processes
 
   resources :tutors
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   get 'university/index'
 
   resources :work_materials
-  get 'work_materials/:id' => 'work_materials#show_user_work_material', as: 'user_work_materials_show'
 
   get 'users/index'
   get 'users/show/:id' => 'users#show', as: 'user_show'

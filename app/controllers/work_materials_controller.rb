@@ -2,7 +2,6 @@
 class WorkMaterialsController < ApplicationController
   include UsersHelper
   before_action :set_work_material, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_work_material, only: [:show_user_work_material]
   load_and_authorize_resource
 
   # GET /work_materials
@@ -10,11 +9,7 @@ class WorkMaterialsController < ApplicationController
   def index
     if current_user_tutor?
       @work_materials = Tutor.find(current_user.id).work_materials
-    elsif current_user_candidate?
-      candidate_work_waterials = set_candidate_work_waterials
-      @work_materials = candidate_work_waterials.first
-      @users_work_materials = candidate_work_waterials.last
-    else
+    elsif current_user_admin?
       @work_materials = WorkMaterial.all
     end
   end
@@ -83,11 +78,6 @@ class WorkMaterialsController < ApplicationController
     @work_material = WorkMaterial.find(params[:id])
   end
 
-  def set_user_work_material
-    @users_work_material = UsersWorkMaterial.find(params[:user_work_material])
-    @work_material = @users_work_material.work_material
-  end
-
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def work_material_params
@@ -108,12 +98,5 @@ class WorkMaterialsController < ApplicationController
   def msg_after_delete
     # 'Work material was successfully destroyed.'
     'Material de trabajo eliminado con éxito'
-  end
-
-  def set_candidate_work_waterials
-    [
-      Candidate.find(current_user.id).work_materials,
-      Candidate.find(current_user.id).users_work_materials
-    ]
   end
 end
