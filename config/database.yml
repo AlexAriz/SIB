@@ -14,8 +14,8 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: root
-  socket: /var/run/mysqld/mysqld.sock
+  password:
+  socket: /opt/lampp/var/mysql/mysql.sock
 
 development:
   <<: *default
