@@ -1,14 +1,15 @@
-<%= simple_form_for @users_work_material, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :work_material_id %>
-  <%= error_span(@users_work_material[:work_material_id]) %>
-  <%= f.input :candidate_id %>
-  <%= error_span(@users_work_material[:candidate_id]) %>
-  <%= f.input :done %>
-  <%= error_span(@users_work_material[:done]) %>
-  <%= f.input :progress %>
-  <%= error_span(@users_work_material[:progress]) %>
+<%- model_class = UsersWorkMaterial -%>
+<%= simple_form_for @users_work_material, :html => {:class => 'form-horizontal'} do |f| %>
+    <label>
+      <%= model_class.human_attribute_name(:work_material_id) %>:
+    </label>
+    <label><%= @users_work_material.work_material.name %></label>
+    <%= f.input :done %>
+    <%= error_span(@users_work_material[:done]) %>
+    <%= f.input :progress %>
+    <%= error_span(@users_work_material[:progress]) %>
 
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 users_work_materials_path, :class => 'btn btn-default' %>
 <% end %>

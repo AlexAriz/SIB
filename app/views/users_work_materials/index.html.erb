@@ -24,7 +24,18 @@
         <% else %>
             <td><span class="fa fa-times"></span></td>
         <% end %>
-        <td><%= users_work_material.progress %> %</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success"
+                 role="progressbar"
+                 aria-valuenow="<%= users_work_material.progress %>"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 style="width: <%= users_work_material.progress %>%; color: #000">
+              <%= users_work_material.progress %>%
+            </div>
+          </div>
+        </td>
         <td>
           <% if can? :update, users_work_material %>
               <%= link_to edit_users_work_material_path(users_work_material) do %>
