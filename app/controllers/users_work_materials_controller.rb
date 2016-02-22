@@ -1,5 +1,6 @@
 class UsersWorkMaterialsController < ApplicationController
   before_action :set_users_work_material, only: [:show, :edit, :update]
+  after_action :set_done_status, only: [:update, :edit]
 
   # GET /users_work_materials
   # GET /users_work_materials.json
@@ -39,7 +40,13 @@ class UsersWorkMaterialsController < ApplicationController
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def users_work_material_params
-    params.require(:users_work_material).permit(:done, :progress)
+    params.require(:users_work_material).permit(:progress)
+  end
+
+  def set_done_status
+    @users_work_material = UsersWorkMaterial.find(params[:id])
+    @users_work_material.done = (@users_work_material.progress == 100)
+    @users_work_material.save
   end
 
   def msg_after_update

@@ -1,15 +1,27 @@
 <%- model_class = UsersWorkMaterial -%>
-<%= simple_form_for @users_work_material, :html => {:class => 'form-horizontal'} do |f| %>
-    <label>
-      <%= model_class.human_attribute_name(:work_material_id) %>:
-    </label>
-    <label><%= @users_work_material.work_material.name %></label>
-    <%= f.input :done %>
-    <%= error_span(@users_work_material[:done]) %>
-    <%= f.input :progress %>
-    <%= error_span(@users_work_material[:progress]) %>
-
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_work_materials_path, :class => 'btn btn-default' %>
-<% end %>
+<div class="col-lg-6">
+  <%= image_tag @users_work_material.work_material.attachment.url(:large) %>
+</div>
+<div class="col-lg-5">
+  <%= simple_form_for @users_work_material, :html => {:class => 'form-horizontal'} do |f| %>
+      <dl class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:work_material_id) %>:</strong></dt>
+        <dd><%= @users_work_material.work_material.name %></dd>
+        <dt><strong><%= WorkMaterial.human_attribute_name(:description) %>:</strong></dt>
+        <dd><%= @users_work_material.work_material.description %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:done) %>:</strong></dt>
+        <dd>
+          <% if @users_work_material.done %>
+              <span class="fa fa-check-circle-o"></span>
+          <% else %>
+              <span class="fa fa-times"></span>
+          <% end %>
+        </dd>
+        <%= f.input :progress %>
+        <%= error_span(@users_work_material[:progress]) %>
+      </dl>
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  users_work_materials_path, :class => 'btn btn-default' %>
+  <% end %>
+</div>
