@@ -41,6 +41,7 @@ class Candidate < User
   scope :candidates, -> { where(type: 'Candidate') }
   has_and_belongs_to_many :work_materials
   belongs_to :tutor
+  has_many :users_work_materials
 
   has_attached_file :image_profile,
                     styles: { medium: '300x300>', thumb: '100x100>' },

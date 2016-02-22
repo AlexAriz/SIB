@@ -31,9 +31,12 @@ class Ability
 
   def permit_candidate
     can :read, :all
+    cannot :read, WorkMaterial
     can :update, Candidate
+    can :update, UsersWorkMaterial
+    can :read, UsersWorkMaterial
     can :request_as_tutor, Tutor
-    can :get_request, Scholarship
-    can :get_request, Candidate
+    can :read_request, Scholarship
+    can :read_request, Candidate
   end
 end
