@@ -21,7 +21,17 @@
     </dd>
     <dt><strong><%= model_class.human_attribute_name(:progress) %>:</strong></dt>
     <dd><div class="progress">
-      <div class="progress-bar progress-bar-success"
+      <%
+        status = 'progress-bar-'
+        if @users_work_material.progress <= 30
+          status << 'danger'
+        elsif @users_work_material.progress <= 60
+          status << 'warning'
+        else
+          status << 'success'
+        end
+      %>
+      <div class="progress-bar <%= status %>"
            role="progressbar"
            aria-valuenow="<%= @users_work_material.progress %>"
            aria-valuemin="0"
