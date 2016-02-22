@@ -29,7 +29,8 @@ class Scholarship < ActiveRecord::Base
 
   validates :name, presence: true, length: { minimum: 5, maximum: 50 }
   validates :university, presence: true
-  validates :start_date, presence: true,
+  validates :start_date,
+            presence: true,
             date: { after: proc { Time.now - 1.month } }
   validates :end_date, presence: true, date: { after: proc { Date.today } }
   validates :end_date, date: { after: :start_date }
