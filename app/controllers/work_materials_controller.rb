@@ -48,8 +48,8 @@ class WorkMaterialsController < ApplicationController
       if @work_material.update(work_material_params)
         @work_material.tutor_id = current_user.id
         format.html { redirect_to @work_material, notice: msg_after_update }
-        WorkMaterialMailer.assignation_work_material(@work_material.candidates.find(params[:id]),
-                                                     @work_material.tutor).deliver_now
+        @work_material.candidates.each { |candidate| WorkMaterialMailer.assignation_work_material(candidate,
+                                                                                                  @work_material.tutor).deliver_now }
       else
         format.html { render :edit }
       end

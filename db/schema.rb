@@ -27,16 +27,6 @@ ActiveRecord::Schema.define(version: 20160218235642) do
 
   add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
 
-  create_table "person", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "last_name",  limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "person", ["user_id"], name: "index_person_on_user_id", using: :btree
-
   create_table "scholarships", force: :cascade do |t|
     t.string   "name",             limit: 255
     t.integer  "university_id",    limit: 4
@@ -124,7 +114,6 @@ ActiveRecord::Schema.define(version: 20160218235642) do
   end
 
   add_foreign_key "people", "users"
-  add_foreign_key "person", "users"
   add_foreign_key "scholarships", "universities"
   add_foreign_key "users_work_materials", "work_materials"
 end
