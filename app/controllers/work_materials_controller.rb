@@ -19,7 +19,6 @@ class WorkMaterialsController < ApplicationController
   def show
   end
 
-
   def show_user_work_material
     # code here
   end

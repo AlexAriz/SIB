@@ -23,7 +23,9 @@ class WorkMaterial < ActiveRecord::Base
   validates :description, presence: true, length: { minimum: 8, maximum: 140 }
 
   has_attached_file :attachment,
-                    styles: { large: '400x600', medium: '200x300>', thumb: '100x100>' },
+                    styles: { large: '400x600',
+                              medium: '200x300>',
+                              thumb: '100x100>' },
                     default_url: '/images/:style/missing.png'
 
   validates_attachment_content_type :attachment,

@@ -27,8 +27,8 @@ class ScholarshipsController < ApplicationController
   def edit
   end
 
-  def get_request
-    # de momento sólo redirecciona y muestra un mensaje, posteriormente debe
+  def read_request
+    # de momento solo redirecciona y muestra un mensaje, posteriormente debe
     # asignarse la beca al perfil del usuario
     redirect_to scholarships_path, notice: msg_after_request
   end
