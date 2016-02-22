@@ -3,7 +3,7 @@ class UsersWorkMaterialMailer < ApplicationMailer
 
   def update_progress(users_work_material)
     @users_work_material = users_work_material
-    mail(to: @users_work_material.tutor.email,
+    mail(to: @users_work_material.work_material.tutor.email,
          subject: 'Actualización de un material de trabajo')
   end
 end

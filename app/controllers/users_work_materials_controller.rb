@@ -22,6 +22,7 @@ class UsersWorkMaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @users_work_material.update(users_work_material_params)
+        UsersWorkMaterialMailer.update_progress(@users_work_material).deliver_now
         format.html { redirect_to @users_work_material,
                                   notice: msg_after_update }
       else
