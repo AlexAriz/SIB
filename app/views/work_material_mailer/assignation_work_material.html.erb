@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Aviso de asignacion de material de trabajo</h1>
+  <p>
+    Estimado(a) usuario:<strong> <%= @candidate.user_name %> </strong>
+    (<%= @candidate.email %>), se le notifica que el usuario:
+    <strong> <%= @tutor.user_name %> </strong> (<%= @tutor.email %>) le ha asignado
+    un material de trabajo.
+  </p>
+</body>
+</html>
