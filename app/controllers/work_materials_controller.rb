@@ -1,10 +1,11 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
-  include UsersHelper
   before_action :set_work_material, only: [:show, :edit, :update, :destroy,
-                                           :assign]
-  after_action :prepare_candidates, only: [:assign]
-  after_action :set_work_material, only: [:update_assign_work_material]
+                                           :assign,
+                                           :update_assign_work_material]
+
+  before_action :prepare_candidates, only: [:update_assign_work_material]
+
   after_action :send_email_notification, only: [:update_assign_work_material]
   load_and_authorize_resource
 
@@ -66,7 +67,6 @@ class WorkMaterialsController < ApplicationController
   end
 
   def update_assign_work_material
-    @old_candidates = @work_material.candidates.to_a
     @work_material.update(work_material_params)
     @work_material.tutor_id = current_user.id
     redirect_to @work_material, notice: msg_after_update
@@ -115,12 +115,20 @@ class WorkMaterialsController < ApplicationController
 
   # When the user choose this option from the index
   def send_email_notification
-    @work_material.candidates.to_a.each do |candidate|
-      next if @old_candidates.include? candidate
-      WorkMaterialMailer.assignation_work_material(candidate,
-                                                   @work_material.tutor)
-                        .deliver_now
+    if @old_candidates.nil?
+      @work_material.candidates.each do |candidate|
+        send_mail(candidate, @work_material.tutor)
+      end
+    else
+      @work_material.candidates.to_a.each do |candidate|
+        next if @old_candidates.include? candidate
+        send_mail(candidate, @work_material.tutor)
+      end
     end
+  end
+
+  def send_mail(candidate, tutor)
+    WorkMaterialMailer.assignation_work_material(candidate, tutor).deliver_now
   end
 
   def msg_after_assign
