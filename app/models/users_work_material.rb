@@ -22,4 +22,5 @@ class UsersWorkMaterial < ActiveRecord::Base
   belongs_to :candidate
   belongs_to :work_material
   validates :progress, presence: true, inclusion: { in: 0..100 }
+  validates :comment, length: { maximum: 140 }
 end

@@ -41,7 +41,7 @@ class UsersWorkMaterialsController < ApplicationController
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def users_work_material_params
-    params.require(:users_work_material).permit(:progress)
+    params.require(:users_work_material).permit(:progress, :comment)
   end
 
   def set_done_status
