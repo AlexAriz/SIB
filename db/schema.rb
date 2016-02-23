@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221191655) do
+ActiveRecord::Schema.define(version: 20160223045224) do
 
   create_table "people", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -97,8 +97,9 @@ ActiveRecord::Schema.define(version: 20160221191655) do
   create_table "users_work_materials", force: :cascade do |t|
     t.integer "work_material_id", limit: 4
     t.integer "candidate_id",     limit: 4
-    t.boolean "done",                       default: false
-    t.integer "progress",         limit: 4, default: 0
+    t.boolean "done",                           default: false
+    t.integer "progress",         limit: 4,     default: 0
+    t.text    "comment",          limit: 65535
   end
 
   add_index "users_work_materials", ["work_material_id"], name: "index_users_work_materials_on_work_material_id", using: :btree

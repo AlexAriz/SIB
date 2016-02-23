@@ -7,6 +7,7 @@
 #  candidate_id     :integer
 #  done             :boolean          default(FALSE)
 #  progress         :integer          default(0)
+#  comment          :text(65535)
 #
 # Indexes
 #
@@ -16,6 +17,7 @@
 #
 #  fk_rails_539e96a199  (work_material_id => work_materials.id)
 #
+
 class UsersWorkMaterial < ActiveRecord::Base
   belongs_to :candidate
   belongs_to :work_material
