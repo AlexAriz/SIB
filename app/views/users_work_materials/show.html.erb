@@ -40,6 +40,10 @@
         <%= @users_work_material.progress %>%
       </div>
     </div></dd>
+    <% unless @users_work_material.comment.nil? or @users_work_material.comment.eql?('') %>
+        <dt><strong><%= model_class.human_attribute_name(:comment) %></strong></dt>
+        <dd><%= @users_work_material.comment %></dd>
+    <% end %>
   </dl>
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
