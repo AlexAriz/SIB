@@ -45,14 +45,20 @@ class WorkMaterialsController < ApplicationController
   # PATCH/PUT /work_materials/1.json
   def update
     respond_to do |format|
-      if @work_material.update(work_material_params)
-        @work_material.tutor_id = current_user.id
-        format.html { redirect_to @work_material, notice: msg_after_update }
-        @work_material.candidates.each { |candidate| WorkMaterialMailer.assignation_work_material(candidate,
-                                                                                                  @work_material.tutor).deliver_now }
-      else
-        format.html { render :edit }
-      end
+      @work_material.update(work_material_params)
+      # @work_material.reload
+      @work_material.tutor_id = current_user.id
+      send_email_notification params[:work_material][:candidate_ids]
+      format.html { redirect_to @work_material, notice: msg_after_update }
+
+      # if @work_material.update(work_material_params)
+      #   @work_material.tutor_id = current_user.id
+      #   send_email_notification params[:candidate_ids]
+      #   format.html { redirect_to @work_material, notice: msg_after_update }
+      #
+      # else
+      #   format.html { render :edit }
+      # end
     end
   end
 
@@ -98,5 +104,23 @@ class WorkMaterialsController < ApplicationController
   def msg_after_assign
     # 'Work material was successfully assigned.'
     'Material de trabajo asignado con éxito'
+  end
+
+  def send_email_notification(candidate_ids)
+    unless candidate_ids.empty?
+      candidate_ids.each do |candidate_id|
+        # WorkMaterialMailer.assignation_work_material(@work_material
+        #                                                  .candidates.find(candidate_id),
+        #                                              @work_material.tutor).deliver_now
+        unless candidate_id.empty?
+          candidate = @work_material.candidates.find(candidate_id)
+          if candidate.changed?
+            puts 'Este es el candidato, que cambió:'
+            puts candidate
+          end
+
+        end
+      end
+    end
   end
 end
