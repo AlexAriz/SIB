@@ -17,7 +17,6 @@
 #
 #  fk_rails_539e96a199  (work_material_id => work_materials.id)
 #
-
 class UsersWorkMaterial < ActiveRecord::Base
   belongs_to :candidate
   belongs_to :work_material

@@ -1,7 +1,7 @@
 # Controlador para la relacion entre candidatos y materiales de trabajo
 class UsersWorkMaterialsController < ApplicationController
   before_action :set_users_work_material, only: [:show, :edit, :update]
-  after_action :set_done_status, only: [:update, :edit]
+  after_action :set_done_status, only: [:update]
 
   # GET /users_work_materials
   # GET /users_work_materials.json
@@ -23,7 +23,6 @@ class UsersWorkMaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @users_work_material.update(users_work_material_params)
-        UsersWorkMaterialMailer.update_mail(@users_work_material).deliver_now
         format.html { redirect_to @users_work_material, notice: msg_update }
       else
         format.html { render :edit }
@@ -48,6 +47,7 @@ class UsersWorkMaterialsController < ApplicationController
     @users_work_material = UsersWorkMaterial.find(params[:id])
     @users_work_material.done = (@users_work_material.progress == 100)
     @users_work_material.save
+    UsersWorkMaterialMailer.update_mail(@users_work_material).deliver_now
   end
 
   def msg_update
