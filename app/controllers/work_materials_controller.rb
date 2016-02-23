@@ -2,8 +2,10 @@
 class WorkMaterialsController < ApplicationController
   include UsersHelper
   before_action :set_work_material, only: [:show, :edit, :update, :destroy,
-                                           :assign, :update_assign_work_material]
-  # before_action :prepare_candidates, only: [:update_assign_work_material]
+                                           :assign]
+  after_action :prepare_candidates, only: [:assign]
+  after_action :set_work_material, only: [:update_assign_work_material]
+  after_action :send_email_notification, only: [:update_assign_work_material]
   load_and_authorize_resource
 
   # GET /work_materials
@@ -64,24 +66,9 @@ class WorkMaterialsController < ApplicationController
   end
 
   def update_assign_work_material
-    @candidates_associated = @work_material.candidates.to_a
+    @old_candidates = @work_material.candidates.to_a
     @work_material.update(work_material_params)
-
-    #### Esto estaba en un before action, pero no lo respetaba ######
-    @candidates_updated = Array.new
-    params[:work_material][:candidate_ids].each do |candidate_id|
-      unless candidate_id.empty?
-        candidate_registered = UsersWorkMaterial.
-            find_by_candidate_id(candidate_id)
-        unless candidate_registered.nil?
-          @candidates_updated << candidate_registered
-        end
-      end
-    end
-    ###################################################################
-
     @work_material.tutor_id = current_user.id
-    send_email_notification
     redirect_to @work_material, notice: msg_after_update
   end
 
@@ -123,34 +110,16 @@ class WorkMaterialsController < ApplicationController
 
   # Before action for updating (update) and update_assign_work_material
   def prepare_candidates
-    @candidates_updated = Array.new
-    params[:work_material][:candidate_ids].each do |candidate_id|
-      unless candidate_id.empty?
-        candidate_registered = UsersWorkMaterial.
-            find_by_candidate_id(candidate_id)
-        unless candidate_registered.nil?
-          @candidates_updated << candidate_registered
-        end
-      end
-    end
+    @old_candidates = @work_material.candidates.to_a
   end
 
   # When the user choose this option from the index
   def send_email_notification
-    unless @candidates_associated.empty?
-      @candidates_updated.each do |new_candidate|
-        @candidates_associated.each do |candidate_registered|
-          if new_candidate.candidate.id == candidate_registered.id
-            @candidates_updated.delete(new_candidate)
-          end
-        end
-      end
-    end
-
-    @candidates_updated.each do |candidate|
-      WorkMaterialMailer.assignation_work_material(candidate.candidate,
-                                                   @work_material.tutor).
-          deliver_now
+    @work_material.candidates.to_a.each do |candidate|
+      next if @old_candidates.include? candidate
+      WorkMaterialMailer.assignation_work_material(candidate,
+                                                   @work_material.tutor)
+                        .deliver_now
     end
   end
 
