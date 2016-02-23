@@ -1,4 +1,4 @@
-#A class to manage work material e-mail
+# A class to manage work material e-mail
 class WorkMaterialMailer < ApplicationMailer
   default from: 'notifications@example.com'
 

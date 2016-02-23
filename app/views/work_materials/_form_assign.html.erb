@@ -1,5 +1,5 @@
-<%= simple_form_for @work_material, :html => {:class => 'form-horizontal'} do |f| %>
-    <%= f.association :candidates,
+<%= simple_form_for @work_material, url: update_assign_work_material_path(@work_material), :html => {:class => 'form-horizontal'} do |f| %>
+        <%= f.association :candidates,
                       collection: (current_user_admin?) ? Candidate.all :
                           current_user.candidates,
                       as: :select,

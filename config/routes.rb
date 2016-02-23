@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   patch 'users/edit/:id' => 'users#update'
   put 'users/edit/:id' => 'users#update'
   put 'work_materials/assign/:id' => 'work_materials#update'
+  patch 'work_materials/update_assign_work_material/:id' =>
+          'work_materials#update_assign_work_material', as: 'update_assign_work_material'
 
   delete 'users/destroy/:id' => 'users#destroy', as: 'user_destroy'
 

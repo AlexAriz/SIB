@@ -1,7 +1,9 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
   include UsersHelper
-  before_action :set_work_material, only: [:show, :edit, :update, :destroy, :assign]
+  before_action :set_work_material, only: [:show, :edit, :update, :destroy,
+                                           :assign, :update_assign_work_material]
+  # before_action :prepare_candidates, only: [:update_assign_work_material]
   load_and_authorize_resource
 
   # GET /work_materials
@@ -40,7 +42,6 @@ class WorkMaterialsController < ApplicationController
   def create
     @work_material = WorkMaterial.new(work_material_params)
     @work_material.tutor_id = current_user.id
-
     respond_to do |format|
       if @work_material.save
         format.html { redirect_to @work_material, notice: msg_after_create }
@@ -54,21 +55,34 @@ class WorkMaterialsController < ApplicationController
   # PATCH/PUT /work_materials/1.json
   def update
     respond_to do |format|
-      @work_material.update(work_material_params)
-      # @work_material.reload
-      @work_material.tutor_id = current_user.id
-      send_email_notification params[:work_material][:candidate_ids]
-      format.html { redirect_to @work_material, notice: msg_after_update }
-
-      # if @work_material.update(work_material_params)
-      #   @work_material.tutor_id = current_user.id
-      #   send_email_notification params[:candidate_ids]
-      #   format.html { redirect_to @work_material, notice: msg_after_update }
-      #
-      # else
-      #   format.html { render :edit }
-      # end
+      if @work_material.update(work_material_params)
+        format.html { redirect_to @work_material, notice: msg_after_update }
+      else
+        format.html { render :edit }
+      end
     end
+  end
+
+  def update_assign_work_material
+    @candidates_associated = @work_material.candidates.to_a
+    @work_material.update(work_material_params)
+
+    #### Esto estaba en un before action, pero no lo respetaba ######
+    @candidates_updated = Array.new
+    params[:work_material][:candidate_ids].each do |candidate_id|
+      unless candidate_id.empty?
+        candidate_registered = UsersWorkMaterial.
+            find_by_candidate_id(candidate_id)
+        unless candidate_registered.nil?
+          @candidates_updated << candidate_registered
+        end
+      end
+    end
+    ###################################################################
+
+    @work_material.tutor_id = current_user.id
+    send_email_notification
+    redirect_to @work_material, notice: msg_after_update
   end
 
   # DELETE /work_materials/1
@@ -96,40 +110,51 @@ class WorkMaterialsController < ApplicationController
   end
 
   def msg_after_create
-    # 'Work material was successfully created.'
     'Material de trabajo creado con éxito'
   end
 
   def msg_after_update
-    # 'Work material was successfully updated.'
     'Material de trabajo actualizado con éxito'
   end
 
   def msg_after_delete
-    # 'Work material was successfully destroyed.'
     'Material de trabajo eliminado con éxito'
   end
 
-  def msg_after_assign
-    # 'Work material was successfully assigned.'
-    'Material de trabajo asignado con éxito'
-  end
-
-  def send_email_notification(candidate_ids)
-    unless candidate_ids.empty?
-      candidate_ids.each do |candidate_id|
-        # WorkMaterialMailer.assignation_work_material(@work_material
-        #                                                  .candidates.find(candidate_id),
-        #                                              @work_material.tutor).deliver_now
-        unless candidate_id.empty?
-          candidate = @work_material.candidates.find(candidate_id)
-          if candidate.changed?
-            puts 'Este es el candidato, que cambió:'
-            puts candidate
-          end
-
+  # Before action for updating (update) and update_assign_work_material
+  def prepare_candidates
+    @candidates_updated = Array.new
+    params[:work_material][:candidate_ids].each do |candidate_id|
+      unless candidate_id.empty?
+        candidate_registered = UsersWorkMaterial.
+            find_by_candidate_id(candidate_id)
+        unless candidate_registered.nil?
+          @candidates_updated << candidate_registered
         end
       end
     end
+  end
+
+  # When the user choose this option from the index
+  def send_email_notification
+    unless @candidates_associated.empty?
+      @candidates_updated.each do |new_candidate|
+        @candidates_associated.each do |candidate_registered|
+          if new_candidate.candidate.id == candidate_registered.id
+            @candidates_updated.delete(new_candidate)
+          end
+        end
+      end
+    end
+
+    @candidates_updated.each do |candidate|
+      WorkMaterialMailer.assignation_work_material(candidate.candidate,
+                                                   @work_material.tutor).
+          deliver_now
+    end
+  end
+
+  def msg_after_assign
+    'Material de trabajo asignado con éxito'
   end
 end
