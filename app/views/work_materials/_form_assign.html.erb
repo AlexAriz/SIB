@@ -1,6 +1,7 @@
 <%= simple_form_for @work_material, :html => {:class => 'form-horizontal'} do |f| %>
     <%= f.association :candidates,
-                      collection: (current_user.type == 'Admin') ? Candidate.all : current_user.candidates,
+                      collection: (current_user_admin?) ? Candidate.all :
+                          current_user.candidates,
                       as: :select,
                       value_method: :id,
                       label_method: :candidate_username,
