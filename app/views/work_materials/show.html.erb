@@ -10,6 +10,10 @@
   <dd><%= @work_material.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:tutor_id) %>:</strong></dt>
   <dd><%= @work_material.tutor.user_name %></dd>
+  <% if current_user_candidate? %>
+      <dt><strong><%= UsersWorkMaterial.human_attribute_name(:done) %></strong></dt>
+      <dt><strong><%= UsersWorkMaterial.human_attribute_name(:progress) %></strong></dt>
+  <% end %>
   <dt><strong><%= model_class.human_attribute_name(:candidates) %></strong></dt>
   <dd>
     <ul>

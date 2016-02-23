@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
                     default_url: '/images/:style/missing.png'
 
   validates_attachment_content_type :image_profile,
-                                    content_type: /\Aimage\/.*\Z/
+                                    content_type: %r{\Aimage\/.*\Z}
 
   validates :user_name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/

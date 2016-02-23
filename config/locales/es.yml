@@ -16,6 +16,9 @@ es:
       work_material:
         one: Material de Trabajo
         other: Materiales de Trabajo
+      users_work_material:
+        one: Progreso del Material de Trabajo
+        other: Progreso de los Materiales de Trabajo
       university:
         one: Universidad
         other: Universidades
@@ -56,6 +59,11 @@ es:
         name: Nombre
         description: Descripción
         file_src: Ruta del archivo
+        created_at: Fecha de creación
+      users_work_material:
+        work_material_id: Material de Trabajo
+        progress: Progreso
+        done: Estado
       university:
         name: Nombre
         city: Ciudad

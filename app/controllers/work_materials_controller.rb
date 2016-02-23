@@ -1,17 +1,26 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
+  include UsersHelper
   before_action :set_work_material, only: [:show, :edit, :update, :destroy, :assign]
   load_and_authorize_resource
 
   # GET /work_materials
   # GET /work_materials.json
   def index
-    @work_materials = WorkMaterial.all
+    if current_user_tutor?
+      @work_materials = Tutor.find(current_user.id).work_materials
+    elsif current_user_admin?
+      @work_materials = WorkMaterial.all
+    end
   end
 
   # GET /work_materials/1
   # GET /work_materials/1.json
   def show
+  end
+
+  def show_user_work_material
+    # code here
   end
 
   # GET /work_materials/new
