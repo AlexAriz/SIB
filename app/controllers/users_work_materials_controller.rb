@@ -1,7 +1,7 @@
 # Controlador para la relacion entre candidatos y materiales de trabajo
 class UsersWorkMaterialsController < ApplicationController
   before_action :set_users_work_material, only: [:show, :edit, :update]
-  after_action :set_done_status, only: [:update, :edit]
+  after_action :set_done_status, only: [:update]
 
   # GET /users_work_materials
   # GET /users_work_materials.json
@@ -41,7 +41,7 @@ class UsersWorkMaterialsController < ApplicationController
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def users_work_material_params
-    params.require(:users_work_material).permit(:progress)
+    params.require(:users_work_material).permit(:progress, :comment)
   end
 
   def set_done_status

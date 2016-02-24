@@ -19,6 +19,8 @@
         </dd>
         <%= f.input :progress %>
         <%= error_span(@users_work_material[:progress]) %>
+        <%= f.input :comment %>
+        <%= error_span(@users_work_material[:comment]) %>
       </dl>
       <%= f.button :submit, :class => 'btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
