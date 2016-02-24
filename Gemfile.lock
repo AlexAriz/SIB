@@ -74,6 +74,9 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
+    commontator (4.11.1)
+      jquery-rails
+      rails (>= 3.1)
     concurrent-ruby (1.0.0)
     countries (1.2.5)
       currencies (~> 0.4.2)
@@ -244,6 +247,7 @@ DEPENDENCIES
   byebug
   cancancan (= 1.13.1)
   coffee-rails (~> 4.1.0)
+  commontator
   country_select (= 2.5.1)
   data-confirm-modal!
   date_validator (= 0.9.0)
