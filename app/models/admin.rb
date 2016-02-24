@@ -37,7 +37,7 @@
 #
 
 # Admin extends from User.
-class Admin < User  
+class Admin < User
   scope :admins, -> { where(type: 'Admin') }
 
   has_attached_file :image_profile,

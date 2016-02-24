@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: commontator_threads
+#
+#  id               :integer          not null, primary key
+#  commontable_type :string(255)
+#  commontable_id   :integer
+#  closed_at        :datetime
+#  closer_type      :string(255)
+#  closer_id        :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+# Indexes
+#
+#  index_commontator_threads_on_c_id_and_c_type  (commontable_id,commontable_type) UNIQUE
+#
 module Commontator
   class Thread < ActiveRecord::Base
     belongs_to :closer, :polymorphic => true

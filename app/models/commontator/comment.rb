@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: commontator_comments
+#
+#  id                :integer          not null, primary key
+#  creator_type      :string(255)
+#  creator_id        :integer
+#  editor_type       :string(255)
+#  editor_id         :integer
+#  thread_id         :integer          not null
+#  body              :text(65535)      not null
+#  deleted_at        :datetime
+#  cached_votes_up   :integer          default(0)
+#  cached_votes_down :integer          default(0)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+# Indexes
+#
+#  index_commontator_comments_on_c_id_and_c_type_and_t_id  (creator_id,creator_type,thread_id)
+#  index_commontator_comments_on_cached_votes_down         (cached_votes_down)
+#  index_commontator_comments_on_cached_votes_up           (cached_votes_up)
+#  index_commontator_comments_on_thread_id_and_created_at  (thread_id,created_at)
+#
 module Commontator
   class Comment < ActiveRecord::Base
     belongs_to :creator, :polymorphic => true

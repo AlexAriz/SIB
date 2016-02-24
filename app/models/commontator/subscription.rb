@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: commontator_subscriptions
+#
+#  id              :integer          not null, primary key
+#  subscriber_type :string(255)      not null
+#  subscriber_id   :integer          not null
+#  thread_id       :integer          not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+# Indexes
+#
+#  index_commontator_subscriptions_on_s_id_and_s_type_and_t_id  (subscriber_id,subscriber_type,thread_id) UNIQUE
+#  index_commontator_subscriptions_on_thread_id                 (thread_id)
+#
 module Commontator
   class Subscription < ActiveRecord::Base
     belongs_to :subscriber, :polymorphic => true

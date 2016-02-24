@@ -41,7 +41,7 @@
 # authentication
 class User < ActiveRecord::Base
   acts_as_commontator
-  
+
   ADMIN = 'Admin'.freeze
   TUTOR = 'Tutor'.freeze
   CANDIDATE = 'Candidate'.freeze
