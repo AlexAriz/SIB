@@ -17,7 +17,7 @@
 # Clase de Material de Trabajo, contiene las relaciones que tiene con los
 # Usuarios y algunas validaciones
 class WorkMaterial < ActiveRecord::Base
-  belongs_to :tutor, class_name: 'User'
+  belongs_to :tutor
   has_and_belongs_to_many :candidates
   validates :name, presence: true, length: { minimum: 8, maximum: 30 }
   validates :description, presence: true, length: { minimum: 8, maximum: 140 }

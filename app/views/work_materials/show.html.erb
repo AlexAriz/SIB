@@ -31,6 +31,8 @@
 <% if current_user.type == 'Tutor' %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_work_material_path(@work_material), :class => 'btn btn-default' %>
+    <%= link_to t('.assign', :default => t("helpers.links.assign")),
+                work_material_assign_path(@work_material), :class => 'btn btn-default' %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 work_material_path(@work_material),
                 :method => 'delete',
