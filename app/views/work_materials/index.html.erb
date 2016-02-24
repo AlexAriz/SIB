@@ -4,19 +4,19 @@
 </div>
 <table class="table table-striped table-responsive table-bordered text-center" id="work-materials-table">
   <thead>
-    <tr>
-      <% if current_user_tutor? %>
-          <th><%= model_class.human_attribute_name(:name) %></th>
-          <th><%= model_class.human_attribute_name(:description) %></th>
-          <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <% elsif current_user_admin? %>
-          <th><%= model_class.human_attribute_name(:name) %></th>
-          <th><%= model_class.human_attribute_name(:description) %></th>
-          <th><%= model_class.human_attribute_name(:tutor_id) %></th>
-          <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <% end %>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
+  <tr>
+    <% if current_user_tutor? %>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:description) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <% elsif current_user_admin? %>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:description) %></th>
+        <th><%= model_class.human_attribute_name(:tutor_id) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <% end %>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
   </thead>
   <tbody>
   <% @work_materials.each do |work_material| %>
@@ -34,6 +34,9 @@
           <% if can? :manage, work_material %>
               <%= link_to edit_work_material_path(work_material) do %>
                   <span class="glyphicon glyphicon-edit"></span>
+              <% end %>
+              <%= link_to work_material_assign_path(work_material) do %>
+                  <span class="glyphicon glyphicon-user"></span>
               <% end %>
               <%= link_to work_material,
                           method: :delete,

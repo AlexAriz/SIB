@@ -182,6 +182,7 @@ es:
       submit: Guardar %{model}
       update: Actualizar %{model}
       cancel: Cancelar
+      assign: Asignar %{model}
     links:
       new: Crear
       show: Ver
@@ -194,11 +195,13 @@ es:
       confirm: "¿Estás seguro?"
       cancel: Cancelar
       back: Regresar
+      assign: Asignar
     titles:
       new: Nuevo %{model}
       edit: Editar %{model}
       save: "Guardar %{model}"
       delete: "Eliminar %{model}"
+      assign: "Asignar Material de trabajo"
     actions: Opciones
 
   number:
