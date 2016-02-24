@@ -40,6 +40,8 @@
 # This class is used by devise for setting the
 # authentication
 class User < ActiveRecord::Base
+  acts_as_commontator
+
   ADMIN = 'Admin'.freeze
   TUTOR = 'Tutor'.freeze
   CANDIDATE = 'Candidate'.freeze

@@ -21,6 +21,7 @@
  *= require dataTables/extras/dataTables.tableTools
  *= require_self
  *= require_tree .
+ *= require commontator/application
  */
 
 .page-header{
