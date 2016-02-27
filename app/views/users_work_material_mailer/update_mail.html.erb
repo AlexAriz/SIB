@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h3>
+  Aviso de progreso de un material de trabajo
+</h3>
+<p>
+  Estimado(a) tutor: Su aspirante
+  <strong><%= @users_work_material.candidate.user_name %></strong>
+  (<%= @users_work_material.candidate.email %>) ha actualizado su progreso sobre
+  el material de trabajo
+  <strong><%= @users_work_material.work_material.name %></strong>, ahora tiene
+  un progreso del <strong><%= @users_work_material.progress %>%</strong>.
+</p>
+<p>
+  Por su atención, gracias.
+</p>
+</body>
+</html>

@@ -52,7 +52,10 @@
     </div>
   </div>
 </div>
-
+<div>
+<%= commontator_thread(@selection_process) %>
+</div>
+<br>
 
 <%= link_to t('.back', :default => t('helpers.links.back')),
             selection_processes_path, :class => 'btn btn-default' %>

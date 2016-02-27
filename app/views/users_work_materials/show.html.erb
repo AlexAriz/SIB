@@ -1,0 +1,53 @@
+<%- model_class = UsersWorkMaterial -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+<div class="col-lg-6">
+  <%= image_tag @users_work_material.work_material.attachment.url(:large) %>
+</div>
+<div class="col-lg-5">
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:work_material_id) %>:</strong></dt>
+    <dd><%= @users_work_material.work_material.name %></dd>
+    <dt><strong><%= WorkMaterial.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @users_work_material.work_material.description %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:done) %>:</strong></dt>
+    <dd>
+      <% if @users_work_material.done %>
+          <span class="fa fa-check-circle-o"></span>
+      <% else %>
+          <span class="fa fa-times"></span>
+      <% end %>
+    </dd>
+    <dt><strong><%= model_class.human_attribute_name(:progress) %>:</strong></dt>
+    <dd><div class="progress">
+      <%
+        status = 'progress-bar-'
+        if @users_work_material.progress <= 30
+          status << 'danger'
+        elsif @users_work_material.progress <= 60
+          status << 'warning'
+        else
+          status << 'success'
+        end
+      %>
+      <div class="progress-bar <%= status %>"
+           role="progressbar"
+           aria-valuenow="<%= @users_work_material.progress %>"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           style="width: <%= @users_work_material.progress %>%; color: #000">
+        <%= @users_work_material.progress %>%
+      </div>
+    </div></dd>
+    <% unless @users_work_material.comment.nil? or @users_work_material.comment.eql?('') %>
+        <dt><strong><%= model_class.human_attribute_name(:comment) %></strong></dt>
+        <dd><%= @users_work_material.comment %></dd>
+    <% end %>
+  </dl>
+
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              users_work_materials_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_users_work_material_path(@users_work_material), :class => 'btn btn-default' %>
+</div>

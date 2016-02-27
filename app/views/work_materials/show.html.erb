@@ -10,6 +10,10 @@
   <dd><%= @work_material.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:tutor_id) %>:</strong></dt>
   <dd><%= @work_material.tutor.user_name %></dd>
+  <% if current_user_candidate? %>
+      <dt><strong><%= UsersWorkMaterial.human_attribute_name(:done) %></strong></dt>
+      <dt><strong><%= UsersWorkMaterial.human_attribute_name(:progress) %></strong></dt>
+  <% end %>
   <dt><strong><%= model_class.human_attribute_name(:candidates) %></strong></dt>
   <dd>
     <ul>
@@ -27,6 +31,8 @@
 <% if current_user.type == 'Tutor' %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_work_material_path(@work_material), :class => 'btn btn-default' %>
+    <%= link_to t('.assign', :default => t("helpers.links.assign")),
+                work_material_assign_path(@work_material), :class => 'btn btn-default' %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 work_material_path(@work_material),
                 :method => 'delete',

@@ -1,6 +1,10 @@
 # Este es el controlador para las Becas
 class ScholarshipsController < ApplicationController
-  before_action :set_scholarship, only: [:show, :edit, :update, :destroy]
+  before_action :set_scholarship, only: [:show,
+                                         :edit,
+                                         :update,
+                                         :destroy,
+                                         :request]
   load_and_authorize_resource
 
   # GET /scholarships
@@ -21,6 +25,12 @@ class ScholarshipsController < ApplicationController
 
   # GET /scholarships/1/edit
   def edit
+  end
+
+  def read_request
+    # de momento solo redirecciona y muestra un mensaje, posteriormente debe
+    # asignarse la beca al perfil del usuario
+    redirect_to scholarships_path, notice: msg_after_request
   end
 
   # POST /scholarships
@@ -77,6 +87,10 @@ class ScholarshipsController < ApplicationController
 
   def msg_after_create
     'Se ha creado exitosamente la beca: ' + @scholarship.name
+  end
+
+  def msg_after_request
+    'La beca se ha agregado a su lista de becas solicitadas'
   end
 
   # Use callbacks to share common setup or constraints between actions.

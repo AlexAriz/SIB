@@ -28,6 +28,22 @@
       </div>
     </div>
   </div>
+  <br>
+  <% if current_user_candidate? %>
+      <% unless @user.tutor_id.nil? %>
+          <div class="row">
+            <div class="col-md-offset-2">
+              <div class="col-md-3"><strong>Tutor</strong>
+              </div>
+              <div class="col-md-3">
+                <%= link_to tutor_path(@user.tutor) do%>
+                  <%= @user.tutor.user_name %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
 
 </fieldset>
 

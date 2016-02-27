@@ -2,18 +2,18 @@ $(function () {
     $('#tutors-table').DataTable({
         'dom': 'T<"clear">lfrtip',
         'tableTools': {
-            'sSwfPath': '/swf/copy_csv_xls_pdf.swf',
+            'sSwfPath': '/assets/dataTables/extras/swf/copy_csv_xls_pdf.swf',
             "aButtons": [
                 {
                     "sExtends": "xls",
                     "sButtonText": "Excel",
-                    "sTitle": 'Usuarios',
+                    "sTitle": 'Tutores',
                     "mColumns": [0, 1, 2, 3]
                 },
                 {
                     "sExtends": "pdf",
                     "sButtonText": "PDF",
-                    "sTitle": 'Usuarios',
+                    "sTitle": 'Tutores',
                     "mColumns": [0, 1, 2, 3]
                 }
             ]

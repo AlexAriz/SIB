@@ -126,10 +126,25 @@
             <span class="fa fa-trash-o"></span>
         <% end %>
     <% else %>
-        <%= link_to '#', class: 'btn btn-danger' do %>
-            Cancelar tutoría (poner el ícono que corresponda, ya no es parte
-            mi CU)
+        <%= link_to cancel_tutoring_path, class: 'btn btn-danger',
+                    title: "eliminar solicitud",
+                    :method => :get,
+                    :data => { :confirm =>
+                           "<p>¿Está seguro que desea <strong
+                           class='text-danger'>CANCELAR</strong>
+                           la tutoría para el candidato con la
+                           siguiente información?
+                           <ul>
+                           <li>Nombre del candidato: <strong
+                                    class='text-info'>#{@candidate
+                               .person.name}</strong></li>
+                                    <li>Correo del usuario: <strong
+                                    class='text-info'>#{@candidate
+                               .email}</strong></li>
+                           </ul>
+                           </p>" } do %>
             <span class="fa fa-trash-o"></span>
+            Cancelar tutoría
         <% end %>
     <% end %>
   </div>
