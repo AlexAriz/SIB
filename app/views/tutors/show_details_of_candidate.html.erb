@@ -8,48 +8,53 @@
   <div class="col-md-6 text-center">
     <%= image_tag @candidate.image_profile.url(:medium) %>
   </div>
+
   <div class="col-md-6">
-    <fieldset>
-      <legend>Datos generales</legend>
-      <div class="row">
-        <div class="col-md-4"><strong><%= model_class.human_attribute_name(:email) %>: </strong></div>
-        <div class="col-md-4"><%= @candidate.email %></div>
+    <div class="panel panel-info">
+      <div class="panel-heading">Datos generales</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4"><strong><%= model_class.human_attribute_name(:email) %>: </strong></div>
+          <div class="col-md-8"><%= @candidate.email %></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-4"><strong><%= model_class.human_attribute_name(:user_name) %></strong>:</div>
+          <div class="col-md-8"><%= @candidate.user_name %></div>
+        </div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col-md-4"><strong><%= model_class.human_attribute_name(:user_name) %></strong>:</div>
-        <div class="col-md-4"><%= @candidate.user_name %></div>
-      </div>
-    </fieldset>
+    </div>
     <hr>
     <% unless @candidate.person.nil? %>
-        <fieldset>
-          <legend>Intereses</legend>
-          <div class="row">
-            <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:name) %>:</strong></div>
-            <div class="col-md-4"><%= @candidate.person.name %></div>
+        <div class="panel panel-info">
+          <div class="panel-heading">Intereses</div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:name) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.name %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:last_name) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.last_name %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:university) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.university %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:area_of_interest) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.area_of_interest %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:comments) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.comments %></div>
+            </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:last_name) %>:</strong></div>
-            <div class="col-md-4"><%= @candidate.person.last_name %></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:university) %>:</strong></div>
-            <div class="col-md-4"><%= @candidate.person.university %></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:area_of_interest) %>:</strong></div>
-            <div class="col-md-4"><%= @candidate.person.area_of_interest %></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:comments) %>:</strong></div>
-            <div class="col-md-4"><%= @candidate.person.comments %></div>
-          </div>
-        </fieldset>
+        </div>
     <% end %>
   </div>
 </div>
