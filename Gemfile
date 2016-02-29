@@ -64,6 +64,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '1.6.2'
   gem 'better_errors', '2.1.1'
+  gem 'metric_fu'
 end
 
 group :production do
