@@ -1,46 +1,32 @@
 <%- model_class = User -%>
-<div class="page-header text-center">
-  <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped table-responsive table-bordered text-center" id="users-table">
+<table class="table table-striped" id="users-table">
   <thead>
-  <tr>
-    <th><%= model_class.human_attribute_name(:id) %></th>
-    <th><%= model_class.human_attribute_name(:user_name) %></th>
-    <th><%= model_class.human_attribute_name(:email) %></th>
-    <th><%= model_class.human_attribute_name(:type) %></th>
-    <th><%= t '.actions', :default => t('helpers.actions') %></th>
-  </tr>
+    <tr>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:user_name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
+    <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.user_name %></td>
         <td><%= user.email %></td>
         <td><%= user.type %></td>
+        <td><%= user.user_name %></td>
+        <td><%=l user.created_at %></td>
         <td>
-          <%= link_to user_show_path(user) do %>
-              <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %>
-          <% unless current_user.id == user.id %>
-
-              <%= link_to user_destroy_path(user),
-                          :method => :delete,
-                          :data => {:confirm =>
-                                        "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
-                                    <ul>
-                                    <li>Nombre del usuario: <strong class='text-info'>#{user.user_name}</strong></li>
-                                    <li>Correo del usuario: <strong class='text-info'>#{user.email}</strong></li>
-                                    </ul>
-                                    </p>"} do %>
-                  <span class="glyphicon glyphicon-remove"></span>
-              <% end %>
-
-          <% end %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      user_destroy_path(user),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
         </td>
-
       </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
