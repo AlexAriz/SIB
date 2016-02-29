@@ -2,40 +2,39 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @work_material.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @work_material.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:tutor_id) %>:</strong></dt>
-  <dd><%= @work_material.tutor.user_name %></dd>
-  <% if current_user_candidate? %>
-      <dt><strong><%= UsersWorkMaterial.human_attribute_name(:done) %></strong></dt>
-      <dt><strong><%= UsersWorkMaterial.human_attribute_name(:progress) %></strong></dt>
-  <% end %>
-  <dt><strong><%= model_class.human_attribute_name(:candidates) %></strong></dt>
-  <dd>
-    <ul>
+<div class="col-lg-6">
+  <div>
+    <%= image_tag @work_material.attachment.url(:large), class: 'work_material-image' %>
+  </div>
+  <div>
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+                work_materials_path, :class => 'btn btn-default'  %>
+    <% if current_user.type == 'Tutor' %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_work_material_path(@work_material), :class => 'btn btn-default' %>
+        <%= link_to t('.assign', :default => t("helpers.links.assign")),
+                    work_material_assign_path(@work_material), :class => 'btn btn-default' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    work_material_path(@work_material),
+                    :method => 'delete',
+                    :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                    :class => 'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>
+<div class="col-lg-5">
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+    <dd><%= @work_material.name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @work_material.description %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:tutor_id) %>:</strong></dt>
+    <dd><%= @work_material.tutor.user_name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:candidates) %></strong></dt>
+    <dd>
       <% @work_material.candidates.each do |candidate| %>
-          <li><%= candidate.user_name %></li>
+          <%= candidate.user_name %><% if candidate != @work_material.candidates.to_a.last %>, <% end %>
       <% end %>
-    </ul>
-  </dd>
-  <dt><strong><%= model_class.human_attribute_name(:attachment) %>:</strong></dt>
-  <dd><%= image_tag @work_material.attachment.url(:medium) %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              work_materials_path, :class => 'btn btn-default'  %>
-<% if current_user.type == 'Tutor' %>
-    <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_work_material_path(@work_material), :class => 'btn btn-default' %>
-    <%= link_to t('.assign', :default => t("helpers.links.assign")),
-                work_material_assign_path(@work_material), :class => 'btn btn-default' %>
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                work_material_path(@work_material),
-                :method => 'delete',
-                :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-                :class => 'btn btn-danger' %>
-<% end %>
+    </dd>
+  </dl>
+</div>

@@ -60,6 +60,7 @@ es:
         description: Descripción
         file_src: Ruta del archivo
         created_at: Fecha de creación
+        candidates: Aspirantes
       users_work_material:
         work_material_id: Material de Trabajo
         progress: Progreso
