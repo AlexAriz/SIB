@@ -68,6 +68,26 @@
                                     </p>"}, title: 'Rechazar candidato' do %>
                   <span class="fa fa-trash-o"></span>
               <% end %>
+          <% else %>
+              <%= link_to cancel_tutoring_path(@tutor, candidate),
+                          title: "Cancelar tutoría",
+                          :method => :get,
+                          :data => { :confirm =>
+                                         "<p>¿Está seguro que desea <strong
+                           class='text-danger'>CANCELAR</strong>
+                           la tutoría para el candidato con la
+                           siguiente información?
+                           <ul>
+                           <li>Nombre del candidato: <strong
+                                    class='text-info'>#{candidate
+                                             .person.name}</strong></li>
+                                    <li>Correo del usuario: <strong
+                                    class='text-info'>#{candidate
+                                             .email}</strong></li>
+                           </ul>
+                           </p>" } do %>
+                  <span class="fa fa-trash-o"></span>
+              <% end %>
           <% end %>
         </td>
       </tr>

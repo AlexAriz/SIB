@@ -51,10 +51,10 @@ es:
         benefits_offered: Beneficios
         url: enlace
       selection_process:
-        university_name: Universidad
+        university_name: Nombre de la Universidad
         deadline: Fecha Límite
-        activities: Actividades
-        link: URL
+        activities: Actividades a realizar para el proceso de selección
+        link: Link a la página oficial de la Universidad
       work_material:
         name: Nombre
         description: Descripción

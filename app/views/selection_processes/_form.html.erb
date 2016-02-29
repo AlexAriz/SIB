@@ -1,14 +1,21 @@
 <%= simple_form_for @selection_process, :html => {:class => 'form-horizontal'} do |f| %>
-    <%= f.input :university_name %>
-    <%= error_span(@selection_process[:university_name]) %>
-    <%= f.input :deadline, as: :date, start_year: Date.today.year %>
-    <%= error_span(@selection_process[:deadline]) %>
-    <%= f.input :activities, as: :text, input_html: {rows: 5, cols: 10} %>
-    <%= error_span(@selection_process[:activities]) %>
-    <%= f.input :link %>
-    <%= error_span(@selection_process[:link]) %>
+    <fieldset>
+      <legend>Formulario para Proceso de selección para Universidad</legend>
+      <%= f.input :university_name, placeholder: "Ingrese el nombre de la Universidad" %>
+      <%= error_span(@selection_process[:university_name]) %>
+      <%= f.input :deadline, as: :date, start_year: Date.today.year %>
+      <%= error_span(@selection_process[:deadline]) %>
+      <%= f.input :activities, as: :text,
+                  input_html: {rows: 5, cols: 10},
+                  placeholder: "Ingrese la serie de pasos a seguir para llevar a cabo el proceso de admisión a esta Universidad" %>
+      <%= error_span(@selection_process[:activities]) %>
+      <%= f.input :link, placeholder: "URL oficial con más detalles sobre este proceso" %>
+      <%= error_span(@selection_process[:link]) %>
 
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-                selection_processes_path, :class => 'btn btn-default' %>
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
+                  selection_processes_path, :class => 'btn btn-default' %>
+    </fieldset>
 <% end %>
+<hr>
+<br>
