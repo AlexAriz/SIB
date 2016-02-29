@@ -158,6 +158,10 @@ es:
         show: Mostrar Comentarios
         hide: Esconder Comentarios
 
+  will_paginate:
+    next_label: Siguiente
+    previous_label: Anterior
+
   errors:
     format: "%{attribute} %{message}"
     messages:

@@ -14,8 +14,10 @@ class WorkMaterialsController < ApplicationController
   def index
     if current_user_tutor?
       @work_materials = Tutor.find(current_user.id).work_materials
+                             .paginate(page: params[:page], per_page: 6)
     elsif current_user_admin?
-      @work_materials = WorkMaterial.all
+      @work_materials = WorkMaterial.all.paginate(page: params[:page],
+                                                  per_page: 6)
     end
   end
 
