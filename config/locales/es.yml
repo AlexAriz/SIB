@@ -60,6 +60,7 @@ es:
         description: Descripción
         file_src: Ruta del archivo
         created_at: Fecha de creación
+        candidates: Aspirantes
       users_work_material:
         work_material_id: Material de Trabajo
         progress: Progreso
@@ -157,6 +158,10 @@ es:
       actions:
         show: Mostrar Comentarios
         hide: Esconder Comentarios
+
+  will_paginate:
+    next_label: Siguiente
+    previous_label: Anterior
 
   errors:
     format: "%{attribute} %{message}"
