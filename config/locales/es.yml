@@ -60,6 +60,7 @@ es:
         description: Descripción
         file_src: Ruta del archivo
         created_at: Fecha de creación
+        candidates: Aspirantes
       users_work_material:
         work_material_id: Material de Trabajo
         progress: Progreso
@@ -133,6 +134,35 @@ es:
     - :month
     - :year
 
+  commontator:
+    anonymous: Comentario anónimo
+    comment:
+      actions:
+        new: Nuevo
+        create: Añadir Comentario
+        edit: Editar
+        update: Guardar
+        cancel: Cancelar
+        delete: Eliminar
+        undelete: Restaurar
+        confirm_delete: Confirmar eliminación
+      status:
+        deleted_by: Eliminado por
+        created_at: Creado
+        updated_at: Actualizado
+      errors:
+        double_posted: Comentario repetido
+    thread:
+      status:
+        open: Estado abierto
+      actions:
+        show: Mostrar Comentarios
+        hide: Esconder Comentarios
+
+  will_paginate:
+    next_label: Siguiente
+    previous_label: Anterior
+
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -182,6 +212,7 @@ es:
       submit: Guardar %{model}
       update: Actualizar %{model}
       cancel: Cancelar
+      assign: Asignar %{model}
     links:
       new: Crear
       show: Ver
@@ -194,11 +225,13 @@ es:
       confirm: "¿Estás seguro?"
       cancel: Cancelar
       back: Regresar
+      assign: Asignar
     titles:
       new: Nuevo %{model}
       edit: Editar %{model}
       save: "Guardar %{model}"
       delete: "Eliminar %{model}"
+      assign: "Asignar Material de trabajo"
     actions: Opciones
 
   number:
@@ -258,6 +291,7 @@ es:
     am: am
     formats:
       default: "%a, %d de %b del %Y a las %H:%M:%S %Z"
+      commontator: "%a, %d de %b del %Y a las %H:%M:%S %Z"
       long: "%A, %d de %B del %Y a las %I:%M %p"
       short: "%d de %b a las %H:%M hrs"
     pm: pm

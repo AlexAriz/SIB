@@ -1,7 +1,12 @@
 # Controlador del Material de trabajo
 class WorkMaterialsController < ApplicationController
-  include UsersHelper
-  before_action :set_work_material, only: [:show, :edit, :update, :destroy]
+  before_action :set_work_material, only: [:show, :edit, :update, :destroy,
+                                           :assign,
+                                           :update_assign_work_material]
+
+  before_action :prepare_candidates, only: [:update_assign_work_material]
+
+  after_action :send_email_notification, only: [:update_assign_work_material]
   load_and_authorize_resource
 
   # GET /work_materials
@@ -9,8 +14,10 @@ class WorkMaterialsController < ApplicationController
   def index
     if current_user_tutor?
       @work_materials = Tutor.find(current_user.id).work_materials
+                             .paginate(page: params[:page], per_page: 6)
     elsif current_user_admin?
-      @work_materials = WorkMaterial.all
+      @work_materials = WorkMaterial.all.paginate(page: params[:page],
+                                                  per_page: 6)
     end
   end
 
@@ -32,12 +39,14 @@ class WorkMaterialsController < ApplicationController
   def edit
   end
 
+  def assign
+  end
+
   # POST /work_materials
   # POST /work_materials.json
   def create
     @work_material = WorkMaterial.new(work_material_params)
     @work_material.tutor_id = current_user.id
-
     respond_to do |format|
       if @work_material.save
         format.html { redirect_to @work_material, notice: msg_after_create }
@@ -52,12 +61,17 @@ class WorkMaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @work_material.update(work_material_params)
-        @work_material.tutor_id = current_user.id
         format.html { redirect_to @work_material, notice: msg_after_update }
       else
         format.html { render :edit }
       end
     end
+  end
+
+  def update_assign_work_material
+    @work_material.update(work_material_params)
+    @work_material.tutor_id = current_user.id
+    redirect_to @work_material, notice: msg_after_update
   end
 
   # DELETE /work_materials/1
@@ -85,17 +99,41 @@ class WorkMaterialsController < ApplicationController
   end
 
   def msg_after_create
-    # 'Work material was successfully created.'
     'Material de trabajo creado con éxito'
   end
 
   def msg_after_update
-    # 'Work material was successfully updated.'
     'Material de trabajo actualizado con éxito'
   end
 
   def msg_after_delete
-    # 'Work material was successfully destroyed.'
     'Material de trabajo eliminado con éxito'
+  end
+
+  # Before action for updating (update) and update_assign_work_material
+  def prepare_candidates
+    @old_candidates = @work_material.candidates.to_a
+  end
+
+  # When the user choose this option from the index
+  def send_email_notification
+    if @old_candidates.nil?
+      @work_material.candidates.each do |candidate|
+        send_mail(candidate, @work_material.tutor)
+      end
+    else
+      @work_material.candidates.to_a.each do |candidate|
+        next if @old_candidates.include? candidate
+        send_mail(candidate, @work_material.tutor)
+      end
+    end
+  end
+
+  def send_mail(candidate, tutor)
+    WorkMaterialMailer.assignation_work_material(candidate, tutor).deliver_now
+  end
+
+  def msg_after_assign
+    'Material de trabajo asignado con éxito'
   end
 end

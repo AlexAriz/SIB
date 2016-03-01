@@ -13,6 +13,7 @@ class SelectionProcessesController < ApplicationController
   # GET /selection_processes/1
   # GET /selection_processes/1.json
   def show
+    commontator_thread_show(@selection_process)
   end
 
   # GET /selection_processes/new
