@@ -4,11 +4,9 @@
 </div>
 <div class="col-lg-5">
   <%= simple_form_for @users_work_material, :html => {:class => 'form-horizontal'} do |f| %>
-      <dl class="dl-horizontal">
-        <dt><strong><%= model_class.human_attribute_name(:work_material_id) %>:</strong></dt>
-        <dd><%= @users_work_material.work_material.name %></dd>
-        <dt><strong><%= WorkMaterial.human_attribute_name(:description) %>:</strong></dt>
-        <dd><%= @users_work_material.work_material.description %></dd>
+      <dl class="users_work_material_progress dl-horizontal">
+        <%= f.input :comment %>
+        <%= error_span(@users_work_material[:comment]) %>
         <dt><strong><%= model_class.human_attribute_name(:done) %>:</strong></dt>
         <dd>
           <% if @users_work_material.done %>
@@ -19,8 +17,6 @@
         </dd>
         <%= f.input :progress %>
         <%= error_span(@users_work_material[:progress]) %>
-        <%= f.input :comment %>
-        <%= error_span(@users_work_material[:comment]) %>
       </dl>
       <%= f.button :submit, :class => 'btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
