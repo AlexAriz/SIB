@@ -7,10 +7,9 @@ class UniversitiesController < ApplicationController
   # GET /universities.json
   def index
     @universities = nil
-    puts params[:name]
-    puts params[:country]
     if params[:name] || params[:country]
-      @universities = University.by_name(params[:name]).by_country(params[:country])
+      @universities = University.by_name(params[:name])
+                                .by_country(params[:country])
     end
   end
 

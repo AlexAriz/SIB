@@ -29,7 +29,4 @@ class University < ActiveRecord::Base
   scope :by_country, lambda { |country|
     where('country LIKE ?', "%#{country}%")
   }
-
-
-
 end
