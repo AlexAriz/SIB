@@ -10,7 +10,12 @@ class ScholarshipsController < ApplicationController
   # GET /scholarships
   # GET /scholarships.json
   def index
-    @scholarships = Scholarship.all
+    @scholarships = nil
+    if params[:name] || params[:start_date] || params[:end_date]
+      @scholarships = Scholarship.by_name(params[:name])
+                              .by_start_date(params[:start_date])
+                              .by_end_date(params[:end_date])
+    end
   end
 
   # GET /scholarships/1
