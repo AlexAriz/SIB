@@ -5,7 +5,10 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.all
+    @users = nil
+    if params[:user_name] || params[:email]
+      @users = User.by_user_name(params[:user_name]).by_email(params[:email])
+    end
   end
 
   def edit
