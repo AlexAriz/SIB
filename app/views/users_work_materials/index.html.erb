@@ -5,10 +5,8 @@
 <table class="table table-striped table-responsive table-bordered text-center" id="users-work-materials-table">
   <thead>
   <tr>
+    <th><%= WorkMaterial.human_attribute_name(:id) %></th>
     <th><%= WorkMaterial.human_attribute_name(:name) %></th>
-    <th><%= WorkMaterial.human_attribute_name(:description) %></th>
-    <th><%= WorkMaterial.human_attribute_name(:tutor_id) %></th>
-    <th><%= model_class.human_attribute_name(:done) %></th>
     <th><%= model_class.human_attribute_name(:progress) %></th>
     <th><%= t '.actions', :default => t("helpers.actions") %></th>
   </tr>
@@ -16,14 +14,8 @@
   <tbody>
   <% @users_work_materials.each do |users_work_material| %>
       <tr>
-        <td><%= link_to users_work_material.work_material.name, users_work_material_path(users_work_material) %></td>
-        <td><%= users_work_material.work_material.description %></td>
-        <td><%= link_to users_work_material.work_material.tutor.user_name, tutor_path(users_work_material.work_material.tutor) %></td>
-        <% if users_work_material.done %>
-            <td><span class="fa fa-check-circle-o"></span></td>
-        <% else %>
-            <td><span class="fa fa-times"></span></td>
-        <% end %>
+        <td><%= users_work_material.id %></td>
+        <td><%= users_work_material.work_material.name %></td>
         <td>
           <div class="progress">
             <%
@@ -48,6 +40,9 @@
         </td>
         <td>
           <% if can? :update, users_work_material %>
+              <%= link_to users_work_material do %>
+                  <span class="glyphicon glyphicon-eye-open"></span>
+              <% end %>
               <%= link_to edit_users_work_material_path(users_work_material) do %>
                   <span class="glyphicon glyphicon-edit"></span>
               <% end %>
