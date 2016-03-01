@@ -50,8 +50,8 @@ gem 'cancancan', '1.13.1'
 gem 'paperclip', '4.3.4'
 gem 'date_validator', '0.9.0'
 gem 'annotate', '2.7.0'
-gem 'commontator'
-gem 'will_paginate'
+gem 'commontator', '4.11.1'
+gem 'will_paginate', '3.0.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
