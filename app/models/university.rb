@@ -21,4 +21,15 @@ class University < ActiveRecord::Base
   validates :country, presence: true
   validates :information, presence: true
   validates :url, presence: true
+
+  scope :by_name, lambda { |name|
+    where('name LIKE ?', "%#{name}%")
+  }
+
+  scope :by_country, lambda { |country|
+    where('country LIKE ?', "%#{country}%")
+  }
+
+
+
 end
