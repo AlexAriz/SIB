@@ -1,30 +1,64 @@
-<h1 class="text-center margin-bottom-customized">¡Bienvenido al Sistema Integral de Becas!</h1>
+<h1 class="text-center margin-bottom-customized">¡Bienvenido al Sistema Integral
+  de Becas!</h1>
 
 <h2>Aquí iría el carrusel</h2>
 
-<div id="work-materials-assigned" class="margin-customized">
+<div id="candidate-section" class="margin-customized">
   <% unless current_user.nil? %>
-      <% if current_user_candidate? and !current_user.users_work_materials
-          .empty? %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Tienes materiales de trabajo pendientes
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <% current_user.users_work_materials.limit(3).each do
-                |user_work_material| %>
-                    <div class="col-md-4">
-                      <div class="work_material-image">
-                        <%= link_to image_tag(user_work_material.work_material
-                                                  .attachment.url(:large)),
-                                    user_work_material %>
-                      </div>
-                    </div>
-                <% end %>
+      <% if current_user_candidate? %>
+          <% unless current_user.users_work_materials.empty? %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Tienes materiales de trabajo pendientes
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <% current_user.users_work_materials.limit(3).each do
+                    |user_work_material| %>
+                        <div class="col-md-4">
+                          <div class="work_material-image">
+                            <%= link_to image_tag(user_work_material.work_material
+                                                      .attachment.url(:large)),
+                                        user_work_material %>
+                          </div>
+                        </div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+          <% end %>
+          <% if current_user.scholarship.present? %>
+              <% scholarship = current_user.scholarship %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Haz solicitado una beca
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>Nombre:</label>
+                      <%= scholarship.name %>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Fecha de inicio</label>
+                      <%= scholarship.start_date %>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Fecha final</label>
+                      <%= scholarship.end_date %>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>URL: </label>
+                      <%= link_to 'Página de la Universidad', scholarship
+                          .url, target: '_blank' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
       <% end %>
   <% end %>
 </div>
