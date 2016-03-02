@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update]
   load_and_authorize_resource
 
+  # rubocop:disable Metrics/AbcSize
   def index
     @users = nil
-    if params[:user_name] || params[:email]
+    if params[:user_name] || params[:email] || params[:type]
       @users = User.by_user_name(params[:user_name]).by_email(params[:email])
+                   .by_type(params[:type])
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def edit
   end
