@@ -1,7 +1,7 @@
 # Controller for the selection processes
 # Views
 class SelectionProcessesController < ApplicationController
-  before_action :set_search_true, only:[:create, :update]
+  before_action :set_search_true, only: [:create, :update]
   before_action :set_selection_process, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
@@ -10,10 +10,12 @@ class SelectionProcessesController < ApplicationController
   def index
     @selection_processes = nil
     if params[:university_name]
-      @selection_processes = SelectionProcess.by_university_name(params[:university_name])
+      @selection_processes = SelectionProcess
+                             .by_university_name(params[:university_name])
     end
 
-    @selection_processes = SelectionProcess.all if session[:do_selecction_proce]
+    @selection_processes = SelectionProcess
+                           .all if session[:do_selection_processes]
   end
 
   # GET /selection_processes/1
