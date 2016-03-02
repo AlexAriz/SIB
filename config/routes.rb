@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   mount Commontator::Engine => '/commontator'
 
   resources :users_work_materials
