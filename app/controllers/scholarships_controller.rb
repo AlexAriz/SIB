@@ -4,8 +4,10 @@ class ScholarshipsController < ApplicationController
                                          :edit,
                                          :update,
                                          :destroy,
-                                         :request]
+                                         :read_request]
   before_action :set_candidate, only: [:read_request]
+  before_action :set_scholarship_search, only: [:create, :update,
+                                                :read_request, :destroy]
   load_and_authorize_resource
 
   # GET /scholarships
@@ -16,6 +18,8 @@ class ScholarshipsController < ApplicationController
       @scholarships = Scholarship.by_name(params[:name])
                                  .by_start_date(params[:start_date])
                                  .by_end_date(params[:end_date])
+
+      @scholarships = Scholarship.all if session[:do_scholarship_search]
     end
   end
 
@@ -38,7 +42,7 @@ class ScholarshipsController < ApplicationController
   end
 
   def read_request
-    @candidate.update_attribute(:requested_scholarship_id, @scholarship)
+    @candidate.update_attribute(:scholarship_id, @scholarship.id)
     redirect_to scholarships_path, notice: msg_after_request
   end
 
@@ -122,5 +126,9 @@ class ScholarshipsController < ApplicationController
                                         :requirements,
                                         :benefits_offered,
                                         :url)
+  end
+
+  def set_scholarship_search
+    session[:do_scholarship_search] = true
   end
 end

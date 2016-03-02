@@ -36,7 +36,8 @@ Rails.application.routes.draw do
   delete 'users/destroy/:id' => 'users#destroy', as: 'user_destroy'
 
   resources :scholarships
-  get '/request', to: "scholarships#read_request", as: 'request'
+  get 'scholarships/read_request/:id', to: 'scholarships#read_request', as:
+      'request_scholarship'
 
   resources :static_pages
   get 'principal_page' => 'static_pages#index'

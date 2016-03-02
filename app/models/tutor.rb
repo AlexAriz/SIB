@@ -26,15 +26,20 @@
 #  image_profile_content_type :string(255)
 #  image_profile_file_size    :integer
 #  image_profile_updated_at   :datetime
-#  pending                    :boolean          default(TRUE)
+#  pending                    :boolean          default(FALSE)
 #  requested_date             :date
-#  requested_scholarship_id   :integer
+#  scholarship_id             :integer
 #
 # Indexes
 #
+#  fk_rails_3cce11318b                  (scholarship_id)
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_3cce11318b  (scholarship_id => scholarships.id)
 #
 
 # Tutor extends from User.
