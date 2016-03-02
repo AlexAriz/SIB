@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223175943) do
+ActiveRecord::Schema.define(version: 20160301235808) do
 
   create_table "commontator_comments", force: :cascade do |t|
     t.string   "creator_type",      limit: 255
@@ -130,11 +130,13 @@ ActiveRecord::Schema.define(version: 20160223175943) do
     t.datetime "image_profile_updated_at"
     t.boolean  "pending",                                default: true
     t.date     "requested_date"
+    t.integer  "scholarship_id",             limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["scholarship_id"], name: "fk_rails_3cce11318b", using: :btree
 
   create_table "users_work_materials", force: :cascade do |t|
     t.integer "work_material_id", limit: 4
@@ -160,5 +162,6 @@ ActiveRecord::Schema.define(version: 20160223175943) do
 
   add_foreign_key "people", "users"
   add_foreign_key "scholarships", "universities"
+  add_foreign_key "users", "scholarships"
   add_foreign_key "users_work_materials", "work_materials"
 end

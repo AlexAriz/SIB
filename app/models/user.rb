@@ -28,12 +28,18 @@
 #  image_profile_updated_at   :datetime
 #  pending                    :boolean          default(TRUE)
 #  requested_date             :date
+#  scholarship_id             :integer
 #
 # Indexes
 #
+#  fk_rails_3cce11318b                  (scholarship_id)
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_3cce11318b  (scholarship_id => scholarships.id)
 #
 
 # The Main class of the users.
@@ -59,16 +65,26 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image_profile,
                                     content_type: %r{\Aimage\/.*\Z}
 
-  validates :user_name, presence: true
+  validates_presence_of :user_name, :type
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/
   validates :email,
             format: { with: VALID_EMAIL_REGEX },
             presence: true
-  validates :type, presence: true
 
   accepts_nested_attributes_for :person, allow_destroy: true
-
   after_create :set_empty_person
+
+  scope :by_user_name, lambda { |user_name|
+    where('user_name LIKE ?', "%#{user_name}%")
+  }
+
+  scope :by_email, lambda { |email|
+    where('email LIKE ?', "%#{email}%")
+  }
+
+  scope :by_type, lambda { |type|
+    where('type LIKE ?', "%#{type}%") if type != 'Seleccionar'
+  }
 
   private
 

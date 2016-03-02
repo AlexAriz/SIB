@@ -1,46 +1,119 @@
 <%- model_class = User -%>
-<div class="page-header text-center">
+<div class="text-center">
   <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped table-responsive table-bordered text-center" id="users-table">
-  <thead>
-  <tr>
-    <th><%= model_class.human_attribute_name(:id) %></th>
-    <th><%= model_class.human_attribute_name(:user_name) %></th>
-    <th><%= model_class.human_attribute_name(:email) %></th>
-    <th><%= model_class.human_attribute_name(:type) %></th>
-    <th><%= t '.actions', :default => t('helpers.actions') %></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.user_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.type %></td>
-        <td>
-          <%= link_to user_show_path(user) do %>
-              <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %>
-          <% unless current_user.id == user.id %>
 
-              <%= link_to user_destroy_path(user),
-                          :method => :delete,
-                          :data => {:confirm =>
-                                        "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
+<div id="searcher-for-users">
+  <div class="panel panel-default">
+    <div class="panel-heading">Parámetros de búsqueda</div>
+    <div class="panel-body">
+      <%= form_tag(users_index_path, :method => 'get', id: 'search-form',
+                   html: {class: 'form-horizontal'}) do %>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="col-md-5">
+                <div class="pull-right">
+                  <%= label_tag 'Nombre de usuario:' %>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <%= text_field_tag :user_name, params[:user_name],
+                                   class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="col-md-2">
+                <div class="pull-right">
+                  <%= label_tag 'Correo: ' %>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <%= text_field_tag :email, params[:email], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="col-md-4">
+                <div class="pull-right">
+                  <%= label_tag 'Rol' %>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <%= select_tag :type,
+                               options_for_select(['Seleccionar',
+                                                   %w(Administrador Admin),
+                                                   %w(Aspirante Candidate),
+                                                   'Tutor'], 'Seleccionar'),
+                               {class: 'form-control'}
+                %>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-offset-11">
+              <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+                  <i class="fa fa-search"></i> Buscar
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<% if @users.present? %>
+
+    <table class="table table-striped table-responsive table-bordered text-center" id="users-table">
+      <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:user_name) %></th>
+        <th><%= model_class.human_attribute_name(:email) %></th>
+        <th><%= model_class.human_attribute_name(:type) %></th>
+        <th><%= t '.actions', :default => t('helpers.actions') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.user_name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <% case user.type %>
+              <% when User::ADMIN %>
+                  Administrador
+              <% when User::TUTOR %>
+                  Tutor
+              <% else %>
+                  Aspirante
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user_show_path(user) do %>
+                  <span class="glyphicon glyphicon-eye-open"></span>
+              <% end %>
+              <% unless current_user.id == user.id %>
+
+                  <%= link_to user_destroy_path(user),
+                              :method => :delete,
+                              :data => {:confirm =>
+                                            "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> el usuario con la siguiente información?
                                     <ul>
                                     <li>Nombre del usuario: <strong class='text-info'>#{user.user_name}</strong></li>
                                     <li>Correo del usuario: <strong class='text-info'>#{user.email}</strong></li>
                                     </ul>
                                     </p>"} do %>
-                  <span class="glyphicon glyphicon-remove"></span>
+                      <span class="glyphicon glyphicon-remove"></span>
+                  <% end %>
+
               <% end %>
+            </td>
 
-          <% end %>
-        </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
 
-      </tr>
-  <% end %>
-  </tbody>
-</table>
