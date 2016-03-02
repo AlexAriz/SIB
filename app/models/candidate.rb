@@ -28,12 +28,18 @@
 #  image_profile_updated_at   :datetime
 #  pending                    :boolean          default(TRUE)
 #  requested_date             :date
+#  scholarship_id             :integer
 #
 # Indexes
 #
+#  fk_rails_3cce11318b                  (scholarship_id)
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_3cce11318b  (scholarship_id => scholarships.id)
 #
 
 # Candidate extends from User.
@@ -41,6 +47,7 @@ class Candidate < User
   scope :candidates, -> { where(type: 'Candidate') }
   has_and_belongs_to_many :work_materials
   belongs_to :tutor
+  belongs_to :scholarship
   has_many :users_work_materials
 
   has_attached_file :image_profile,

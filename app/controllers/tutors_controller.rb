@@ -11,7 +11,10 @@ class TutorsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @tutors = Tutor.all
+    @tutors = nil
+    if params[:user_name] || params[:email]
+      @tutors = Tutor.by_user_name(params[:user_name]).by_email(params[:email])
+    end
   end
 
   def show

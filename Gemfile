@@ -50,8 +50,8 @@ gem 'cancancan', '1.13.1'
 gem 'paperclip', '4.3.4'
 gem 'date_validator', '0.9.0'
 gem 'annotate', '2.7.0'
-gem 'commontator'
-gem 'will_paginate'
+gem 'commontator', '4.11.1'
+gem 'will_paginate', '3.0.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,7 +61,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
+  gem 'metric_fu'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '1.6.2'
   gem 'better_errors', '2.1.1'
