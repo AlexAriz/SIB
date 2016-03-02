@@ -39,4 +39,18 @@ class Scholarship < ActiveRecord::Base
   validates :benefits_offered, presence: true, length: { minimum: 10,
                                                          maximum: 400 }
   validates :url, presence: true
+
+  scope :by_name, lambda { |name|
+    where('name LIKE ?', "%#{name}%")
+  }
+
+  scope :by_start_date, lambda { |start_date|
+    where('start_date LIKE ?', "%#{start_date}%")
+  }
+
+  scope :by_end_date, lambda { |end_date|
+    where('end_date LIKE ?', "%#{end_date}%")
+  }
+  
+  has_many :candidates
 end

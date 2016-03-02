@@ -1,5 +1,6 @@
 <%- model_class = User -%>
 <%- model_class_tutor_person = Person -%>
+<%- model_class_scholarship = Scholarship -%>
 
 <div class="text-center">
   <h1>Información de <%= @user.user_name %></h1>
@@ -34,6 +35,15 @@
                 <%= link_to tutor_path(@user.tutor) do %>
                     <%= @user.tutor.user_name %>
                 <% end %>
+              </div>
+            </div>
+        <% end %>
+        <% unless @user.requested_scholarship_id.nil? %>
+            <div class="row">
+              <div class="col-md-3"><strong>Beca solicitada</strong>
+              </div>
+              <div class="col-md-3">
+                <%= @user.requested_scholarship_id %>
               </div>
             </div>
         <% end %>

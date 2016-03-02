@@ -26,8 +26,9 @@
 #  image_profile_content_type :string(255)
 #  image_profile_file_size    :integer
 #  image_profile_updated_at   :datetime
-#  pending                    :boolean          default(FALSE)
+#  pending                    :boolean          default(TRUE)
 #  requested_date             :date
+#  requested_scholarship_id   :integer
 #
 # Indexes
 #
@@ -41,6 +42,7 @@ class Candidate < User
   scope :candidates, -> { where(type: 'Candidate') }
   has_and_belongs_to_many :work_materials
   belongs_to :tutor
+  belongs_to :scholarship
   has_many :users_work_materials
 
   has_attached_file :image_profile,

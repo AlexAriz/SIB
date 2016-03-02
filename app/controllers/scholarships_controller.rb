@@ -5,17 +5,27 @@ class ScholarshipsController < ApplicationController
                                          :update,
                                          :destroy,
                                          :request]
+  before_action :set_candidate, only: [:read_request]
   load_and_authorize_resource
 
   # GET /scholarships
   # GET /scholarships.json
   def index
-    @scholarships = Scholarship.all
+    @scholarships = nil
+    if params[:name] || params[:start_date] || params[:end_date]
+      @scholarships = Scholarship.by_name(params[:name])
+                                 .by_start_date(params[:start_date])
+                                 .by_end_date(params[:end_date])
+    end
   end
 
   # GET /scholarships/1
   # GET /scholarships/1.json
   def show
+  end
+
+  def candidates
+    @candidates = @scholarship.candidates.includes(:person)
   end
 
   # GET /scholarships/new
@@ -28,8 +38,7 @@ class ScholarshipsController < ApplicationController
   end
 
   def read_request
-    # de momento solo redirecciona y muestra un mensaje, posteriormente debe
-    # asignarse la beca al perfil del usuario
+    @candidate.update_attribute(:requested_scholarship_id, @scholarship)
     redirect_to scholarships_path, notice: msg_after_request
   end
 
@@ -96,6 +105,10 @@ class ScholarshipsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_scholarship
     @scholarship = Scholarship.find(params[:id])
+  end
+
+  def set_candidate
+    @candidate = Candidate.find(current_user.id)
   end
 
   # Never trust parameters from the scary internet,
