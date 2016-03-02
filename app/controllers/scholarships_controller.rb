@@ -20,8 +20,8 @@ class ScholarshipsController < ApplicationController
                                  .by_start_date(params[:start_date])
                                  .by_end_date(params[:end_date])
 
-      @scholarships = Scholarship.all if session[:do_scholarship_search]
     end
+    @scholarships = Scholarship.all if session[:do_scholarship_search]
   end
   # rubocop:enable Metrics/AbcSize
 
