@@ -6,21 +6,21 @@
       } do |f| %>
       <fieldset>
         <legend>Datos generales</legend>
-        <%= f.input :email %>
-        <%= error_span(@user[:email]) %>
         <%= f.input :user_name %>
         <%= error_span(@user[:user_name]) %>
-        <%= f.input :image_profile, as: :file %>
-        <%= error_span(@user[:image_profile]) %>
-      </fieldset>
-
-      <fieldset>
-        <legend>Intereses</legend>
         <%= f.simple_fields_for :person do |person_form| %>
             <%= person_form.input :name %>
             <%= error_span(@user[:name]) %>
             <%= person_form.input :last_name %>
             <%= error_span(@user[:last_name]) %>
+        <% end %>
+        <%= f.input :image_profile, as: :file %>
+        <%= error_span(@user[:image_profile]) %>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Intereses</legend>
+        <%= f.simple_fields_for :person do |person_form| %>
             <%= person_form.input :university %>
             <%= error_span(@user[:university]) %>
             <%= person_form.input :first_choice %>
@@ -32,10 +32,11 @@
         <% end %>
       </fieldset>
 
-
-      <%= f.button :submit, :class => 'btn-primary' %>
-      <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-                  :back, :class => 'btn btn-default' %>
+      <div class="pull-right">
+        <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
+                    :back, :class => 'btn btn-default' %>
+        <%= f.button :submit, :class => 'btn-primary' %>    
+      </div>
   <% end %>
 
 </div>
