@@ -51,4 +51,6 @@ class Scholarship < ActiveRecord::Base
   scope :by_end_date, lambda { |end_date|
     where('end_date LIKE ?', "%#{end_date}%")
   }
+  
+  has_many :candidates
 end

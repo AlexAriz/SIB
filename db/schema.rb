@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223175943) do
+ActiveRecord::Schema.define(version: 20160301235808) do
 
   create_table "commontator_comments", force: :cascade do |t|
     t.string   "creator_type",      limit: 255
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160223175943) do
     t.datetime "image_profile_updated_at"
     t.boolean  "pending",                                default: true
     t.date     "requested_date"
+    t.integer  "requested_scholarship_id",   limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
