@@ -84,3 +84,10 @@
 .header-text {
     color: #07453b;
 }
+
+.footer {
+    width: 100%;
+    height: 100px;
+    margin-top: 278px;
+    background-color: #095A4D;
+}

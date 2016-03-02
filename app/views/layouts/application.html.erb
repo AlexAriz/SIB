@@ -11,10 +11,19 @@
   <%= javascript_include_tag 'application' %>
 </head>
 <body>
-<%= render "partials/nav_bar" %>
-<div class="container">
-  <p><%= bootstrap_flash %></p>
-  <%= yield %>
+<div>
+  <%= render "partials/nav_bar" %>
+  <div class="container">
+    <p><%= bootstrap_flash %></p>
+    <%= yield %>
+  </div>
 </div>
+<footer class="footer">
+  <div class="container">
+    <%= link_to root_path do %>
+        Aviso de privacidad
+    <% end %>
+  </div>
+</footer>
 </body>
 </html>
