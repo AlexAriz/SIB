@@ -1,5 +1,9 @@
 <div class="container">
-  <%= simple_form_for @user, url: user_edit_path(@user), :html => {:class => 'form-horizontal', method: :put} do |f| %>
+  <%= simple_form_for @user, url: user_edit_path(@user), html:
+      {
+          :class => 'form-horizontal',
+          method: :put
+      } do |f| %>
       <fieldset>
         <legend>Datos generales</legend>
         <%= f.input :email %>
@@ -31,7 +35,7 @@
 
       <%= f.button :submit, :class => 'btn-primary' %>
       <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-                  users_index_path, :class => 'btn btn-default' %>
+                  :back, :class => 'btn btn-default' %>
   <% end %>
 
 </div>

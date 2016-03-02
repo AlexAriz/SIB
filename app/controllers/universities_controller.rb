@@ -1,6 +1,7 @@
 # Controlador de universidades
 class UniversitiesController < ApplicationController
   before_action :set_university, only: [:show, :edit, :update, :destroy]
+  before_action :set_search_true, only: [:create, :update]
   load_and_authorize_resource
 
   # GET /universities
@@ -11,6 +12,8 @@ class UniversitiesController < ApplicationController
       @universities = University.by_name(params[:name])
                                 .by_country(params[:country])
     end
+
+    @universities = University.all if session[:do_university_search]
   end
 
   # GET /universities/1
@@ -87,5 +90,9 @@ class UniversitiesController < ApplicationController
   def university_params
     params.require(:university).permit(:name, :city, :state, :country,
                                        :information, :url)
+  end
+
+  def set_search_true
+    session[:do_university_search] = true
   end
 end
