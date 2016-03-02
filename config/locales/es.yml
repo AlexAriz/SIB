@@ -148,9 +148,11 @@ es:
         confirm_delete: Confirmar eliminación
       status:
         deleted_by: Eliminado por
-        created_at: Creado
-        updated_at: Actualizado
+        created_at: Creado en
+        updated_at: Actualizado en
       errors:
+        create: Error al crear comentario
+        update: Error al actualizar comentario
         double_posted: Comentario repetido
     thread:
       status:
