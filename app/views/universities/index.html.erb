@@ -2,8 +2,6 @@
 <div class="text-center">
   <h1><%= t '.title', :default => model_class.model_name.human(count: 2) %></h1>
 </div>
-
-
 <div class="panel panel-default">
   <div class="panel-heading">Parámetros de búsqueda</div>
   <div class="panel-body">
@@ -38,8 +36,15 @@
     <% end %>
   </div>
 </div>
-
-
+<% if can? :create, current_user %>
+    <%= link_to new_university_path,
+                :class => 'btn btn-success' do %>
+        <i class="fa fa-plus"></i>
+        <%= t('.new', :default => t('helpers.links.new')) %>
+    <% end %>
+<% end %>
+<br>
+<br>
 <% if @universities.present? %>
     <table class="table table-striped table-responsive table-bordered text-center" id="universities-table">
       <thead>
@@ -79,8 +84,4 @@
       <% end %>
       </tbody>
     </table>
-
-    <%= link_to t('.new', :default => t('helpers.links.new')),
-                new_university_path,
-                :class => 'btn btn-primary' %>
 <% end %>

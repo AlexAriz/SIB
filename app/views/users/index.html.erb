@@ -10,25 +10,41 @@
       <%= form_tag(users_index_path, :method => 'get', id: 'search-form',
                    html: {class: 'form-horizontal'}) do %>
           <div class="row">
-            <div class="col-md-6">
-              <div class="col-md-6">
+            <div class="col-md-4">
+              <div class="col-md-5">
                 <div class="pull-right">
                   <%= label_tag 'Nombre de usuario:' %>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <%= text_field_tag :user_name, params[:user_name],
                                    class: 'form-control' %>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="col-md-6">
+            <div class="col-md-4">
+              <div class="col-md-2">
                 <div class="pull-right">
                   <%= label_tag 'Correo: ' %>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-10">
                 <%= text_field_tag :email, params[:email], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="col-md-4">
+                <div class="pull-right">
+                  <%= label_tag 'Rol' %>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <%= select_tag :type,
+                               options_for_select(['Seleccionar',
+                                                   %w(Administrador Admin),
+                                                   %w(Aspirante Candidate),
+                                                   'Tutor'], 'Seleccionar'),
+                               {class: 'form-control'}
+                %>
               </div>
             </div>
           </div>
@@ -64,7 +80,16 @@
             <td><%= user.id %></td>
             <td><%= user.user_name %></td>
             <td><%= user.email %></td>
-            <td><%= user.type %></td>
+            <td>
+              <% case user.type %>
+              <% when User::ADMIN %>
+                  Administrador
+              <% when User::TUTOR %>
+                  Tutor
+              <% else %>
+                  Aspirante
+              <% end %>
+            </td>
             <td>
               <%= link_to user_show_path(user) do %>
                   <span class="glyphicon glyphicon-eye-open"></span>
