@@ -20,4 +20,8 @@ class SelectionProcess < ActiveRecord::Base
   validates :deadline, presence: true, date: { after: proc { Date.today } }
   validates :activities, presence: true
   validates :link, presence: true, format: URI.regexp(%w(http https))
+
+  scope :by_university_name, lambda { |university_name|
+    where('university_name LIKE ?', "%#{university_name}%")
+  }
 end
