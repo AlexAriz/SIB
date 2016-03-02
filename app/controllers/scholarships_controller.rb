@@ -4,18 +4,34 @@ class ScholarshipsController < ApplicationController
                                          :edit,
                                          :update,
                                          :destroy,
-                                         :request]
+                                         :read_request]
+  before_action :set_candidate, only: [:read_request]
+  before_action :set_scholarship_search, only: [:create, :update,
+                                                :read_request, :destroy]
   load_and_authorize_resource
 
   # GET /scholarships
   # GET /scholarships.json
+  # rubocop:disable Metrics/AbcSize
   def index
-    @scholarships = Scholarship.all
+    @scholarships = nil
+    if params[:name] || params[:start_date] || params[:end_date]
+      @scholarships = Scholarship.by_name(params[:name])
+                                 .by_start_date(params[:start_date])
+                                 .by_end_date(params[:end_date])
+
+    end
+    @scholarships = Scholarship.all if session[:do_scholarship_search]
   end
+  # rubocop:enable Metrics/AbcSize
 
   # GET /scholarships/1
   # GET /scholarships/1.json
   def show
+  end
+
+  def candidates
+    @candidates = @scholarship.candidates.includes(:person)
   end
 
   # GET /scholarships/new
@@ -28,8 +44,7 @@ class ScholarshipsController < ApplicationController
   end
 
   def read_request
-    # de momento solo redirecciona y muestra un mensaje, posteriormente debe
-    # asignarse la beca al perfil del usuario
+    @candidate.update_attribute(:scholarship_id, @scholarship.id)
     redirect_to scholarships_path, notice: msg_after_request
   end
 
@@ -98,6 +113,10 @@ class ScholarshipsController < ApplicationController
     @scholarship = Scholarship.find(params[:id])
   end
 
+  def set_candidate
+    @candidate = Candidate.find(current_user.id)
+  end
+
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def scholarship_params
@@ -109,5 +128,9 @@ class ScholarshipsController < ApplicationController
                                         :requirements,
                                         :benefits_offered,
                                         :url)
+  end
+
+  def set_scholarship_search
+    session[:do_scholarship_search] = true
   end
 end

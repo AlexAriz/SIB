@@ -57,13 +57,14 @@
 </div>
 
 <dd><%= link_to "Página principal de la beca: #{@scholarship.name}", @scholarship.url %></dd>
-<% unless current_user_admin? %>
+<% if current_user_candidate? %>
 <br>
-  <%= link_to "Solicitar Beca",
-                request_path,
-                :data => { :confirm => '¿Estás seguro de que deseas solicitar esta Beca?', :default => 'helpers.links.confirm' },
-                :class => 'btn btn-primary' %>
+  <%= link_to 'Solicitar beca',request_scholarship_path(@scholarship),
+              :method => :get,
+              :data => { :confirm => '¿Estás seguro de que deseas solicitar esta Beca?'},
+              :class => 'btn btn-primary' %>
 <% end %>
+
 <hr>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
