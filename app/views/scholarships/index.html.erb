@@ -2,7 +2,15 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-
+<% unless current_user_candidate? %>
+    <%= link_to new_scholarship_path,
+                :default => t("helpers.links.new"),
+                class: 'btn btn-primary pull-right' do %>
+        <span class="glyphicon glyphicon-plus"></span> Crear
+    <% end %>
+<% end %>
+<br>
+<br>
 <div id="searcher-for-scholarships">
   <div class="panel panel-default">
     <div class="panel-heading">Parámetros de búsqueda</div>
@@ -10,43 +18,40 @@
       <%= form_tag(scholarships_path, :method => 'get', id: 'search-form',
                    html: {class: 'form-horizontal'}) do %>
           <div class="row">
-            <div class="col-md-4">
-              <div class="col-md-6">
-                <div class="pull-right">
+            <div class="col-md-3">
+              <div class="col-md-4">
+                <div>
                   <%= label_tag 'Nombre:' %>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <%= text_field_tag :name, params[:name],
                                    class: 'form-control' %>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="col-md-6">
-                <div class="pull-right">
+              <div class="col-md-5 nopadding">
+                <div class="pull-left">
                   <%= label_tag 'Fecha de inicio:' %>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <%= text_field_tag :start_date, params[:start_date], class: 'form-control' %>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="col-md-6">
-                <div class="pull-right">
+              <div class="col-md-5 nopadding">
+                <div class="pull-left">
                   <%= label_tag 'Fecha de término:' %>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <%= text_field_tag :end_date, params[:end_date], class: 'form-control' %>
               </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-offset-11">
-              <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
-                  <i class="fa fa-search"></i> Buscar
+            <div class="col-md-1">
+              <%= button_tag type: 'submit', class: 'btn btn-info primary' do %>
+                  <i class="fa fa-search"></i>
               <% end %>
             </div>
           </div>
@@ -98,10 +103,4 @@
       <% end %>
     </tbody>
   </table>
-<% end %>
-
-<% unless current_user_candidate? %>
-    <%= link_to t('.new', :default => t("helpers.links.new")),
-                new_scholarship_path,
-                :class => 'btn btn-primary' %>
 <% end %>
