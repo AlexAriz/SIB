@@ -36,7 +36,7 @@
     <% end %>
   </div>
 </div>
-<% if can? :create, current_user %>
+<% if can? :create, @university %>
     <%= link_to new_university_path,
                 :class => 'btn btn-success' do %>
         <i class="fa fa-plus"></i>
