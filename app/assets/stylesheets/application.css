@@ -76,3 +76,11 @@
     padding: 0 !important;
     margin: 0 !important;
 }
+
+.small-txt {
+    font-size: 0.7em;
+}
+
+.header-text {
+    color: #07453b;
+}
