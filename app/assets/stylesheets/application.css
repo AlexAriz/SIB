@@ -95,9 +95,28 @@
 
 .footer {
     width: 100%;
-    height: 100px;
+    height: 230px;
     margin-top: 278px;
     background-color: #095A4D;
+}
+
+footer h6{
+    color: darkseagreen;
+}
+
+footer ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li {
+    width: 160px;
+    float: left;
+}
+
+.fa-2x:hover{
+    background-color: #1A936F;
 }
 
 /* Carrusel personalizado
@@ -128,4 +147,33 @@
     /* margin-top: -136px; */
     margin-left: -106px;
     margin-right: -106px;
+}
+
+/* Social */
+
+.social-links{
+    margin-top: 20px;
+    padding:20px 0px 10px 0px;
+    color: #fff;
+    line-height: 30px;
+}
+
+.social-links a, .social-links a:visited, .social-links a:hover{
+    font-size: 15px;
+    margin: 0px 15px;
+    color: #fff;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-links i{
+    position: relative;
+    display: inline-block;
+    top: -2px;
+    width: 25px;
+    height:25px;
+    line-height:25px;
+    text-align: center;
+    margin-right:5px;
 }

@@ -30,17 +30,21 @@ $(function () {
     });
 
     // Activate Carousel
-    $("#SIB_carousel").carousel({interval: 7000});
+    $("#SIB_carousel").carousel({interval: 5000});
 
     // Enable Carousel Indicators
+    /*
     $(".item").click(function(){
         $("#SIB_carousel").carousel(1);
     });
+    */
 
     // Enable Carousel Controls
+    /*
     $(".left").click(function(){
         $("#SIB_carousel").carousel("prev");
     });
+    */
 });
 
 $.extend($.fn.dataTable.defaults, {
