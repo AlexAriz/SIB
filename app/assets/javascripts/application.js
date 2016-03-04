@@ -30,7 +30,7 @@ $(function () {
     });
 
     // Activate Carousel
-    $("#SIB_carousel").carousel({interval: 3000});
+    $("#SIB_carousel").carousel({interval: 7000});
 
     // Enable Carousel Indicators
     $(".item").click(function(){

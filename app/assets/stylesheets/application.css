@@ -28,11 +28,14 @@
     margin-top: 5%;
 }
 
+/* Originalmente, así lo tiene bootstrap
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
     width: 70%;
     margin: auto;
 }
+*/
+
 .navbar-default {
     background-color: #1A936F;
     border-color: #e7e7e7;
@@ -95,4 +98,34 @@
     height: 100px;
     margin-top: 278px;
     background-color: #095A4D;
+}
+
+/* Carrusel personalizado
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 1;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 400px;
+    background-color:#555;
+}
+.carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 400px;
+}
+
+#SIB_carousel{
+    /* margin-top: -136px; */
+    margin-left: -106px;
+    margin-right: -106px;
 }
