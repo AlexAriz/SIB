@@ -5,7 +5,7 @@ require "action_mailer/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require(*Rails.groups(:assets))
 
 module SIB
   class Application < Rails::Application
@@ -26,6 +26,9 @@ module SIB
     config.i18n.default_locale = :es
     config.time_zone = 'America/Mexico_City'
 
+    config.assets.initialize_on_precompile = false
+
+    config.serve_static_files = true
 
   end
 end
