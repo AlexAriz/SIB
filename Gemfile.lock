@@ -214,6 +214,7 @@ GEM
     parallel (1.6.2)
     parser (2.3.0.1)
       ast (~> 2.2)
+    pg (0.18.4)
     powerpack (0.1.1)
     procto (0.0.3)
     rack (1.6.4)
@@ -238,6 +239,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_best_practices (1.16.0)
       activesupport
       code_analyzer (>= 0.4.3)
@@ -246,6 +250,8 @@ GEM
       json
       require_all
       ruby-progressbar
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.4)
     railsstrap (3.3.4)
       actionpack (>= 3.1)
       therubyracer
@@ -364,7 +370,9 @@ DEPENDENCIES
   metric_fu
   mysql2 (= 0.3.18)
   paperclip (= 4.3.4)
+  pg
   rails (= 4.2.4)
+  rails_12factor
   railsstrap (= 3.3.4)
   railties (= 4.2.4)
   rubocop (= 0.36.0)
@@ -376,3 +384,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   will_paginate (= 3.0.7)
+
+BUNDLED WITH
+   1.11.2
