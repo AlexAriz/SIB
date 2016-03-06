@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/dist/js/bootstrap
-//= require dataTables/extras/dataTables.responsive
 //= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.responsive
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require dataTables/extras/dataTables.tableTools
+//= require bootstrap/dist/js/bootstrap
+// require dataTables/extras/dataTables.tableTools
 //= require data-confirm-modal
 //= require bootstrap-select
 //= require is_js_rails
@@ -28,6 +28,23 @@ $(function () {
         commit: 'Confirmar',
         cancel: 'Cerrar'
     });
+
+    // Activate Carousel
+    $("#SIB_carousel").carousel({interval: 5000});
+
+    // Enable Carousel Indicators
+    /*
+    $(".item").click(function(){
+        $("#SIB_carousel").carousel(1);
+    });
+    */
+
+    // Enable Carousel Controls
+    /*
+    $(".left").click(function(){
+        $("#SIB_carousel").carousel("prev");
+    });
+    */
 });
 
 $.extend($.fn.dataTable.defaults, {

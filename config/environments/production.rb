@@ -1,4 +1,5 @@
 Rails.application.configure do
+  config.secret_key_base = '4d979a25e6ae7be8f4388200b66e27e68347399294eea6638dd56c1ced593b50fe1650300909ce261c0fa3814d4cdb7e69e35d28d3cd5235f0291fa5d15b918a'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -9,6 +10,21 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+
+  config.action_mailer.default_url_options = {host: 'https://sistemabecas.herokuapp.com/'}
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "gmail.com",
+      :user_name => "test.sib.2016@gmail.com",
+      :password => "lalo@1234",
+      :authentication => "plain",
+      :enable_starttls_auto => true
+  }
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
