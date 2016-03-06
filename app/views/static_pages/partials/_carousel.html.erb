@@ -1,0 +1,59 @@
+<!-- Carousel
+================================================== -->
+<div id="SIB_carousel" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#SIB_carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#SIB_carousel" data-slide-to="1"></li>
+    <li data-target="#SIB_carousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag("carousel/carousel_1.jpg", style: "width: 100%", class: "img-responsive") %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>¿Buscas Universidades?</h1>
+          <p>Conoce las Universidades registradas en este sistema, tu decides al cuál ir</p>
+          <%= link_to universities_path, class: "btn btn-lg btn-info" do%>
+            Ver más
+        <% end %>
+          <br><br>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag("carousel/carousel_2.jpg", style: "width: 100%", class: "img-responsive") %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Conoce a nuestros tutores</h1>
+          <p>Este sistema cuenta con tutores que te pueden ayudar, brindandote materiales de trbajo</p>
+          <%= link_to tutors_path, class: "btn btn-lg btn-info" do%>
+              Ver más
+          <% end %>
+          <br><br>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag("carousel/carousel_3.jpg", style: "width: 100%", class: "img-responsive") %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>¿No sabes como ingresar a una Universidad extranjera?</h1>
+          <p>Visita los procesos de selección, si tienes dudas ¡¡solo comenta!!</p>
+          <%= link_to selection_processes_path, class: "btn btn-lg btn-info" do%>
+              Ver más
+          <% end %>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#SIB_carousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#SIB_carousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
+<!-- /.carousel -->
