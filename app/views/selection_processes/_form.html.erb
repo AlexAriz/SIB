@@ -1,8 +1,9 @@
 <%= simple_form_for @selection_process, :html => {:class => 'form-horizontal'} do |f| %>
     <fieldset>
       <legend>Formulario para Proceso de selección para Universidad</legend>
-      <%= f.input :university_name, placeholder: "Ingrese el nombre de la Universidad" %>
-      <%= error_span(@selection_process[:university_name]) %>
+      <%= f.association :university %>
+      <%= error_span(@selection_process[:university_id]) %>
+
       <%= f.input :deadline, as: :date, start_year: Date.today.year %>
       <%= error_span(@selection_process[:deadline]) %>
       <%= f.input :activities, as: :text,

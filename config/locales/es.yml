@@ -55,6 +55,7 @@ es:
         deadline: Fecha Límite
         activities: Actividades a realizar para el proceso de selección
         link: Link a la página oficial de la Universidad
+        university: Universidad
       work_material:
         name: Nombre
         description: Descripción

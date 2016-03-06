@@ -3,15 +3,22 @@
 class SelectionProcessesController < ApplicationController
   before_action :set_search_true, only: [:create, :update]
   before_action :set_selection_process, only: [:show, :edit, :update, :destroy]
+  before_action :obtain_universities_name, only: [:index, :show]
+  after_action :set_search_false, only: [:create]
   load_and_authorize_resource
 
   # GET /selection_processes
   # GET /selection_processes.json
   def index
     @selection_processes = nil
-    if params[:university_name]
+
+    if params[:university_id]
+      # Obtain the id of the university to filter
+      university = University.find_by name: params[:university_id]
+      university_id = university.id
+
       @selection_processes = SelectionProcess
-                             .by_university_name(params[:university_name])
+                             .by_university_id(university_id)
     end
 
     @selection_processes = SelectionProcess
@@ -70,6 +77,10 @@ class SelectionProcessesController < ApplicationController
 
   private
 
+  def obtain_universities_name
+    @universities = University.select(:name).map(&:name)
+  end
+
   def msg_destroy
     'El proceso de selección se ha eliminado exitosamente'
   end
@@ -79,8 +90,11 @@ class SelectionProcessesController < ApplicationController
   end
 
   def msg_create
-    "Se ha creado exitosamente el proceso de selección para la universidad:
-    #{@selection_process.university_name}"
+    "Se ha creado exitosamente el proceso de selección para la universidad:"
+  end
+
+  def set_search_false
+    session[:do_selection_processes] = false
   end
 
   def set_search_true
@@ -95,7 +109,9 @@ class SelectionProcessesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the
   # white list through.
   def selection_process_params
-    params.require(:selection_process).permit(:university_name,
-                                              :deadline, :activities, :link)
+    params.require(:selection_process).permit(:deadline,
+                                              :activities,
+                                              :link,
+                                              :university_id)
   end
 end
