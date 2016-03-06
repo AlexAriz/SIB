@@ -11,16 +11,10 @@ class SelectionProcessesController < ApplicationController
   # GET /selection_processes.json
   def index
     @selection_processes = nil
-
     if params[:university_id]
-      # Obtain the id of the university to filter
-      university = University.find_by name: params[:university_id]
-      university_id = university.id
-
-      @selection_processes = SelectionProcess
-                             .by_university_id(university_id)
+      # This method filter the selection processes
+      obtain_selection_process_filter
     end
-
     @selection_processes = SelectionProcess
                            .all if session[:do_selection_processes]
   end
@@ -77,8 +71,24 @@ class SelectionProcessesController < ApplicationController
 
   private
 
+  # This method filter according to the name of the
+  # university The name of the college can be 'Todos',
+  # and this means that not show all universities.
+  def obtain_selection_process_filter
+    # Obtain the id of the university to filter
+    if params[:university_id] == 'Todos'
+      @selection_processes = SelectionProcess.all
+    else
+      university_id = (University.find_by name: params[:university_id]).id
+
+      @selection_processes = SelectionProcess
+                             .by_university_id(university_id)
+    end
+  end
+
   def obtain_universities_name
-    @universities = University.select(:name).map(&:name)
+    @universities = ['Todos']
+    @universities = @universities.concat(University.select(:name).map(&:name))
   end
 
   def msg_destroy

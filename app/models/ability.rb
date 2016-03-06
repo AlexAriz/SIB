@@ -22,7 +22,7 @@ class Ability
 
   def permit_tutor
     can :read_and_update, User
-    can :cru, SelectionProcess
+    can :read, SelectionProcess
     can :read, University
     can :manage, Scholarship
     can :manage, WorkMaterial
