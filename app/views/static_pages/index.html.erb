@@ -2,6 +2,7 @@
   de Becas!</h1>
 
 <%= render "static_pages/partials/carousel" %>
+<%= render "static_pages/partials/info_description" %>
 
 <div id="candidate-section" class="margin-customized">
   <% unless current_user.nil? %>
@@ -62,6 +63,7 @@
       <% end %>
   <% end %>
 </div>
+
 <div id="tutor-section" class="margin-customized">
   <% unless current_user.nil? %>
       <% if current_user_tutor? %>
@@ -115,6 +117,38 @@
               </div>
           <% end %>
 
+      <% end %>
+  <% end %>
+</div>
+
+<div id="admin-section" class="margin-customized">
+  <% unless current_user.nil? %>
+      <% if current_user_admin? %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Usuarios del sistema
+            </div>
+            <div class="row">
+              <% @users.each do |user| %>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label>ID:</label>
+                      <%= user.id %>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Nombre:</label>
+                      <%= user.user_name %>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Correo:</label>
+                      <%= user.email %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
       <% end %>
   <% end %>
 </div>
