@@ -3,37 +3,37 @@
   <h1><%= t '.title', :default => 'Procesos de Selección' %></h1>
 </div>
 
+<% unless current_user_candidate? %>
+    <%= link_to new_selection_process_path,
+                :default => t("helpers.links.new"),
+                class: 'btn btn-primary pull-right' do %>
+        <span class="glyphicon glyphicon-plus"></span> Crear
+    <% end %>
+<% end %>
+<br><br>
+
 <div class="panel panel-default">
   <div class="panel-heading">Parámetros de búsqueda</div>
   <div class="panel-body">
     <%= form_tag(selection_processes_path, :method => 'get', id: 'search-form-selection-process',
                 html: {class: 'form-horizontal'}) %>
       <div class="row">
-        <div class="col-md-8">
-          <div class="col-md-4">
+        <div class="col-md-10">
+          <div class="col-md-4 nopadding">
             <%= label_tag "Nombre de la Universidad" %>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-8 nopadding">
             <%= select_tag :university_id, options_for_select(@universities), class: 'form-control'%>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-offset-1 col-md-1">
           <%= button_tag type: 'submit', class: 'btn btn-primary pull-right' do %>
-              <i class="fa fa-search"></i> Buscar
+              <i class="fa fa-search"></i>
           <% end %>
         </div>
       </div>
   </div>
 </div>
-
-<% if can? :create, current_user %>
-    <%= link_to new_selection_process_path, :class => 'btn btn-success' do %>
-        <i class="fa fa-plus"></i>
-        <%= t('.new', :default => t('helpers.link.new')) %>
-    <% end %>
-    <br>
-    <hr>
-<% end %>
 
 <% if @selection_processes.present? %>
     <table class="table table-striped table-responsive table-bordered text-center" id="selection-processes-table">
