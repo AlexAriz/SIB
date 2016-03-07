@@ -1,7 +1,7 @@
 <%- model_class = SelectionProcess -%>
 <!--<%= t '.title', :default => model_class.model_name.human.titleize %>-->
 <div class="page-header text-center">
-  <h1>Detalles del proceso: <%= @selection_process.university_name %></h1>
+  <h1>Detalles del proceso: <%= @selection_process.university.name %></h1>
 </div>
 
 
@@ -20,7 +20,7 @@
       <br>
       <div class="row">
         <div class="col-md-1"><strong><%= model_class.human_attribute_name(:link) %>:</strong></div>
-        <div class="row col-md-offset-0"><%= link_to @selection_process.university_name, @selection_process.link, target: '_blank' %></div>
+        <div class="row col-md-offset-0"><%= link_to @selection_process.university.name, @selection_process.link, target: '_blank' %></div>
       </div>
       <div class="row pull-right">
 
