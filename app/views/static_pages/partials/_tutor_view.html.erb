@@ -1,0 +1,50 @@
+<% if current_user_tutor? %>
+    <% unless current_user.work_materials.empty? %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Sus materiales de trabajo
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <% current_user.work_materials.limit(3).each do
+              |work_material| %>
+                  <div class="col-md-4">
+                    <div class="work_material-image">
+                      <%= link_to image_tag(work_material.attachment
+                                                .url(:large)),
+                                  work_material %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <% unless current_user.candidates.empty? %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Sus aspirantes
+          </div>
+
+          <div class="panel-body">
+            <% current_user.candidates.limit(3).each do |candidate| %>
+                <div class="row">
+                  <div class="col-md-4 text-justify">
+                    <label>Nombre:</label>
+                    <%= candidate.user_name %>
+                  </div>
+                  <div class="col-md-4 text-justify">
+                    <label>Correo</label>
+                    <%= candidate.email %>
+                  </div>
+                  <div class="col-md-4 text-justify">
+                    <label>Fecha de solicitud</label>
+                    <%= candidate.requested_date %>
+                  </div>
+                </div>
+                <hr>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+<% end %>

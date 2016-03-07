@@ -1,0 +1,26 @@
+<% if current_user_admin? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Usuarios del sistema
+      </div>
+      <div class="panel-body">
+        <% @users.each do |user| %>
+            <div class="row">
+              <div class="col-md-4">
+                <label>ID:</label>
+                <%= user.id %>
+              </div>
+              <div class="col-md-4">
+                <label>Nombre:</label>
+                <%= user.user_name %>
+              </div>
+              <div class="col-md-4">
+                <label>Correo:</label>
+                <%= user.email %>
+              </div>
+            </div>
+            <hr>
+        <% end %>
+      </div>
+    </div>
+<% end %>
