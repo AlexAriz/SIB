@@ -55,9 +55,14 @@ class TutorsController < ApplicationController
     candidate_name = @candidate.person.name
     @candidate.update_attributes(tutor_id: nil, pending: true)
     @candidate.work_materials.delete_all
-    redirect_to candidates_of_tutor_path(tutor),
-                notice: "Haz cancelado la tutoría del
-                candidato #{candidate_name}"
+    if current_user_tutor?
+      redirect_to candidates_of_tutor_path(tutor),
+                  notice: "Haz cancelado la tutoría del
+                  candidato #{candidate_name}"
+    elsif current_user_candidate?
+      redirect_to user_show_path(current_user.id),
+                  notice: "Haz cancelado tu tutoría"
+    end
     TutorMailer.cancellation_tutoring(@candidate, @tutor).deliver_now
   end
 
