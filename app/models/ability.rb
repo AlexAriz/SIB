@@ -10,7 +10,7 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
     if user.type == User::ADMIN
-      can :manage, :all
+      permit_admin
     elsif user.type == User::TUTOR
       permit_tutor
     else
@@ -19,6 +19,15 @@ class Ability
   end
 
   private
+
+  def permit_admin
+    can :manage, User
+    can :manage, Scholarship
+    can :manage, SelectionProcess
+    can :manage, University
+    cannot :manage, UsersWorkMaterial
+    can :read_and_update, WorkMaterial
+  end
 
   def permit_tutor
     can :read_and_update, User
