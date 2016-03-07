@@ -1,50 +1,49 @@
 <%- model_class = University -%>
-<div class="text-center">
-  <h1><%= t '.title', :default => model_class.model_name.human(count: 2) %></h1>
+<div class="page-header">
+  <h1 class="header-text"><span class="glyphicon glyphicon-education small-txt"></span> <%= t '.title', :default => model_class.model_name.human(count: 2) %></h1>
 </div>
+<% if can? :create, model_class %>
+    <%= link_to new_university_path,
+                :default => t('helpers.links.new'),
+                :class => 'btn btn-primary pull-right' do %>
+        <span class="glyphicon glyphicon-plus"></span> Crear
+    <% end %>
+<% end %>
+<br>
+<br>
 <div class="panel panel-default">
   <div class="panel-heading">Parámetros de búsqueda</div>
   <div class="panel-body">
     <%= form_tag(universities_path, :method => 'get', id: 'search-form',
                  html: {class: 'form-horizontal'}) do %>
         <div class="row">
-          <div class="col-md-4">
-            <div class="col-md-3">
+          <div class="col-md-6">
+            <div class="col-md-2">
               <%= label_tag 'Nombre:' %>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
               <%= text_field_tag :name, params[:name],
                                  class: 'form-control' %>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="col-md-3">
+          <div class="col-md-5">
+            <div class="col-md-2">
               <%= label_tag 'País: ' %>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
               <%= text_field_tag :country, params[:country], class:
                   'form-control' %>
             </div>
           </div>
-          <div class="col-md-3">
-            <%= button_tag type: 'submit',
-                           class: 'btn btn-primary pull-right' do %>
-                <i class="fa fa-search"></i> Buscar
+          <div class="col-md-1">
+            <%= button_tag type: 'submit', class: 'btn btn-info primary' do %>
+                <i class="fa fa-search"></i>
             <% end %>
           </div>
         </div>
     <% end %>
   </div>
 </div>
-<% if can? :create, @university %>
-    <%= link_to new_university_path,
-                :class => 'btn btn-success' do %>
-        <i class="fa fa-plus"></i>
-        <%= t('.new', :default => t('helpers.links.new')) %>
-    <% end %>
-<% end %>
-<br>
-<br>
 <% if @universities.present? %>
     <table class="table table-striped table-responsive table-bordered text-center" id="universities-table">
       <thead>
@@ -69,7 +68,7 @@
               <% end %>
               <% if can? :manage, @university %>
                   <%= link_to edit_university_path(university) do %>
-                      <span class="glyphicon glyphicon-edit"></span>
+                      <span class="glyphicon glyphicon-pencil"></span>
                   <% end %>
                   <%= link_to university, method: :delete, data: {confirm: "<p>¿Seguro que desea <strong class='text-danger'>ELIMINAR</strong> la Universidad?
                   <ul>

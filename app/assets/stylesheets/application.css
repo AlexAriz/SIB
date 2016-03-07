@@ -27,3 +27,160 @@
 .page-header{
     margin-top: 5%;
 }
+
+/* Originalmente, así lo tiene bootstrap
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+}
+*/
+
+.navbar-default {
+    background-color: #1A936F;
+    border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:hover {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus  {
+    background-color: #09776a;
+    color: #FFF;
+}
+
+.dropdown-menu > li > a:hover {
+    color: #09776a;
+}
+
+.btn-primary {
+    background-color: #0a6e60;
+    border-color: #0a6e60;
+    padding: 0.5em 3em !important;
+}
+
+.primary {
+    background-color: #0a6e60;
+    border-color: #0a6e60;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.primary:hover,
+.primary:active,
+.primary:focus {
+    background-color: #095A4D;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.small-txt {
+    font-size: 0.7em;
+}
+
+.header-text {
+    color: #07453b;
+}
+
+.footer {
+    width: 100%;
+    height: 165px;
+    margin-top: 278px;
+    background-color: #095A4D;
+}
+
+footer h6{
+    color: darkseagreen;
+}
+
+footer ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li {
+    width: 70px;
+    float: left;
+}
+
+footer ul li :hover {
+    background-color: #09776a;
+    color: #e7e7e7;
+    width: 70px;
+    float: left;
+}
+
+.fa-2x:hover{
+    background-color: #1A936F;
+}
+
+/* Carrusel personalizado
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 1;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 400px;
+    background-color:#555;
+}
+.carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 400px;
+}
+
+#SIB_carousel{
+    /* margin-top: -136px; */
+    margin-left: -106px;
+    margin-right: -106px;
+}
+
+/* Social */
+
+.social-links{
+    margin-top: 20px;
+    padding:20px 0px 10px 0px;
+    color: #fff;
+    line-height: 30px;
+}
+
+.social-links a, .social-links a:visited, .social-links a:hover{
+    font-size: 15px;
+    margin: 0px 15px;
+    color: #fff;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-links i{
+    position: relative;
+    display: inline-block;
+    top: -2px;
+    width: 25px;
+    height:25px;
+    line-height:25px;
+    text-align: center;
+    margin-right:5px;
+}

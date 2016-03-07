@@ -1,6 +1,6 @@
 <%- model_class = User -%>
-<div class="text-center">
-  <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+<div class="page-header">
+  <h1 class="header-text"><span class="glyphicon glyphicon-user small-txt"></span> <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
 <div id="searcher-for-users">
@@ -31,13 +31,13 @@
                 <%= text_field_tag :email, params[:email], class: 'form-control' %>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="col-md-4">
+            <div class="col-md-3">
+              <div class="col-md-1 nopadding">
                 <div class="pull-right">
-                  <%= label_tag 'Rol' %>
+                  <%= label_tag 'Rol:' %>
                 </div>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-10">
                 <%= select_tag :type,
                                options_for_select(['Seleccionar',
                                                    %w(Administrador Admin),
@@ -47,12 +47,9 @@
                 %>
               </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-offset-11">
-              <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
-                  <i class="fa fa-search"></i> Buscar
+            <div class="col-md-1">
+              <%= button_tag type: 'submit', class: 'btn btn-info primary' do %>
+                  <i class="fa fa-search"></i>
               <% end %>
             </div>
           </div>
@@ -116,4 +113,3 @@
       </tbody>
     </table>
 <% end %>
-
