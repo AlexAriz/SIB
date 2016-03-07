@@ -61,6 +61,7 @@
             <% if current_user_admin? %>
                 <li><%= link_to 'Becas', scholarships_path %></li>
                 <li><%= link_to 'Procesos de selección', selection_processes_path %></li>
+                <li><%= link_to 'Materiales de trabajo', work_materials_path %></li>
                 <li><%= link_to 'Usuarios', users_index_path %></li>
             <% end %>
             <% if current_user_tutor? %>
