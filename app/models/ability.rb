@@ -12,8 +12,8 @@ class Ability
     if user.type == User::ADMIN
       permit_admin
     elsif user.type == User::TUTOR
-      permit_tutor
-    else
+      permit_tutor(user)
+    elsif user.type == User::CANDIDATE
       permit_candidate
     end
   end
@@ -29,8 +29,8 @@ class Ability
     can :read_and_update, WorkMaterial
   end
 
-  def permit_tutor
-    can :read_and_update, User
+  def permit_tutor(user)
+    can :read_and_update, User, id: user.id
     can :cru, SelectionProcess
     can :read, University
     can :manage, Scholarship
