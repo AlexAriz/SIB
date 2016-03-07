@@ -41,15 +41,19 @@ class Scholarship < ActiveRecord::Base
   validates :url, presence: true
 
   scope :by_name, lambda { |name|
-    where('name LIKE ?', "%#{name}%")
+    where('name LIKE ?', "%#{name}%") if name.present?
   }
 
   scope :by_start_date, lambda { |start_date|
-    where('start_date LIKE ?', "%#{start_date}%")
+    where('start_date LIKE ?', "%#{start_date}%") if start_date.present?
   }
 
   scope :by_end_date, lambda { |end_date|
-    where('end_date LIKE ?', "%#{end_date}%")
+    where('end_date LIKE ?', "%#{end_date}%") if end_date.present?
+  }
+
+  scope :by_university, lambda { |university_id|
+    where('university_id = ?', "#{university_id}") if university_id.present?
   }
   has_many :candidates
 end
