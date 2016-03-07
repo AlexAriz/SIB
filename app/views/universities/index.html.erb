@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1 class="header-text"><span class="glyphicon glyphicon-education small-txt"></span> <%= t '.title', :default => model_class.model_name.human(count: 2) %></h1>
 </div>
-<% if can? :create, @university %>
+<% if can? :create, model_class %>
     <%= link_to new_university_path,
                 :default => t('helpers.links.new'),
                 :class => 'btn btn-primary pull-right' do %>

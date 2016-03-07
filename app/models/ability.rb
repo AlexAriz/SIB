@@ -21,10 +21,7 @@ class Ability
   private
 
   def permit_admin
-    can :manage, User
-    can :manage, Scholarship
-    can :manage, SelectionProcess
-    can :manage, University
+    can :manage, [User, Scholarship, SelectionProcess, University]
     cannot :manage, UsersWorkMaterial
     can :read_and_update, WorkMaterial
   end
