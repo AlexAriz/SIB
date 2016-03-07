@@ -138,7 +138,7 @@ es:
     anonymous: Comentario anónimo
     comment:
       actions:
-        new: Nuevo
+        new: Nuevo comentario
         create: Añadir Comentario
         edit: Editar
         update: Guardar
@@ -148,9 +148,11 @@ es:
         confirm_delete: Confirmar eliminación
       status:
         deleted_by: Eliminado por
-        created_at: Creado
-        updated_at: Actualizado
+        created_at: Creado en
+        updated_at: Actualizado en
       errors:
+        create: Error al crear comentario
+        update: Error al actualizar comentario
         double_posted: Comentario repetido
     thread:
       status:
