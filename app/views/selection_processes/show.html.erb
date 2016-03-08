@@ -33,7 +33,7 @@
             </div>
         <% end %>
         <% if can? :delete, model_class %>
-            <div class="col-md-6 ">
+            <div class="col-md-6">
               <%= link_to selection_process_path(@selection_process),
                           :method => :delete,
                           :data => {:confirm =>
