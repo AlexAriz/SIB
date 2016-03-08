@@ -4,86 +4,63 @@
 <div class="page-header text-center">
   <h1><%= t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-
-<fieldset>
-  <legend>Datos generales</legend>
-  <div class="row">
-    <div class="col-md-offset-2">
-      <div class="col-md-3">
-        <strong><%= model_class.human_attribute_name(:email) %></strong></div>
-      <div class="col-md-3"><%= @candidate.email %></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-offset-2">
-      <div class="col-md-3">
-        <strong><%= model_class.human_attribute_name(:user_name) %></strong>:
-      </div>
-      <div class="col-md-3"><%= @candidate.user_name %></div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-offset-2">
-      <div class="col-md-3">
-        <strong><%= model_class.human_attribute_name(:image_profile) %>
-          :</strong>
-      </div>
-      <div class="col-md-3">  <%= image_tag @candidate.image_profile.url(:medium) %>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-md-6 text-center">
+    <%= image_tag @candidate.image_profile.url(:medium) %>
   </div>
 
-</fieldset>
-
-<% unless @candidate.person.nil? %>
-    <fieldset>
-      <legend>Intereses</legend>
-      <div class="row">
-        <div class="row col-md-offset-3">
-          <div class="col-md-4 ">
-            <strong><%= model_class_tutor_person.human_attribute_name(:name) %>
-              :</strong></div>
-          <div class="col-md-6"><%= @candidate.person.name %></div>
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">Datos generales</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4"><strong><%= model_class.human_attribute_name(:email) %>: </strong></div>
+          <div class="col-md-8"><%= @candidate.email %></div>
         </div>
-        <div class="row col-md-offset-3">
-          <div class="col-md-4">
-            <strong><%= model_class_tutor_person.human_attribute_name(:last_name) %>
-              :</strong></div>
-          <div class="col-md-6"><%= @candidate.person.last_name %></div>
-        </div>
-        <div class="row col-md-offset-3">
-          <div class="col-md-4">
-            <strong><%= model_class_tutor_person.human_attribute_name(:university) %>
-              :</strong>
-          </div>
-          <div class="col-md-4"><%= @candidate.person.university %></div>
-        </div>
-        <div class="row col-md-offset-3">
-          <div class="col-md-3">
-            <strong><%= model_class_tutor_person.human_attribute_name(:area_of_interest) %>
-              :</strong>
-          </div>
-          <div class="col-md-4 col-md-offset-1">
-            <%= @candidate.person.area_of_interest %>
-          </div>
-        </div>
-        <div class="col-md-offset-3">
-          <div class="col-md-4">
-            <strong><%= model_class_tutor_person.human_attribute_name(:comments) %>
-              :</strong>
-          </div>
-          <div class="col-md-4">
-            <%= @candidate.person.comments %>
-          </div>
+        <br>
+        <div class="row">
+          <div class="col-md-4"><strong><%= model_class.human_attribute_name(:user_name) %></strong>:</div>
+          <div class="col-md-8"><%= @candidate.user_name %></div>
         </div>
       </div>
-
-    </fieldset>
-<% end %>
+    </div>
+    <hr>
+    <% unless @candidate.person.nil? %>
+        <div class="panel panel-info">
+          <div class="panel-heading">Intereses</div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:name) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.name %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:last_name) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.last_name %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:university) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.university %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:area_of_interest) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.area_of_interest %></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><strong><%= model_class_tutor_person.human_attribute_name(:comments) %>:</strong></div>
+              <div class="col-md-8"><%= @candidate.person.comments %></div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
 <br><br>
 <div class="row">
-  <div class="pull-left">
+  <div class="col-md-offset-1 pull-left">
     <%= link_to :back, class: 'btn btn-default' do %>
         <i class="fa fa-arrow-left"></i>
         <%= t('.back', :default => t('helpers.links.back')) %>

@@ -51,10 +51,11 @@ es:
         benefits_offered: Beneficios
         url: enlace
       selection_process:
-        university_name: Universidad
+        university_name: Nombre de la Universidad
         deadline: Fecha Límite
-        activities: Actividades
-        link: URL
+        activities: Actividades a realizar para el proceso de selección
+        link: Link a la página oficial de la Universidad
+        university: Universidad
       work_material:
         name: Nombre
         description: Descripción
@@ -138,7 +139,7 @@ es:
     anonymous: Comentario anónimo
     comment:
       actions:
-        new: Nuevo
+        new: Nuevo comentario
         create: Añadir Comentario
         edit: Editar
         update: Guardar
@@ -148,9 +149,11 @@ es:
         confirm_delete: Confirmar eliminación
       status:
         deleted_by: Eliminado por
-        created_at: Creado
-        updated_at: Actualizado
+        created_at: Creado en
+        updated_at: Actualizado en
       errors:
+        create: Error al crear comentario
+        update: Error al actualizar comentario
         double_posted: Comentario repetido
     thread:
       status:
