@@ -8,6 +8,7 @@ class ScholarshipsController < ApplicationController
   before_action :set_candidate, only: [:read_request]
   before_action :set_scholarship_search, only: [:create, :update,
                                                 :read_request, :destroy]
+  after_action :no_scholarship_search, only: [:index]
   load_and_authorize_resource
 
   # GET /scholarships
@@ -16,12 +17,12 @@ class ScholarshipsController < ApplicationController
   def index
     @scholarships = nil
     if params[:name] || params[:start_date] ||
-        params[:end_date] || params[:university]
+       params[:end_date] || params[:university]
 
-      @scholarships = Scholarship.by_name(params[:name])
-                                 .by_start_date(params[:start_date])
-                                 .by_end_date(params[:end_date])
-                                 .by_university(params[:university])
+      @scholarships = Scholarship.get_by_search_parameters(params[:name],
+                                                           params[:start_date],
+                                                           params[:end_date],
+                                                           params[:university])
     end
     @scholarships = Scholarship.all if session[:do_scholarship_search]
   end
@@ -134,5 +135,9 @@ class ScholarshipsController < ApplicationController
 
   def set_scholarship_search
     session[:do_scholarship_search] = true
+  end
+
+  def no_scholarship_search
+    session[:do_scholarship_search] = false
   end
 end
