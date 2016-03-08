@@ -7,168 +7,18 @@
 
 <div id="candidate-section" class="margin-customized">
   <% unless current_user.nil? %>
-      <% if current_user_candidate? %>
-          <% unless current_user.users_work_materials.empty? %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  Tienes materiales de trabajo pendientes
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <% current_user.users_work_materials.limit(3).each do
-                    |user_work_material| %>
-                        <div class="col-md-4">
-                          <div class="work_material-image">
-                            <%= link_to image_tag(user_work_material.work_material
-                                                      .attachment.url(:large)),
-                                        user_work_material %>
-                          </div>
-                        </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-          <% end %>
-          <% if current_user.scholarship.present? %>
-              <% scholarship = current_user.scholarship %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  Haz solicitado una beca
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <label>Nombre:</label>
-                      <%= scholarship.name %>
-                    </div>
-                    <div class="col-md-4">
-                      <label>Fecha de inicio</label>
-                      <%= scholarship.start_date %>
-                    </div>
-                    <div class="col-md-4">
-                      <label>Fecha final</label>
-                      <%= scholarship.end_date %>
-                    </div>
-
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <label>URL: </label>
-                      <%= link_to 'Página de la Universidad', scholarship
-                          .url, target: '_blank' %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          <% end %>
-      <% end %>
+    <%= render "static_pages/partials/candidate_view" %>
   <% end %>
 </div>
 
 <div id="tutor-section" class="margin-customized">
   <% unless current_user.nil? %>
-      <% if current_user_tutor? %>
-        <% unless current_user.work_materials.empty? %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  Sus materiales de trabajo
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <% current_user.work_materials.limit(3).each do
-                    |work_material| %>
-                        <div class="col-md-4">
-                          <div class="work_material-image">
-                            <%= link_to image_tag(work_material.attachment
-                                                      .url(:large)),
-                                        work_material %>
-                          </div>
-                        </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-          <% end %>
-          <% unless current_user.candidates.empty? %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  Sus aspirantes
-                </div>
-                <div class="row">
-                  <% current_user.candidates.limit(3).each do
-                  |candidate| %>
-                      <div class="panel-body">
-                        <div class="row">
-                          <div class="col-md-3">
-                            <label>Nombre:</label>
-                            <%= candidate.user_name %>
-                          </div>
-                          <div class="col-md-3">
-                            <label>Correo:</label>
-                            <%= candidate.email %>
-                          </div>
-                          <div class="col-md-3">
-                            <label>Fecha de solicitud:</label>
-                            <%= candidate.requested_date %>
-                          </div>
-                          <div class="col-md-3">
-                            <label>Estado:</label>
-                            <% if candidate.pending %>
-                                Pendiente
-                            <% else %>
-                                Aceptado
-                            <% end %>
-                          </div>
-                        </div>
-                      </div>
-                  <% end %>
-                </div>
-              </div>
-          <% end %>
-
-      <% end %>
+    <%= render "static_pages/partials/tutor_view" %>
   <% end %>
 </div>
 
 <div id="admin-section" class="margin-customized">
   <% unless current_user.nil? %>
-      <% if current_user_admin? %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Usuarios del sistema
-            </div>
-            <div class="row">
-              <% @users.each do |user| %>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <label>ID:</label>
-                      <%= user.id %>
-                    </div>
-                    <div class="col-md-3">
-                      <label>Nombre:</label>
-                      <%= user.user_name %>
-                    </div>
-                    <div class="col-md-3">
-                      <label>Correo:</label>
-                      <%= user.email %>
-                    </div>
-                    <div class="col-md-3">
-                      <label>Tipo:</label>
-                      <% case user.type %>
-                      <% when User::ADMIN %>
-                          Administrador
-                      <% when User::TUTOR %>
-                          Tutor
-                      <% else %>
-                          Aspirante
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-      <% end %>
+      <%= render "static_pages/partials/admin_view" %>
   <% end %>
 </div>

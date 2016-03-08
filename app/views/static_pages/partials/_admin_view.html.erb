@@ -1,0 +1,38 @@
+<% if current_user_admin? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Usuarios del sistema
+      </div>
+      <div class="row">
+        <% @users.each do |user| %>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <label>ID:</label>
+                  <%= user.id %>
+                </div>
+                <div class="col-md-3">
+                  <label>Nombre:</label>
+                  <%= user.user_name %>
+                </div>
+                <div class="col-md-3">
+                  <label>Correo:</label>
+                  <%= user.email %>
+                </div>
+                <div class="col-md-3">
+                  <label>Tipo:</label>
+                  <% case user.type %>
+                  <% when User::ADMIN %>
+                      Administrador
+                  <% when User::TUTOR %>
+                      Tutor
+                  <% else %>
+                      Aspirante
+                  <% end %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>
