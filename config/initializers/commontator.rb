@@ -35,8 +35,7 @@ Commontator.configure do |config|
   # Arguments: a user (acts_as_commontator)
   # Returns: the user's name (String)
   # Default: lambda { |user| I18n.t('commontator.anonymous') } (all users are anonymous)
-  config.user_name_proc = lambda { |user| I18n.t('commontator.anonymous') }
-  # config.user_name_proc = lambda { |user| user.user_name }
+  config.user_name_proc = lambda { |user| user.user_name }
 
   # user_link_proc
   # Type: Proc
@@ -64,9 +63,7 @@ Commontator.configure do |config|
   # Default: lambda { |user, view|
   #            view.commontator_gravatar_image_tag(
   #              user, 1, :s => 60, :d => 'mm') }
-  config.user_avatar_proc = lambda { |user, view|
-                                     view.commontator_gravatar_image_tag(
-                                       user, 1, :s => 60, :d => 'mm') }
+  config.user_avatar_proc = lambda { |user, view| view.image_tag(user.image_profile.url(:thumb), :alt => "imagen default", :border => 1)}
 
   # user_email_proc
   # Type: Proc
@@ -94,7 +91,7 @@ Commontator.configure do |config|
   #          This is not recommended, as it can cause confusion over deleted comments
   #          If using pagination, it can also cause comments to change pages
   # Default: nil (no filtering - all comments are visible)
-  config.comment_filter = nil
+  config.comment_filter = Commontator::Comment.arel_table[:deleted_at].eq(nil)
 
   # thread_read_proc
   # Type: Proc
@@ -120,7 +117,7 @@ Commontator.configure do |config|
   #   :l (only if it's the latest comment)
   #   :n (never)
   # Default: :l
-  config.comment_editing = :l
+  config.comment_editing = :a
 
   # comment_deletion
   # Type: Symbol
@@ -131,7 +128,7 @@ Commontator.configure do |config|
   #   :n (never)
   # Note: For moderators, see the next option
   # Default: :l
-  config.comment_deletion = :l
+  config.comment_deletion = :a
 
   # moderator_permissions
   # Type: Symbol
@@ -181,7 +178,7 @@ Commontator.configure do |config|
   # If :l is selected, the "reply to thread" form will appear before the comments
   # Otherwise, it will appear after the comments
   # Default: :e
-  config.comment_order = :e
+  config.comment_order = :l
 
   # new_comment_style
   # Type: Symbol

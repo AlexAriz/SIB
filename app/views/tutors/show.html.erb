@@ -75,6 +75,26 @@
               <h3>
                 <span class="label label-success">El tutor ya te ha aceptado</span>
               </h3>
+              <%= link_to cancel_tutoring_path(@tutor, current_user),
+                          title: 'Cancelar tutoría',
+                          :method => :get,
+                          class: 'btn btn-primary',
+                          :data => { :confirm =>
+                                         "<p>¿Está seguro que desea <strong
+                           class='text-danger'>CANCELAR</strong>
+                           la tutoría con la
+                           siguiente información?
+                           <ul>
+                           <li>Nombre del tutor: <strong
+                                    class='text-info'>#{@tutor
+                                             .person.name}</strong></li>
+                                    <li>Correo del usuario: <strong
+                                    class='text-info'>#{@tutor
+                                             .email}</strong></li>
+                           </ul>
+                           </p>" } do %>
+                  <span class="fa fa-thumbs-o-down"> Cancelar tutoría</span>
+              <% end %>         
             </div>
         <% end %>
         <% if current_user.pending %>

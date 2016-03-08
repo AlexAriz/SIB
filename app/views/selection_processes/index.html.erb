@@ -3,7 +3,7 @@
   <h1><%= t '.title', :default => 'Procesos de Selección' %></h1>
 </div>
 
-<% if can? :create, @selection_processes %>
+<% if can? :create, model_class %>
     <%= link_to new_selection_process_path,
                 :default => t("helpers.links.new"),
                 class: 'btn btn-primary pull-right' do %>
