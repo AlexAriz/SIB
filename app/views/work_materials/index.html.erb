@@ -1,6 +1,6 @@
 <div id="container">
   <div class="col-lg-offset-10">
-    <% if can? :create, @work_material %>
+    <% if can? :create, WorkMaterial %>
         <%= link_to 'Agregar material de trabajo', new_work_material_path, class: 'btn btn-info' %>
     <% end %>
   </div>
