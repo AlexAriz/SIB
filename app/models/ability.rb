@@ -14,7 +14,7 @@ class Ability
     elsif user.type == User::TUTOR
       permit_tutor(user)
     elsif user.type == User::CANDIDATE
-      permit_candidate
+      permit_candidate(user)
     end
   end
 
@@ -22,26 +22,33 @@ class Ability
 
   def permit_admin
     can :manage, [User, Scholarship, SelectionProcess, University]
+    cannot :manage, Tutor
     cannot :manage, UsersWorkMaterial
     can :read_and_update, WorkMaterial
   end
 
   def permit_tutor(user)
     can :read_and_update, User, id: user.id
+    cannot :index, User
     can :cru, SelectionProcess
     can :read, University
     can :manage, Scholarship
     can :manage, WorkMaterial
     can :manage, Tutor
+    cannot :index, Tutor
   end
 
-  def permit_candidate
+  def permit_candidate(user)
     can :read, :all
+    can :read_and_update, User, id: user.id
+    cannot :index, User
+    can :index, Tutor
     cannot :read, WorkMaterial
     can :update, Candidate
     can :update, UsersWorkMaterial
     can :read, UsersWorkMaterial
     can :request_as_tutor, Tutor
+    can :cancel_tutoring, Tutor
     can :read_request, Scholarship
     can :read_request, Candidate
   end
