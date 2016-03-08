@@ -35,6 +35,7 @@ class Ability
     can :manage, Scholarship
     can :manage, WorkMaterial
     can :manage, Tutor
+    cannot :index, Tutor
   end
 
   def permit_candidate(user)
