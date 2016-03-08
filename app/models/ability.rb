@@ -45,11 +45,9 @@ class Ability
     can :index, Tutor
     cannot :read, WorkMaterial
     can :update, Candidate
-    can :update, UsersWorkMaterial
-    can :read, UsersWorkMaterial
+    can :read_and_update, UsersWorkMaterial
     can :request_as_tutor, Tutor
     can :cancel_tutoring, Tutor
-    can :read_request, Scholarship
-    can :read_request, Candidate
+    can :read_request, [Scholarship, Candidate]
   end
 end
