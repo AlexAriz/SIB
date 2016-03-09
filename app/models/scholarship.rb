@@ -57,10 +57,8 @@ class Scholarship < ActiveRecord::Base
   }
 
   scope :get_by_search_parameters,
-        lambda { |name, start_date, end_date, university_id|
+        lambda { |name, university_id|
           where('name LIKE ?', "%#{name}%")
-            .where('start_date LIKE ?', "%#{start_date}%")
-            .where('end_date LIKE ?', "%#{end_date}%")
             .where('university_id LIKE ?', "%#{university_id}%")
         }
   has_many :candidates

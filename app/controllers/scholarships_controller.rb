@@ -16,12 +16,9 @@ class ScholarshipsController < ApplicationController
   # rubocop:disable Metrics/AbcSize
   def index
     @scholarships = nil
-    if params[:name] || params[:start_date] ||
-       params[:end_date] || params[:university]
+    if params[:name] || params[:university]
 
       @scholarships = Scholarship.get_by_search_parameters(params[:name],
-                                                           params[:start_date],
-                                                           params[:end_date],
                                                            params[:university])
     end
     @scholarships = Scholarship.all if session[:do_scholarship_search]

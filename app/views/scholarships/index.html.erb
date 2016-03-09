@@ -51,27 +51,6 @@
               <% end %>
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-5">
-              <div class="col-md-5">
-                  <%= label_tag model_class.human_attribute_name(:start_date) %>
-              </div>
-              <div class="col-md-7 pull-right">
-                <%= date_field_tag :start_date, params[:start_date],
-                                   class: 'form-control' %>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="col-md-5">
-                <%= label_tag model_class.human_attribute_name(:end_date) %>
-              </div>
-              <div class="col-md-7">
-                <%= date_field_tag :end_date, params[:end_date],
-                                   class: 'form-control' %>
-              </div>
-            </div>
-          </div>
       <% end %>
     </div>
   </div>
