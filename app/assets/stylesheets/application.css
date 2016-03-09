@@ -122,6 +122,29 @@ footer ul li :hover {
     float: left;
 }
 
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #095A4D;
+    border-color: #095A4D;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > li > a {
+    color: #095A4D;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: none;
+    background: transparent;
+}
+
 .fa-2x:hover{
     background-color: #1A936F;
 }

@@ -1,7 +1,9 @@
 <div id="container">
-  <div class="col-lg-offset-10">
+  <div class="col-lg-12 nopadding">
     <% if can? :create, WorkMaterial %>
-        <%= link_to 'Agregar material de trabajo', new_work_material_path, class: 'btn btn-info' %>
+        <%= link_to new_work_material_path, default: t('helpers.links.new'), class: 'btn btn-primary pull-right' do %>
+            <span class="glyphicon glyphicon-plus"></span> Crear
+        <% end %>
     <% end %>
   </div>
   <div class="row">
@@ -31,5 +33,7 @@
         </div>
     <% end %>
   </div>
-  <%= will_paginate @work_materials %>
+  <div class="pull-right">
+    <%= will_paginate @work_materials, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
