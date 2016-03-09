@@ -100,7 +100,8 @@
               <%= link_to scholarship do %>
                   <span class="glyphicon glyphicon-eye-open"></span>
               <% end %>
-              <% if can? :manage, @scholarship %><%= link_to edit_scholarship_path(scholarship) do %>
+              <% if can? :manage, Scholarship %>
+                  <%= link_to edit_scholarship_path(scholarship) do %>
                       <span class="glyphicon glyphicon-pencil"></span>
                   <% end %>
 
