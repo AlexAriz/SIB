@@ -13,13 +13,11 @@ class ScholarshipsController < ApplicationController
 
   # GET /scholarships
   # GET /scholarships.json
-  # rubocop:disable Metrics/AbcSize
   def index
     @scholarships = nil
     if params[:name] || params[:university]
-
-      @scholarships = Scholarship.get_by_search_parameters(params[:name],
-                                                           params[:university])
+      @scholarships = Scholarship.by_name(params[:name])
+                                 .by_university(params[:university])
     end
     @scholarships = Scholarship.all if session[:do_scholarship_search]
   end
