@@ -7,6 +7,9 @@
     <% end %>
   </div>
   <div class="row">
+    <% if @work_materials.empty? %>
+      <%= image_tag('/images/materials/sin_materiales.png', class: 'center-img') %>
+    <% end %>
     <% @work_materials.each do |work_material| %>
         <div class="col-lg-4 work-material card">
           <div class="card-block">

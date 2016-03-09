@@ -140,6 +140,11 @@ footer ul li :hover {
     color: #095A4D;
 }
 
+.center-img {
+    display: block;
+    margin: auto;
+}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     border: none;
     background: transparent;

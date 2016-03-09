@@ -18,7 +18,7 @@
         <%= f.input :progress %>
         <%= error_span(@users_work_material[:progress]) %>
       </dl>
-      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= f.button :submit, :class => 'btn btn-info primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   users_work_materials_path, :class => 'btn btn-default' %>
   <% end %>
