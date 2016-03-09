@@ -96,7 +96,7 @@
 .footer {
     width: 100%;
     height: 165px;
-    margin-top: 278px;
+    margin-top: 211px;
     background-color: #095A4D;
 }
 
@@ -116,7 +116,6 @@ footer ul li {
 }
 
 footer ul li :hover {
-    background-color: #09776a;
     color: #e7e7e7;
     width: 70px;
     float: left;
@@ -154,6 +153,15 @@ footer ul li :hover {
     background-color: #1A936F;
 }
 
+.footer-links {
+    color: #FFF;
+}
+
+.footer-links:hover {
+    color: #a9c69c;
+    text-decoration: none;
+}
+
 /* Carrusel personalizado
 -------------------------------------------------- */
 
@@ -181,7 +189,7 @@ footer ul li :hover {
 #SIB_carousel{
     /* margin-top: -136px; */
     margin-left: -106px;
-    margin-right: -106px;
+    margin-right: -102px;
 }
 
 /* Social */
