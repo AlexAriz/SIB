@@ -15,12 +15,9 @@ class ScholarshipsController < ApplicationController
   # GET /scholarships.json
   def index
     @scholarships = nil
-    if params[:name] || params[:university] ||
-        params[:start_date] || params[:end_date]
+    if params[:name] || params[:university]
       @scholarships = Scholarship.by_name(params[:name])
                                  .by_university(params[:university])
-                                 .by_start_date(params[:start_date])
-                                 .by_end_date(params[:end_date])
     end
     @scholarships = Scholarship.all if session[:do_scholarship_search]
   end
