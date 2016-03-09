@@ -1,8 +1,9 @@
 <%- model_class = Candidate -%>
 <%- model_class_tutor_person = Person -%>
 
-<div class="page-header text-center">
-  <h1><%= t '.title', :default => model_class.model_name.human.titleize %></h1>
+<div class="page-header">
+  <h1 class="header-text">
+    <span class="glyphicon glyphicon-user small-txt"> <%= t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 <div class="row">
   <div class="col-md-6 text-center">

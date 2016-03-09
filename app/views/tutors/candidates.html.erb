@@ -1,7 +1,8 @@
 <%- model_class = Candidate -%>
 <%- model_class_person = Person -%>
 <div class="page-header">
-  <h1><%= t '.title', :default => model_class.model_name.human(:count => 2) %></h1>
+  <h1 class="header-text">
+    <span class="glyphicon glyphicon-th-list small-txt"></span> <%= t '.title', :default => model_class.model_name.human(:count => 2) %></h1>
 </div>
 <table class="table table-striped table-responsive table-bordered text-center" id="tutors-table">
   <thead>
