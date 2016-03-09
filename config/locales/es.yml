@@ -59,7 +59,7 @@ es:
       work_material:
         name: Nombre
         description: Descripción
-        file_src: Ruta del archivo
+        attachment: Ruta del archivo
         created_at: Fecha de creación
         candidates: Aspirantes
       users_work_material:
