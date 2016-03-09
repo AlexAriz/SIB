@@ -1,6 +1,7 @@
 <%- model_class = WorkMaterial -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1 class="header-text">
+    <span class="glyphicon glyphicon-list-alt small-txt"></span> <%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 <div class="col-lg-6">
   <div>
@@ -30,11 +31,13 @@
     <dd><%= @work_material.description %></dd>
     <dt><strong><%= model_class.human_attribute_name(:tutor_id) %>:</strong></dt>
     <dd><%= @work_material.tutor.user_name %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:candidates) %></strong></dt>
-    <dd>
-      <% @work_material.candidates.each do |candidate| %>
-          <%= candidate.user_name %><% if candidate != @work_material.candidates.to_a.last %>, <% end %>
-      <% end %>
-    </dd>
+    <% unless @work_material.candidates.empty? %>
+        <dt><strong><%= model_class.human_attribute_name(:candidates) %></strong></dt>
+        <dd>
+          <% @work_material.candidates.each do |candidate| %>
+              <%= candidate.user_name %><% if candidate != @work_material.candidates.to_a.last %>, <% end %>
+          <% end %>
+        </dd>
+    <% end %>
   </dl>
 </div>

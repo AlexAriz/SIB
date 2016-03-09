@@ -6,7 +6,7 @@
     <%= f.input :attachment, as: :file %>
     <%= error_span(@work_material[:attachment]) %>
 
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= f.button :submit, :class => 'btn-info primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 work_materials_path, :class => 'btn btn-default' %>
 <% end %>

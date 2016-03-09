@@ -4,7 +4,7 @@
     <span class="glyphicon glyphicon-list-alt small-txt"></span> <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %>
   </h1>
 </div>
-<% unless current_user_candidate? %>
+<% if can? :create, model_class %>
     <%= link_to new_scholarship_path,
                 :default => t("helpers.links.new"),
                 class: 'btn btn-primary pull-right' do %>
@@ -20,7 +20,7 @@
       <%= form_tag(scholarships_path, :method => 'get', id: 'search-form',
                    html: {class: 'form-horizontal'}) do %>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <div class="col-md-4">
                 <div>
                   <%= label_tag 'Nombre:' %>
@@ -31,28 +31,7 @@
                                    class: 'form-control' %>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="col-md-5 nopadding">
-                <div class="pull-left">
-                  <%= label_tag 'Fecha de inicio:' %>
-                </div>
-              </div>
-              <div class="col-md-7">
-                <%= text_field_tag :start_date, params[:start_date], class: 'form-control' %>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="pull-left">
-                <%= label_tag 'Fecha de término:' %>
-              </div>
-              <div class="col-md-6">
-                <%= text_field_tag :end_date, params[:end_date], class: 'form-control' %>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="col-md-3 pull-left">
                 <%= label_tag 'Universidad:' %>
               </div>

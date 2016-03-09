@@ -1,9 +1,9 @@
 <%- model_class = User -%>
 <%- model_class_tutor_person = Person -%>
-<%- model_class_scholarship = Scholarship -%>
 
-<div class="text-center">
-  <h1>Información de <%= @user.user_name %></h1>
+<div class="page-header">
+  <h1 class="header-text">
+    <span class="glyphicon glyphicon-user small-txt"></span> Información de <%= @user.user_name %></h1>
 </div>
 <br>
 <div class="col-md-4">
@@ -133,7 +133,7 @@
                   :class => 'btn btn-danger' %>
   <% end %>
   <% if current_user.id == @user.id %>
-      <%= link_to 'Editar mi perfil', user_edit_path(current_user), class: 'btn btn-info' %>
+      <%= link_to 'Editar mi perfil', user_edit_path(current_user), class: 'btn btn-info primary' %>
   <% end %>
 </div>
 <br>
