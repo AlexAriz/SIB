@@ -1,5 +1,6 @@
 <%- model_class = SelectionProcess -%>
-<div class="page-header text-center">
-  <h1><%=t '.title', :default => ['Información para el proceso de selección'], :model => model_class.model_name.human.titleize %></h1>
+<div class="page-header">
+  <h1 class="header-text">
+    <span class="glyphicon glyphicon-plane small-txt"></span> <%=t '.title', :default => ['Información para el proceso de selección'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 <%= render :partial => 'form' %>
