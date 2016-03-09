@@ -19,15 +19,15 @@
                 html: {class: 'form-horizontal'}) %>
       <div class="row">
         <div class="col-md-10">
-          <div class="col-md-4 nopadding">
+          <div class="col-md-3 nopadding">
             <%= label_tag "Nombre de la Universidad" %>
           </div>
-          <div class="col-md-8 nopadding">
+          <div class="col-md-8">
             <%= select_tag :university_id, options_for_select(@universities), class: 'form-control'%>
           </div>
         </div>
         <div class="col-md-offset-1 col-md-1">
-          <%= button_tag type: 'submit', class: 'btn btn-primary pull-right' do %>
+          <%= button_tag type: 'submit', class: 'btn btn-info pull-right primary' do %>
               <i class="fa fa-search"></i>
           <% end %>
         </div>
